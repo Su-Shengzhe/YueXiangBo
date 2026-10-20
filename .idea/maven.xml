@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings><option name="mavenHome" value="Use Maven wrapper" /></MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings><option name="jdkForImporter" value="Community-Parking-JDK-21" /></MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="Community-Parking-JDK-21" />
+  </component>
+</project>

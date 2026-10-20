@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Community Parking Environment Probe
+  version: 0.1.0
+  description: Local-profile infrastructure verification only; not parking business APIs.
+servers:
+  - url: http://127.0.0.1:8080
+security:
+  - ProbeToken: []
+paths:
+  /api/dev/probes:
+    get:
+      operationId: listProbes
+      responses:
+        '200':
+          description: Latest 100 committed database records.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Probe'
+        '401':
+          description: Missing or invalid local token.
+    post:
+      operationId: createProbe
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProbeInput'
+      responses:
+        '201':
+          description: Transaction committed; response contains id and label.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Probe'
+        '400':
+          description: Invalid label or malformed request.
+        '401':
+          description: Missing or invalid local token.
+  /api/dev/rollback:
+    post:
+      operationId: verifyRollback
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProbeInput'
+      responses:
+        '409':
+          description: Intentional failure after insert; the transaction is rolled back.
+        '400':
+          description: Invalid input.
+        '401':
+          description: Missing or invalid token.
+  /api/dev/messages:
+    post:
+      operationId: publishProbeMessage
+      responses:
+        '202':
+          description: Message submitted; query receipt to verify actual consumption.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id, status]
+                properties:
+                  id: {type: string, format: uuid}
+                  status: {type: string, const: SUBMITTED}
+        '401':
+          description: Missing or invalid token.
+  /api/dev/messages/{id}:
+    get:
+      operationId: getProbeMessage
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: {type: string, format: uuid}
+      responses:
+        '200':
+          description: Whether a consumer has persisted a receipt in MySQL.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [id, received]
+                properties:
+                  id: {type: string}
+                  received: {type: boolean}
+        '401':
+          description: Missing or invalid token.
+  /api/dev/redis:
+    get:
+      operationId: verifyRedis
+      responses:
+        '200':
+          description: A temporary value was written, read and deleted.
+        '401':
+          description: Missing or invalid token.
+        '503':
+          description: Redis verification failed.
+components:
+  securitySchemes:
+    ProbeToken:
+      type: apiKey
+      in: header
+      name: X-Probe-Token
+  schemas:
+    ProbeInput:
+      type: object
+      required: [label]
+      properties:
+        label:
+          type: string
+          minLength: 1
+          maxLength: 80
+          description: Whitespace-only values are rejected.
+    Probe:
+      type: object
+      required: [id, label]
+      properties:
+        id: {type: string, format: uuid}
+        label: {type: string}
+        created_at:
+          type: string
+          description: Timestamp serialized by the JDBC/JSON stack on list responses.

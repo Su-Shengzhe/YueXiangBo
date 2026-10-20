@@ -1,0 +1,15 @@
+.tools/
+.runtime/
+**/target/
+**/node_modules/
+**/dist/
+**/*.tsbuildinfo
+frontend/test-results/
+frontend/playwright-report/
+out/
+.idea/workspace.xml
+.idea/shelf/
+deploy/.env.local
+deploy/secrets/
+*.log
+.DS_Store

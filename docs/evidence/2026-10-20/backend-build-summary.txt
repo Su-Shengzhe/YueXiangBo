@@ -1,0 +1,16 @@
+[INFO] --- spring-boot:4.0.8:repackage (repackage) @ parking-service ---
+[INFO] Replacing main artifact D:\codex-project\���� Spring Cloud ���ǻ�����ͣ��λ���������ϵͳ������ҵ�����Ŀʵʩ�ƻ�\backend\parking-service\target\parking-service-0.1.0-SNAPSHOT.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to D:\codex-project\���� Spring Cloud ���ǻ�����ͣ��λ���������ϵͳ������ҵ�����Ŀʵʩ�ƻ�\backend\parking-service\target\parking-service-0.1.0-SNAPSHOT.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary for parking-platform 0.1.0-SNAPSHOT:
+[INFO] 
+[INFO] parking-platform ................................... SUCCESS [  0.004 s]
+[INFO] registry ........................................... SUCCESS [  5.209 s]
+[INFO] gateway ............................................ SUCCESS [  1.009 s]
+[INFO] parking-service .................................... SUCCESS [  4.530 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  11.466 s
+[INFO] Finished at: 2026-10-20T11:40:13+08:00
+[INFO] ------------------------------------------------------------------------

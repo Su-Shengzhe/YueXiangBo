@@ -1,0 +1,47 @@
+name: community-parking-dev
+services:
+  mysql:
+    image: ${MYSQL_IMAGE:?Set MYSQL_IMAGE in deploy/.env.local}
+    environment:
+      MYSQL_DATABASE: parking_db
+      MYSQL_USER: parking
+      MYSQL_PASSWORD: ${PARKING_DB_PASSWORD:?Required}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Required}
+    ports: ["127.0.0.1:13306:3306"]
+    volumes: ["mysql-data:/var/lib/mysql"]
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_PASSWORD mysql -h 127.0.0.1 -u parking parking_db -Nse 'SELECT 1'"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    mem_limit: 1g
+  redis:
+    image: ${REDIS_IMAGE:?Set REDIS_IMAGE in deploy/.env.local}
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Required}
+    command: ["sh", "-c", "exec redis-server --requirepass \"$$REDIS_PASSWORD\" --appendonly yes"]
+    ports: ["127.0.0.1:16379:6379"]
+    volumes: ["redis-data:/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    mem_limit: 256m
+  rabbitmq:
+    image: ${RABBITMQ_IMAGE:?Set RABBITMQ_IMAGE in deploy/.env.local}
+    environment:
+      RABBITMQ_DEFAULT_USER: parking
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?Required}
+    ports: ["127.0.0.1:25672:5672", "127.0.0.1:25673:15672"]
+    volumes: ["rabbitmq-data:/var/lib/rabbitmq"]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+    mem_limit: 768m
+volumes:
+  mysql-data:
+  redis-data:
+  rabbitmq-data:

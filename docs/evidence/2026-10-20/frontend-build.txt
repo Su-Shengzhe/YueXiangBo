@@ -1,0 +1,14 @@
+
+> community-parking-web@0.1.0 build
+> vue-tsc -b && vite build
+
+vite v8.3.4 building client environment for production...
+transforming...
+✓ 1588 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.37 kB │ gzip:   0.31 kB
+dist/assets/index-CMMbN4Gs.css   68.75 kB │ gzip:   9.39 kB
+dist/assets/index-DKY1cdN3.js   325.26 kB │ gzip: 114.42 kB
+
+✓ built in 708ms

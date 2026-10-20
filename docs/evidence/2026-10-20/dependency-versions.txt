@@ -1,0 +1,27 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------------------< cn.community:parking-service >--------------------
+[INFO] Building parking-service 0.1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- dependency:3.9.0:tree (default-cli) @ parking-service ---
+[INFO] cn.community:parking-service:jar:0.1.0-SNAPSHOT
+[INFO] +- org.springframework.boot:spring-boot-starter-jdbc:jar:4.0.8:compile
+[INFO] |  \- org.springframework.boot:spring-boot-jdbc:jar:4.0.8:compile
+[INFO] |     \- org.springframework:spring-jdbc:jar:7.0.9:compile
+[INFO] +- org.flywaydb:flyway-mysql:jar:11.14.1:compile
+[INFO] |  \- org.flywaydb:flyway-core:jar:11.14.1:compile
+[INFO] +- com.mysql:mysql-connector-j:jar:9.7.0:runtime
+[INFO] +- org.springframework.boot:spring-boot-starter-amqp:jar:4.0.8:compile
+[INFO] |  \- org.springframework.boot:spring-boot-amqp:jar:4.0.8:compile
+[INFO] |     \- org.springframework.amqp:spring-rabbit:jar:4.0.5:compile
+[INFO] \- org.springframework.boot:spring-boot-starter-data-redis:jar:4.0.8:compile
+[INFO]    \- org.springframework.boot:spring-boot-data-redis:jar:4.0.8:compile
+[INFO]       \- org.springframework.data:spring-data-redis:jar:4.0.7:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  01:12 min
+[INFO] Finished at: 2026-10-20T11:43:59+08:00
+[INFO] ------------------------------------------------------------------------

@@ -1,0 +1,43 @@
+{
+  "executedAt": "2026-10-20T03:40:55.8696641Z",
+  "record": {
+    "id": "33cb571f-772b-4613-a15c-5b89bc17bf60",
+    "label": "smoke-e87fe935becd4739a4544937bd8379fe"
+  },
+  "results": [
+    {
+      "status": "PASS",
+      "check": "gateway_discovery_mysql_write_read"
+    },
+    {
+      "status": "PASS",
+      "check": "mysql_transaction_rollback_http"
+    },
+    {
+      "status": "PASS",
+      "check": "mysql_transaction_rollback_no_row"
+    },
+    {
+      "status": "PASS",
+      "check": "probe_requires_token"
+    },
+    {
+      "status": "PASS",
+      "check": "invalid_input_rejected"
+    },
+    {
+      "status": "PASS",
+      "check": "redis_write_read"
+    },
+    {
+      "status": "PASS",
+      "check": "rabbit_publish_consume_mysql_receipt"
+    },
+    {
+      "status": "PASS",
+      "check": "gateway_does_not_route_internal"
+    }
+  ],
+  "messageId": "f3f9b257-27b0-4060-b042-6aee5784da73",
+  "scope": "Environment probe only, not business acceptance"
+}
