@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "textFilesChecked": 110,
+  "checks": [
+    "tracked private-path exclusion",
+    "known local credential scan",
+    "JSON/XML parsing",
+    "relative Markdown links"
+  ],
+  "errors": []
+}

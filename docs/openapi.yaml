@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Community Parking Environment Probe
   version: 0.1.0
-  description: Local-profile infrastructure verification only; not parking business APIs.
+  description: Requires probe plus local or container profile. Infrastructure verification only; not parking business APIs.
 servers:
   - url: http://127.0.0.1:8080
 security:
@@ -41,6 +41,44 @@ paths:
           description: Invalid label or malformed request.
         '401':
           description: Missing or invalid local token.
+  /api/dev/probes/exists:
+    get:
+      operationId: probeExists
+      parameters:
+        - in: query
+          name: label
+          required: true
+          schema: {type: string}
+      responses:
+        '200':
+          description: Exact label lookup, independent of the latest-100 list limit.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [exists]
+                properties:
+                  exists: {type: boolean}
+        '400':
+          description: Required label query parameter is missing.
+        '401':
+          description: Missing or invalid token.
+  /internal/environment-probe:
+    servers:
+      - url: http://127.0.0.1:8082
+    get:
+      operationId: internalProbe
+      responses:
+        '200':
+          description: Direct backend positive control. The gateway must return 404 for this path.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  marker: {type: string, const: parking-internal-probe}
+        '401':
+          description: Missing or invalid token.
   /api/dev/rollback:
     post:
       operationId: verifyRollback

@@ -1,0 +1,29 @@
+{
+  "verificationId": "20261021-104254-7405bb44",
+  "buildId": "20261021-104255-4be59db3",
+  "containerProject": "community-parking-check-28724e2b7ee3",
+  "browserVersion": [
+    "155.0.4283.62"
+  ],
+  "files": [
+    "backend-build.json",
+    "browser-result.json",
+    "browser-summary.json",
+    "container-check.json",
+    "container-smoke.json",
+    "delivery-check.json",
+    "docker-unavailable-failure.json",
+    "expected-http-failure.json",
+    "failure-guards.json",
+    "frontend-build.txt",
+    "gateway-image.json",
+    "healthy-start-reuse.json",
+    "local-smoke.json",
+    "parking-service-image.json",
+    "registry-image.json",
+    "script-tests.json",
+    "startup-recovery.json",
+    "unit-tests.json",
+    "verification.json"
+  ]
+}

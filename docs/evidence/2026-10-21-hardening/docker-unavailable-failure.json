@@ -1,0 +1,9 @@
+{
+  "attemptId": "14d43d1418d84d75854edc77696c5807",
+  "buildId": "20261020-155347-6bc8d167",
+  "error": "RuntimeException",
+  "endedAt": "2026-10-21T02:39:20.1549510Z",
+  "status": "FAIL",
+  "createdAt": "2026-10-21T02:39:19.4584028Z",
+  "module": "parking-service"
+}

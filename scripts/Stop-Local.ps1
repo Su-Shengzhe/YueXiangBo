@@ -1,13 +1,17 @@
-$ErrorActionPreference = 'Stop'
-$root = Split-Path $PSScriptRoot -Parent
-$file = Join-Path $root '.runtime/processes.json'
+#requires -Version 7.0
+$ErrorActionPreference='Stop'
+. (Join-Path $PSScriptRoot 'Common.ps1')
+$root=Split-Path $PSScriptRoot -Parent
+$file=Join-Path $root '.runtime/processes.json'
 if (!(Test-Path $file)) { return }
-foreach ($app in (Get-Content $file -Raw | ConvertFrom-Json)) {
-    $process = Get-Process -Id $app.pid -ErrorAction SilentlyContinue
-    if (!$process) { continue }
-    if ($process.ProcessName -ne 'java' -or $process.StartTime.ToUniversalTime().ToString('o') -ne $app.startedAt) {
-        throw "PID identity mismatch for $($app.module); refusing to stop."
+$guard=[IO.File]::Open((Join-Path $root '.runtime/process-control.lock'),[IO.FileMode]::OpenOrCreate,[IO.FileAccess]::ReadWrite,[IO.FileShare]::None)
+try {
+    $records=@(Get-Content $file -Raw | ConvertFrom-Json)
+    foreach ($record in $records) {
+        $process=Get-Process -Id $record.pid -ErrorAction SilentlyContinue
+        if ($process -and !(Test-OwnedProcess $record)) { throw 'PID identity mismatch; refusing to stop unrelated process.' }
     }
-    Stop-Process -Id $app.pid
-}
-Write-Host 'Stopped project Java processes. Infrastructure and volumes are preserved.'
+    Stop-OwnedProcesses $records
+    Write-AtomicJson $file @()
+    Write-Host 'Stopped owned Java processes; containers and data volumes are preserved.'
+} finally { $guard.Dispose() }

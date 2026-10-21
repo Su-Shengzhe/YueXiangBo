@@ -1,0 +1,132 @@
+{
+  "log": "<WORKSPACE>\\.runtime\\builds\\20261021-104255-4be59db3\\image-attempts\\registry-af16ab0f5ec14a0b9542d48a7303c9e5.log",
+  "buildId": "20261021-104255-4be59db3",
+  "source": {
+    "files": [
+      {
+        "sha256": "149c61fc57ea014600bba4c9cfe0a959ce1f838097c2b3682ddf217c6c91bdad",
+        "path": ".mvn/maven.config"
+      },
+      {
+        "sha256": "51b221ede4e074d19bb44d6d485bb7b298e77874572a09697aba0a9e234e0745",
+        "path": ".mvn/wrapper/maven-wrapper.properties"
+      },
+      {
+        "sha256": "a1cd4094d3ec646602fa1c6175505f7b5909b5b30e6d2eb570d79d417d11d4d5",
+        "path": "backend/gateway/pom.xml"
+      },
+      {
+        "sha256": "20bd8ab2755a1e55993b1a7d2717f140af7059a2f7915bff941216c9d6b9d4ae",
+        "path": "backend/gateway/src/main/java/cn/community/gateway/Application.java"
+      },
+      {
+        "sha256": "fec7e0a6a959bcf0995c1b171f274edc684eb0ead948d0be7599eb734c55e4a5",
+        "path": "backend/gateway/src/main/resources/application-container.properties"
+      },
+      {
+        "sha256": "00af69216e8bd82e0fb3e77675b4cec9517550ec10a77820d457334e03f3d4bd",
+        "path": "backend/gateway/src/main/resources/application-local.properties"
+      },
+      {
+        "sha256": "f3a43e62e97c52ec747ebe998657da9365b4608a30b231c7f2a65b549bad1698",
+        "path": "backend/gateway/src/main/resources/application-probe.properties"
+      },
+      {
+        "sha256": "4f1d809e97648436e0b1013ed475729c9f71657bd66ce4f1676ffb118d037b36",
+        "path": "backend/gateway/src/main/resources/application.properties"
+      },
+      {
+        "sha256": "462ae27dcce05f02182524efb17a317e46bc3afa7d39fc68d64280f6da7beae3",
+        "path": "backend/parking-service/pom.xml"
+      },
+      {
+        "sha256": "5880bab4761f7a6028ad963dd49bdf184897767500c441f60bc53c97ee4bc6c4",
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/Application.java"
+      },
+      {
+        "sha256": "c6b5b763b96b1fed276e40f4e2c18421930a9f73dbd5238ee7e4c41c540e81ad",
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/InternalProbeController.java"
+      },
+      {
+        "sha256": "577231d5c8265a281cf790ff98a2f8f9e7a9a25fec79a6cca31cf617d8fbfe03",
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ProbeController.java"
+      },
+      {
+        "sha256": "f34968ad1c9ff78c9db050f4b6c0ce5916b80262ff63f6d4dd8c946174388c97",
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ProbeStore.java"
+      },
+      {
+        "sha256": "e1e343069090dd08fd3b612464aaf257fed2b65d675d921db8cc64927e1581ac",
+        "path": "backend/parking-service/src/main/resources/application-container.properties"
+      },
+      {
+        "sha256": "e7f5dbbd4dba0b49dc473cd94c36372496b6aea424f1fc65102bfbd30b306ad6",
+        "path": "backend/parking-service/src/main/resources/application-local.properties"
+      },
+      {
+        "sha256": "7af023467aa188b450f51bfb6d1d861da78f15a1e76a44d596be1606efbaf994",
+        "path": "backend/parking-service/src/main/resources/application-probe.properties"
+      },
+      {
+        "sha256": "8c627309c28904748003f926ec3823e7eeaddaea9cb27c71578e66f70fe66b3e",
+        "path": "backend/parking-service/src/main/resources/application.properties"
+      },
+      {
+        "sha256": "cabbb4ca1543c792485aaf950d92a7678d70ae69847e7cbc886d3dfd527ca3f4",
+        "path": "backend/parking-service/src/main/resources/db/probe/V001__environment_probe.sql"
+      },
+      {
+        "sha256": "54ddbb4d4c78c703083209723812a3123f40874a69ee8785993fc2193959ac89",
+        "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ProbeProfileTest.java"
+      },
+      {
+        "sha256": "3a67e1431085fc89f6c26ad01fbb11f53d491bffaa6153639b419b7d5fcfc96a",
+        "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ProbeStoreTest.java"
+      },
+      {
+        "sha256": "96a147c7d7aac7274e73efcfa4f393d7998573955d15074355f9c966867294ca",
+        "path": "backend/registry/pom.xml"
+      },
+      {
+        "sha256": "d382a1ddd046c9c21dd17f0f70f0e5deb747e59c2d6b5006de33802fe5bbd692",
+        "path": "backend/registry/src/main/java/cn/community/registry/Application.java"
+      },
+      {
+        "sha256": "276883836a8af7522479ed2a3084f7fbd6b77d2239cf823f473eba49d7b3d329",
+        "path": "backend/registry/src/main/resources/application-container.properties"
+      },
+      {
+        "sha256": "1ddefd08e04776cab0c5e4f4188b34f82f72e73fb2abc556221dfe069389fd85",
+        "path": "backend/registry/src/main/resources/application-local.properties"
+      },
+      {
+        "sha256": "4a7c53f52106b85181b48e9059567a36476ce8766d6e01d86eb80b273df2b741",
+        "path": "backend/registry/src/main/resources/application.properties"
+      },
+      {
+        "sha256": "cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02",
+        "path": "mvnw"
+      },
+      {
+        "sha256": "4a361e1374a3e5ad6d03e18e9adc0cf181ac5058ac6203b76f0ba3b456b56481",
+        "path": "mvnw.cmd"
+      },
+      {
+        "sha256": "fa8320c920fb5c703a4aba49f0360edfdc66a3a9af3cc7388774910006f563c6",
+        "path": "pom.xml"
+      }
+    ],
+    "fingerprint": "71c14f4360d44d974d8cd06beba5ce335e52263976db02ed27cb800e26ffa872",
+    "commit": "544159c2eedf8703d85deb88fe7773ccc5f3e7a4"
+  },
+  "endedAt": "2026-10-21T02:48:36.2020698Z",
+  "imageId": "sha256:d19547f39a6aee212a2a1597e698ba57fd0eae9b9a7cb481646c91fae412441d",
+  "tag": "community-parking/registry:dev",
+  "dockerfileSha256": "530A3E61198CDB5B9A1B898F7E3BB5E13F65230F0E5D3F60C8E12459EC23F952",
+  "jarSha256": "f87225b7987b3228705588b0c26cdc6709b29e27590d1476183962b9e19ea525",
+  "module": "registry",
+  "runtime": "eclipse-temurin@sha256:227118764cccd3c3294617061aaa93a08309c63a395eefa83e6b35032992ea99",
+  "status": "PASS",
+  "createdAt": "2026-10-21T02:47:05.6370164Z",
+  "attemptId": "af16ab0f5ec14a0b9542d48a7303c9e5"
+}

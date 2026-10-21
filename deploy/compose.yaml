@@ -7,7 +7,7 @@ services:
       MYSQL_USER: parking
       MYSQL_PASSWORD: ${PARKING_DB_PASSWORD:?Required}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Required}
-    ports: ["127.0.0.1:13306:3306"]
+    ports: ["127.0.0.1:${MYSQL_PORT:-13306}:3306"]
     volumes: ["mysql-data:/var/lib/mysql"]
     healthcheck:
       test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_PASSWORD mysql -h 127.0.0.1 -u parking parking_db -Nse 'SELECT 1'"]
@@ -20,7 +20,7 @@ services:
     environment:
       REDIS_PASSWORD: ${REDIS_PASSWORD:?Required}
     command: ["sh", "-c", "exec redis-server --requirepass \"$$REDIS_PASSWORD\" --appendonly yes"]
-    ports: ["127.0.0.1:16379:6379"]
+    ports: ["127.0.0.1:${REDIS_PORT:-16379}:6379"]
     volumes: ["redis-data:/data"]
     healthcheck:
       test: ["CMD-SHELL", "REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep -q PONG"]
@@ -33,7 +33,7 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: parking
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?Required}
-    ports: ["127.0.0.1:25672:5672", "127.0.0.1:25673:15672"]
+    ports: ["127.0.0.1:${RABBITMQ_PORT:-25672}:5672", "127.0.0.1:${RABBITMQ_UI_PORT:-25673}:15672"]
     volumes: ["rabbitmq-data:/var/lib/rabbitmq"]
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]

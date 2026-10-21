@@ -48,7 +48,7 @@ npm.cmd -v
 
 # 仅首次生成随机本地凭据；已有文件不会覆盖。
 .\scripts\Initialize-Local.ps1
-.\mvnw.cmd -B -ntp clean verify
+.\scripts\Build-Backend.ps1
 
 Push-Location frontend
 npm.cmd ci
@@ -72,7 +72,7 @@ Pop-Location
 
 本机 IntelliJ IDEA 2024.1 已增加 `Community-Parking-JDK-21`，项目 `.idea` 配置指定此 SDK、Java 21、UTF-8 和 Maven Wrapper。导入根目录 `pom.xml` 后核对 Project SDK、各模块继承的 SDK、Maven Importer/Runner；本次未通过 IDE 界面实际打开和运行工程。
 
-另一台电脑先运行工具链安装脚本，再在 IDEA 中注册同名 SDK，路径为 `.tools/jdk` 下实际 JDK 子目录。IDE 内运行服务时需设置 `local` profile，以及本地配置文件中的数据库、Redis、RabbitMQ 密码和 `PROBE_TOKEN`。推荐先使用启动脚本验证，避免逐个手工录入。
+另一台电脑先运行工具链安装脚本，再在 IDEA 中注册同名 SDK，路径为 `.tools/jdk` 下实际 JDK 子目录。IDE 内运行验证服务时需设置 `local,probe` profiles，以及本地配置文件中的数据库、Redis、RabbitMQ 密码和 `PROBE_TOKEN`。推荐先使用启动脚本验证，避免逐个手工录入。
 
 ## 本地端口
 
@@ -95,9 +95,27 @@ Pop-Location
 - `Invoke-Smoke.ps1`：真实网关、Eureka、MySQL、Redis、RabbitMQ；检查写读、回滚、权限、消息消费等。
 - `Test-Frontend.ps1`：真实 Edge 操作页面保存记录，刷新后重新读取；运行前须已启动后端。
 - `docs/openapi.yaml`：本阶段验证接口契约，可以导入支持 OpenAPI 3.1 的接口工具。尚未接入在线接口文档 starter。
-- Flyway 当前只建立 `env_probe`、`env_probe_message` 验证表，尚未建立设计文档中的业务表。未来业务迁移使用后续编号；已执行的迁移不可改写。
+- Flyway 的验证迁移在 `db/probe/V001__environment_probe.sql`，仅 `probe` profile 启用。已执行的 V001 内容保持不变；未来业务迁移使用独立迁移目录和明确的数据库方案，不能直接复用验证表作为业务结构。
 
-验证接口只在 `local` profile 下启用，后端及基础组件只绑定本机。它们不能作为生产业务接口发布。RabbitMQ 验证消息不是业务 Outbox；正式可靠事件机制仍按设计实施。
+验证接口要求 `probe` 与 `local` 或 `container` 同时启用；网关探针路由也由 `probe` profile 控制。本地服务绑定回环地址；容器服务监听容器网络，宿主端口仅发布到回环地址。RabbitMQ 验证消息不是业务 Outbox；正式可靠事件机制仍按设计实施。
+
+## 一次执行完整验收
+
+```powershell
+.\scripts\Verify-Project.ps1 -CleanContainers -ExerciseStartupFailure
+```
+
+依次执行脚本回归、后端测试与构建、前端 `npm ci` 与构建、本地重启及集成测试、Edge 测试、启动故障注入与恢复、独立临时容器集成测试，以及失败报告和旧构建拒绝检查。该命令会重启本项目 Java 服务；不会停止其他项目。临时容器使用随机端口、独立凭据和全新数据卷，结束时仅删除本次 `community-parking-check-*` 项目的容器与卷。本地开发数据卷保留。
+
+每次运行的结果与日志位于 `.runtime/verifications/<运行编号>/`，子检查分别保存在 `checks`、`browser-checks`、`recovery-checks`、`container-checks`。失败也保存结果；`.runtime/smoke-result.json` 是最近一次检查状态，历史证据以独立运行目录为准。
+
+`Start-Local.ps1` 会预检 JAR 和端口，等待健康及网关路由就绪；重复运行可复用本脚本启动且 JAR 一致的健康进程。修改代码并重新构建后，执行 `Stop-Local.ps1` 再启动。启动中途失败只停止本次新建的 Java 进程。
+
+## 修改锁定版本和本地配置
+
+工具安装始终读取已有 `scripts/toolchain.lock.json`，不会自行选择最新版本。升级时明确修改对应版本、解压目录、官方安装包 URL 与 SHA-256；修改 Maven 时同时更新 `.mvn/wrapper/maven-wrapper.properties` 的 URL 和校验值。运行安装脚本和完整验收通过后，再提交这一组变更。下载残留、校验失败的文件和旧工具备份保留在 `.tools`，不会当作有效安装直接跳过检查。
+
+修改基础组件镜像摘要后执行 `Initialize-Local.ps1 -SyncImages`，只同步镜像并备份原配置，保留凭据。配置缺字段、重复键、镜像漂移或端口重复会提前报错；如果凭据文件丢失且已有项目数据卷，脚本拒绝生成新密码，必须恢复原文件。
 
 ## 停止和再次运行
 
@@ -114,11 +132,14 @@ docker compose --env-file deploy/.env.local -f deploy/compose.yaml stop
 .\scripts\Build-AppImage.ps1 -Module parking-service
 ```
 
-此 Dockerfile 将本地 Wrapper/JDK 21 构建的 JAR 放入锁定的 Java 21 JRE 镜像，使用非 root 用户。当前 Compose 只编排基础组件；完整应用容器部署、容器内服务地址和生产鉴权属于下一阶段，不应将本地配置直接当作上线配置。
+默认先重新运行后端测试与构建，再将 JAR 放入锁定的 Java 21 JRE 镜像，使用非 root 用户。`-UseVerifiedBuild` 可复用已通过构建，但必须通过源码指纹和 JAR SHA-256 校验。构建记录同时保存 Git 提交、源码文件摘要、JAR 摘要和实际镜像 ID；工作区未提交时，以源码指纹确定本次输入。
+
+`deploy/compose.apps.yaml` 提供三个验证应用的容器编排，容器内使用服务名连接依赖。运行 `Test-Container.ps1` 可独立执行全新数据卷验证，并检查关闭 `probe` 后验证接口不可访问。该配置用于开发验收，生产鉴权、TLS、备份与正式业务服务仍需后续实现。
 
 ## 资料入口
 
 - [环境配置与验证记录](./环境配置与验证记录.md)
+- [工程优化与验证记录](./工程优化与验证记录.md)
 - [项目计划](./项目计划.md)
 - [总体设计说明书](./总体设计说明书.md)
 - [接口契约](./docs/openapi.yaml)

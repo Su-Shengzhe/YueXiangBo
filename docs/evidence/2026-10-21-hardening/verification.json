@@ -1,0 +1,64 @@
+{
+  "toolchain": {
+    "node": {
+      "directory": "node-v24.22.0-win-x64",
+      "npm": "11.19.1",
+      "version": "v24.22.0",
+      "sha256": "f9683a19877e12a9b167305c8db71040d812876359de21f0d2e97c3f321f80c3",
+      "url": "https://nodejs.org/dist/v24.22.0/node-v24.22.0-win-x64.zip"
+    },
+    "maven": {
+      "directory": "apache-maven-3.9.16",
+      "sha256": "5af3b743dd8b876b5c45da33b676251e5f1687712644abb4ee519ca56e1d89ce",
+      "sha512": "ed41650d42485cfc243fad22158caf9cbb5dc408ce7a09ddb94dd42a019de929ca43065bfa450612cf12bf78b5cafa3884b96c090de326ff590448c933454af3",
+      "version": "3.9.16",
+      "url": "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.16/apache-maven-3.9.16-bin.zip"
+    },
+    "jdk": {
+      "directory": "jdk-21.0.12.1+1",
+      "version": "21.0.12.1+1-LTS",
+      "sha256": "f9d6e191ab098c0d416e7d588a24420a8621cd2f4720dab2459b8b7b2d2d8b4e",
+      "url": "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12.1%2B1/OpenJDK21U-jdk_x64_windows_hotspot_21.0.12.1_1.zip"
+    }
+  },
+  "startedAt": "2026-10-21T02:42:54.2769878Z",
+  "steps": [
+    {
+      "step": "script regression",
+      "status": "PASS"
+    },
+    {
+      "status": "PASS",
+      "step": "backend build",
+      "build": "20261021-104255-4be59db3"
+    },
+    {
+      "step": "frontend clean install and build",
+      "status": "PASS"
+    },
+    {
+      "smoke": "20261021-104533-6fcfb201",
+      "status": "PASS",
+      "step": "local start and smoke"
+    },
+    {
+      "step": "browser",
+      "status": "PASS"
+    },
+    {
+      "step": "startup recovery",
+      "status": "PASS"
+    },
+    {
+      "step": "clean volume container stack",
+      "status": "PASS"
+    },
+    {
+      "step": "failure reporting and stale build guards",
+      "status": "PASS"
+    }
+  ],
+  "endedAt": "2026-10-21T02:52:27.9834233Z",
+  "id": "20261021-104254-7405bb44",
+  "status": "PASS"
+}

@@ -2,6 +2,8 @@ import { defineConfig } from '@playwright/test'
 
 export default defineConfig({
   testDir: './tests',
+  reporter: [['list'], ['json', { outputFile: process.env.PROBE_BROWSER_REPORT || '../.runtime/browser-report.json' }]],
+  metadata: { node: process.version, channel: 'msedge' },
   workers: 1,
   retries: 0,
   use: {

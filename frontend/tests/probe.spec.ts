@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test'
 
-test('browser saves a record through the gateway and reads it after reload', async ({ page }) => {
+test('browser saves a record through the gateway and reads it after reload', async ({ page, browser }, testInfo) => {
+  await testInfo.attach('browser-version', { body: Buffer.from(browser.version()), contentType: 'text/plain' })
   const token = process.env.PROBE_TOKEN
   if (!token) throw new Error('Load deploy/.env.local before running this test.')
   const label = `browser-${Date.now()}`
@@ -17,5 +18,5 @@ test('browser saves a record through the gateway and reads it after reload', asy
   await expect(page.getByRole('cell', { name: label, exact: true })).toBeVisible()
   // Clear the development credential before capturing a shareable screenshot.
   await page.locator('input[type=password]').fill('')
-  await page.screenshot({ path: '../.runtime/browser-probe.png', fullPage: true })
+  await page.screenshot({ path: process.env.PROBE_BROWSER_SCREENSHOT || '../.runtime/browser-probe.png', fullPage: true })
 })

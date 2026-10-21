@@ -1,0 +1,63 @@
+{
+  "endedAt": "2026-10-21T02:52:27.9691787Z",
+  "failure": null,
+  "id": "20261021-105227-0514a226",
+  "results": [
+    {
+      "status": "PASS",
+      "check": "create_http_201"
+    },
+    {
+      "status": "PASS",
+      "check": "gateway_discovery_mysql_write_read"
+    },
+    {
+      "status": "PASS",
+      "check": "mysql_transaction_rollback_http"
+    },
+    {
+      "status": "PASS",
+      "check": "mysql_transaction_rollback_no_row"
+    },
+    {
+      "status": "PASS",
+      "check": "missing_token_rejected"
+    },
+    {
+      "status": "PASS",
+      "check": "wrong_token_rejected"
+    },
+    {
+      "status": "PASS",
+      "check": "invalid_input_rejected"
+    },
+    {
+      "status": "PASS",
+      "check": "redis_write_read"
+    },
+    {
+      "status": "PASS",
+      "check": "message_submission_http_202"
+    },
+    {
+      "status": "PASS",
+      "check": "rabbit_publish_consume_mysql_receipt"
+    },
+    {
+      "status": "PASS",
+      "check": "internal_endpoint_exists_on_backend"
+    },
+    {
+      "status": "PASS",
+      "check": "gateway_blocks_existing_internal_endpoint"
+    }
+  ],
+  "scope": "Environment probe only",
+  "status": "PASS",
+  "record": {
+    "id": "2011a3db-99fd-4b6c-a234-aace833ae117",
+    "label": "smoke-f55b21e3672f498f85af90671d71bf9b"
+  },
+  "messageId": "e998c01c-1f82-4615-97ec-bae8c5a85116",
+  "startedAt": "2026-10-21T02:52:27.0828576Z"
+}

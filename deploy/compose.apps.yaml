@@ -1,0 +1,32 @@
+# Local container verification only; this is not the production deployment.
+services:
+  registry:
+    image: community-parking/registry:dev
+    environment:
+      SPRING_PROFILES_ACTIVE: container,probe
+    ports: ["127.0.0.1:${REGISTRY_PORT:-8761}:8761"]
+    mem_limit: 512m
+  parking-service:
+    image: community-parking/parking-service:dev
+    environment:
+      SPRING_PROFILES_ACTIVE: container,probe
+      PARKING_DB_PASSWORD: ${PARKING_DB_PASSWORD:?Required}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Required}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD:?Required}
+      PROBE_TOKEN: ${PROBE_TOKEN:?Required}
+    ports: ["127.0.0.1:${PARKING_PORT:-8082}:8082"]
+    depends_on:
+      mysql: {condition: service_healthy}
+      redis: {condition: service_healthy}
+      rabbitmq: {condition: service_healthy}
+      registry: {condition: service_started}
+    mem_limit: 512m
+  gateway:
+    image: community-parking/gateway:dev
+    environment:
+      SPRING_PROFILES_ACTIVE: container,probe
+    ports: ["127.0.0.1:${GATEWAY_PORT:-8080}:8080"]
+    depends_on:
+      registry: {condition: service_started}
+      parking-service: {condition: service_started}
+    mem_limit: 512m

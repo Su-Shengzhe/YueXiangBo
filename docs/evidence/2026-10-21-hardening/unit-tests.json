@@ -1,0 +1,19 @@
+{
+  "suites": [
+    {
+      "name": "cn.community.parkingservice.ProbeProfileTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "cn.community.parkingservice.ProbeStoreTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "tests": 5
+}

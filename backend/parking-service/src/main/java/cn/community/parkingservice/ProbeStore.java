@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.support.TransactionTemplate;
 
 @Service
-@Profile("local")
+@Profile("probe & (local | container)")
 public class ProbeStore {
     private final JdbcTemplate jdbc;
     private final TransactionTemplate tx;

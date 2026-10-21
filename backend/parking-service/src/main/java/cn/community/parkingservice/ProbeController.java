@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
-@Profile("local")
+@Profile("probe & (local | container)")
 @RequestMapping("/api/dev")
 public class ProbeController {
     private final ProbeStore store;
@@ -39,15 +39,23 @@ public class ProbeController {
     public List<Map<String,Object>> list(@RequestHeader(value="X-Probe-Token",required=false) String supplied) {
         authorize(supplied); return store.list();
     }
+    @GetMapping("/probes/exists")
+    public Map<String,Boolean> exists(@RequestHeader(value="X-Probe-Token",required=false) String supplied, @RequestParam String label) {
+        authorize(supplied);
+        return Map.of("exists",jdbc.queryForObject("SELECT COUNT(*) FROM env_probe WHERE label=?",Integer.class,label)>0);
+    }
     public record ProbeRequest(String label) {}
     @PostMapping("/probes")
     @ResponseStatus(HttpStatus.CREATED)
     public Map<String,String> create(@RequestHeader(value="X-Probe-Token",required=false) String supplied, @RequestBody ProbeRequest input) {
-        authorize(supplied); return store.create(input.label(), false);
+        authorize(supplied);
+        if (input == null) throw new IllegalArgumentException("body is required");
+        return store.create(input.label(), false);
     }
     @PostMapping("/rollback")
     public void rollback(@RequestHeader(value="X-Probe-Token",required=false) String supplied, @RequestBody ProbeRequest input) {
         authorize(supplied);
+        if (input == null) throw new IllegalArgumentException("body is required");
         try { store.create(input.label(), true); }
         catch (IllegalStateException e) { throw new ResponseStatusException(HttpStatus.CONFLICT, "intentional rollback"); }
     }
@@ -60,7 +68,11 @@ public class ProbeController {
         return Map.of("id",id,"status","SUBMITTED");
     }
     @RabbitListener(queues="parking.environment.probe")
-    public void consume(String id) { jdbc.update("INSERT IGNORE INTO env_probe_message(id) VALUES (?)",id); }
+    public void consume(String id) {
+        UUID.fromString(id);
+        try { jdbc.update("INSERT INTO env_probe_message(id) VALUES (?)",id); }
+        catch (org.springframework.dao.DuplicateKeyException duplicate) { /* duplicate delivery of this probe */ }
+    }
     @GetMapping("/messages/{id}")
     public Map<String,Object> message(@RequestHeader(value="X-Probe-Token",required=false) String supplied,@PathVariable String id) {
         authorize(supplied);

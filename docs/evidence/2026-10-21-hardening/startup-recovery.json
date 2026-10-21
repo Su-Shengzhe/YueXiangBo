@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-10-21T02:45:44.1568974Z",
+  "endedAt": "2026-10-21T02:46:00.5997920Z",
+  "checks": [
+    {
+      "check": "second_launch_failure_cleans_first_process",
+      "status": "PASS",
+      "startupRun": "20261021-104545-5fba9e01"
+    }
+  ],
+  "status": "PASS",
+  "id": "0fd5816f8c8a4e37bb03a5cba0785600"
+}

@@ -1,0 +1,13 @@
+{
+  "reused": [
+    "registry",
+    "parking-service",
+    "gateway"
+  ],
+  "error": null,
+  "endedAt": "2026-10-21T02:48:37.0117098Z",
+  "startedAt": "2026-10-21T02:48:35.6150046Z",
+  "id": "20261021-104835-45f66ebc",
+  "status": "PASS",
+  "created": []
+}

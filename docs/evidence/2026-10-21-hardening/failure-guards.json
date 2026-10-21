@@ -1,0 +1,21 @@
+{
+  "startedAt": "2026-10-21T02:52:23.0154166Z",
+  "endedAt": "2026-10-21T02:52:27.0599320Z",
+  "checks": [
+    {
+      "check": "real_http_failure_records_fail",
+      "status": "PASS",
+      "smokeRunId": "20261021-105223-c11ae75b"
+    },
+    {
+      "status": "PASS",
+      "check": "stale_source_rejected_before_docker"
+    },
+    {
+      "status": "PASS",
+      "check": "stale_jar_rejected_before_docker"
+    }
+  ],
+  "status": "PASS",
+  "id": "dda0511be3a9405f923e038c4088f5c8"
+}
