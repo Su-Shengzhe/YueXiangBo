@@ -1,0 +1,559 @@
+{
+  "createdAt": "2026-10-25T03:37:25.710Z",
+  "backendFingerprint": "423cdbaf868761d50a9e939884ad9dcdce0d3d36a7f32877c1b8159d13cc49d6",
+  "candidateFingerprint": "3df99fd9521cb9726a833c690d0883edd4122c6efc365b9d4037426c0f4de9d5",
+  "files": [
+    {
+      "path": ".mvn/maven.config",
+      "sha256": "149c61fc57ea014600bba4c9cfe0a959ce1f838097c2b3682ddf217c6c91bdad"
+    },
+    {
+      "path": ".mvn/wrapper/maven-wrapper.properties",
+      "sha256": "51b221ede4e074d19bb44d6d485bb7b298e77874572a09697aba0a9e234e0745"
+    },
+    {
+      "path": "backend/foundation/pom.xml",
+      "sha256": "f8a628f29b891c9ff94cf317bfa949adf944f7147b9404e3642f8b11aabf273f"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Actor.java",
+      "sha256": "8ddf768b10f928bdbeaef23a37d3d94b2158b963f3ec75f860b186d7629af382"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/BusinessClock.java",
+      "sha256": "2d691da3813c81cdcbb9aadeefdc1fb6ee7bf77022137bf50f964c4760d10895"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/BusinessErrors.java",
+      "sha256": "98226da2750ad6213af89cb9c9c325dfe5ada931f9df0ea8fa71816f3b83100a"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/BusinessWeb.java",
+      "sha256": "8c13e273fc08c653b9d3ae54046587e8967704f08468ea9d303cf3320baa29aa"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Data.java",
+      "sha256": "cd0858a5c2a58836c06cd270c66edf8984f15af0a69a11eefad39eaa67713c22"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Events.java",
+      "sha256": "74a8f0e9c7a5b12db5c5e1e09083082d0d1d7c425f4fc024f20f12488b0406a6"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/IdentityLookup.java",
+      "sha256": "b001f61dddea2845bf3f957f2376e0463281682065156b9d30d2e3bf17f22233"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Management.java",
+      "sha256": "23817127fb810a82cb954d670a80897fec82f72063fbe76defa66445ad9f9fbb"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/OutboxOperations.java",
+      "sha256": "af2c9d373441450dc8ff0c1e14915f6f0f58cabde6697972d98379879135f978"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Problem.java",
+      "sha256": "b5198cffd511d579b848f40e2037e86677db3f66735b19a7d84a4a90d1678b3e"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Requests.java",
+      "sha256": "e698246d8525cff68c93340e7135cf1876c5121559cc9c114c96808a5c5b605f"
+    },
+    {
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Tokens.java",
+      "sha256": "7e7a3848a6303d591e48c92761336dcf28fe9a797afcc63ceb837c65858bc6c2"
+    },
+    {
+      "path": "backend/foundation/src/test/java/cn/community/foundation/MoneyTest.java",
+      "sha256": "64c00ee411b37221e33bcb43214c144094c6e7d55545172fa3f3e6a0e38495ea"
+    },
+    {
+      "path": "backend/foundation/src/test/java/cn/community/foundation/OutboxTest.java",
+      "sha256": "611c9cb11934731a686e8e6c002fd4352d0b7ba49a58ccab4b0980c2d64941b1"
+    },
+    {
+      "path": "backend/gateway/pom.xml",
+      "sha256": "a1cd4094d3ec646602fa1c6175505f7b5909b5b30e6d2eb570d79d417d11d4d5"
+    },
+    {
+      "path": "backend/gateway/src/main/java/cn/community/gateway/Application.java",
+      "sha256": "20bd8ab2755a1e55993b1a7d2717f140af7059a2f7915bff941216c9d6b9d4ae"
+    },
+    {
+      "path": "backend/gateway/src/main/resources/application-business.properties",
+      "sha256": "e4cfc68784daa4c725b26e6b66d0bc82f8a52f44cbe5c09d831a7e62bde90fb3"
+    },
+    {
+      "path": "backend/gateway/src/main/resources/application-container.properties",
+      "sha256": "fec7e0a6a959bcf0995c1b171f274edc684eb0ead948d0be7599eb734c55e4a5"
+    },
+    {
+      "path": "backend/gateway/src/main/resources/application-local.properties",
+      "sha256": "00af69216e8bd82e0fb3e77675b4cec9517550ec10a77820d457334e03f3d4bd"
+    },
+    {
+      "path": "backend/gateway/src/main/resources/application-probe.properties",
+      "sha256": "f3a43e62e97c52ec747ebe998657da9365b4608a30b231c7f2a65b549bad1698"
+    },
+    {
+      "path": "backend/gateway/src/main/resources/application.properties",
+      "sha256": "4f1d809e97648436e0b1013ed475729c9f71657bd66ce4f1676ffb118d037b36"
+    },
+    {
+      "path": "backend/identity-service/pom.xml",
+      "sha256": "5827fe8d5458367def651ce17281bb61207dc2c9464d42b5f6d2ba86c7759198"
+    },
+    {
+      "path": "backend/identity-service/src/main/java/cn/community/identity/Application.java",
+      "sha256": "142d732040594c187f218e8796c2e29d77e14b51a9b2a599e5a01159762b1b78"
+    },
+    {
+      "path": "backend/identity-service/src/main/java/cn/community/identity/IdentityAdmin.java",
+      "sha256": "20b8e1a013b1e0d3a6b3ab51c90e0095f718a9b9413a776dea6f4eb722b84a7c"
+    },
+    {
+      "path": "backend/identity-service/src/main/java/cn/community/identity/IdentityApi.java",
+      "sha256": "94090a67cd3f5b158d09b7bbcae930e1feb7842755ba6b8fb0d5c4b512a3b95f"
+    },
+    {
+      "path": "backend/identity-service/src/main/java/cn/community/identity/LoginLimit.java",
+      "sha256": "19f64ae6044b294ae781549792470e61366af4e15fa8b0435122b6b01c0db53c"
+    },
+    {
+      "path": "backend/identity-service/src/main/resources/application-business.properties",
+      "sha256": "b3a1a6f1fb8c4ce4f01cab8c7823d938a340d07dd615aeae3c930c359be1cd20"
+    },
+    {
+      "path": "backend/identity-service/src/main/resources/application.properties",
+      "sha256": "9f48b26713974928f303976fbec477f4ccbe7726e6d14536dbdfc6545b0b30cc"
+    },
+    {
+      "path": "backend/identity-service/src/main/resources/db/business/V001__business_baseline.sql",
+      "sha256": "105a2f9fea90ab9ad356fba30f42bf84835e9e6e36ff0368027b64a3bb23f83e"
+    },
+    {
+      "path": "backend/identity-service/src/main/resources/db/business/V002__reliability.sql",
+      "sha256": "dfdaec9449b5997b786402b7f86072ce93c60b133a647b6cbbde9155302fad64"
+    },
+    {
+      "path": "backend/identity-service/src/main/resources/db/business/V003__resource_management.sql",
+      "sha256": "8ff27d2247122ed195d47ea0df0d8c08f89d0826e1310e16729af7c80ac49210"
+    },
+    {
+      "path": "backend/identity-service/src/main/resources/db/business/V004__authorization_versions.sql",
+      "sha256": "faa238ec9c35cb951aa4f77c39d154e104dfc6548431da2dce0e862580ae3a1f"
+    },
+    {
+      "path": "backend/identity-service/src/test/java/cn/community/identity/IdentityAdminTest.java",
+      "sha256": "9b85bdf293d02d613b4cb9ff99b4b418ef30b9640c2b37c9cf3d5389402c8730"
+    },
+    {
+      "path": "backend/parking-service/pom.xml",
+      "sha256": "bfa1b8521481e875c02a31c9241486097d8bb419e4a5e0fc723703f778931fdd"
+    },
+    {
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/AiPrototype.java",
+      "sha256": "c52c5d2bf7d659abaf1ce528c903af062b2feb1f505451e20638dc91c26ba7c6"
+    },
+    {
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/Application.java",
+      "sha256": "e981b14078a5b31a81e18588330c7feb43e1afb918995bd6617c4fc971c20007"
+    },
+    {
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/BusinessListener.java",
+      "sha256": "8867db86ba44f8bb020e20e64b51e74d411e0dcb6c3b0a42e473394b0c0fe6a0"
+    },
+    {
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/BusinessParking.java",
+      "sha256": "3c5f3569cf997a92cf8da11b7168c684c33eeadcfef83c11f370c0c169ab5a12"
+    },
+    {
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/DemoWindows.java",
+      "sha256": "9de567be7e7375a9191d529edce4c62b58dc54a40549ec5c9588805c63858d37"
+    },
+    {
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/InternalProbeController.java",
+      "sha256": "c6b5b763b96b1fed276e40f4e2c18421930a9f73dbd5238ee7e4c41c540e81ad"
+    },
+    {
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ProbeController.java",
+      "sha256": "577231d5c8265a281cf790ff98a2f8f9e7a9a25fec79a6cca31cf617d8fbfe03"
+    },
+    {
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ProbeStore.java",
+      "sha256": "f34968ad1c9ff78c9db050f4b6c0ce5916b80262ff63f6d4dd8c946174388c97"
+    },
+    {
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ResourceManagement.java",
+      "sha256": "e24ff2750e34ecfc89ea9439f6bc42eb9d935a270263a4be6deffc51e0dac209"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/application-business.properties",
+      "sha256": "24cc2e7f7e59f5834efbb8156a551ecbc74f4b75503e481fe1c52b3119c4f6b8"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/application-container.properties",
+      "sha256": "e1e343069090dd08fd3b612464aaf257fed2b65d675d921db8cc64927e1581ac"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/application-local.properties",
+      "sha256": "e7f5dbbd4dba0b49dc473cd94c36372496b6aea424f1fc65102bfbd30b306ad6"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/application-probe.properties",
+      "sha256": "7af023467aa188b450f51bfb6d1d861da78f15a1e76a44d596be1606efbaf994"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/application.properties",
+      "sha256": "8c627309c28904748003f926ec3823e7eeaddaea9cb27c71578e66f70fe66b3e"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/db/business/V001__business_baseline.sql",
+      "sha256": "e80668510316ce69c00e2b2a711f19dbf44822ae84067ac3bcc1b188dd3146a7"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/db/business/V002__entry_block_reason.sql",
+      "sha256": "afe1b1fec36f9298affc78dcd2ce9cc0006804d4b482e03c1aef6623de6c0b1b"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/db/business/V003__reliability.sql",
+      "sha256": "255ba4e4c0e6fd38b6e50632e739b84c1df6bb7f660ee2f440f05ad1665be0fa"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/db/business/V004__resource_management.sql",
+      "sha256": "510921f7ce66d4a431d7235c4b92fe30f0ea59f840241f16de8f8b28443adc76"
+    },
+    {
+      "path": "backend/parking-service/src/main/resources/db/probe/V001__environment_probe.sql",
+      "sha256": "cabbb4ca1543c792485aaf950d92a7678d70ae69847e7cbc886d3dfd527ca3f4"
+    },
+    {
+      "path": "backend/parking-service/src/test/java/cn/community/parkingservice/DemoWindowsTest.java",
+      "sha256": "2eb17080ad7294a70eb7cb071ff3ea43b2c12c080f60921d22437943da855c76"
+    },
+    {
+      "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ProbeProfileTest.java",
+      "sha256": "54ddbb4d4c78c703083209723812a3123f40874a69ee8785993fc2193959ac89"
+    },
+    {
+      "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ProbeStoreTest.java",
+      "sha256": "3a67e1431085fc89f6c26ad01fbb11f53d491bffaa6153639b419b7d5fcfc96a"
+    },
+    {
+      "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ResourceManagementTest.java",
+      "sha256": "29550c64a1b2f5e61fc61d3ff16cbe74841d1894dde966d7c5dae6d302e1fcf6"
+    },
+    {
+      "path": "backend/registry/pom.xml",
+      "sha256": "96a147c7d7aac7274e73efcfa4f393d7998573955d15074355f9c966867294ca"
+    },
+    {
+      "path": "backend/registry/src/main/java/cn/community/registry/Application.java",
+      "sha256": "d382a1ddd046c9c21dd17f0f70f0e5deb747e59c2d6b5006de33802fe5bbd692"
+    },
+    {
+      "path": "backend/registry/src/main/resources/application-container.properties",
+      "sha256": "276883836a8af7522479ed2a3084f7fbd6b77d2239cf823f473eba49d7b3d329"
+    },
+    {
+      "path": "backend/registry/src/main/resources/application-local.properties",
+      "sha256": "1ddefd08e04776cab0c5e4f4188b34f82f72e73fb2abc556221dfe069389fd85"
+    },
+    {
+      "path": "backend/registry/src/main/resources/application.properties",
+      "sha256": "4a7c53f52106b85181b48e9059567a36476ce8766d6e01d86eb80b273df2b741"
+    },
+    {
+      "path": "backend/trade-service/pom.xml",
+      "sha256": "85e0a858c7d19863ffaba9317295e88796884099fcf8073a9aec674de1a9adf4"
+    },
+    {
+      "path": "backend/trade-service/src/main/java/cn/community/trade/Application.java",
+      "sha256": "ca74e2817ab7ab12fac1e596afaeeca5e5b053507faa8b5196a5e7a649a65bd0"
+    },
+    {
+      "path": "backend/trade-service/src/main/java/cn/community/trade/BusinessListener.java",
+      "sha256": "f3306a14c0850f8ac514978440b6c8a113e7c8820e458f120b1cf7f451e7f8a9"
+    },
+    {
+      "path": "backend/trade-service/src/main/java/cn/community/trade/BusinessTrade.java",
+      "sha256": "f5e6c793e5a4479f93f9516050f6f6b36c978d3f5543cfda6cfcfcc77cdb6c6d"
+    },
+    {
+      "path": "backend/trade-service/src/main/java/cn/community/trade/PaymentWorker.java",
+      "sha256": "bba0ee0d5bd2d1d25ed16e89a3fe2e0f1e769f38a6a35041db7125f0712e3179"
+    },
+    {
+      "path": "backend/trade-service/src/main/java/cn/community/trade/TradeAccounting.java",
+      "sha256": "8b289c6ae59237a3a81375d53295c79ce3f19627e893489efa1af9f5f9cf9a31"
+    },
+    {
+      "path": "backend/trade-service/src/main/resources/application-business.properties",
+      "sha256": "80c2f3e153746d2774bd942bb999ff1436ba95e25ad06c59bffe911593b78172"
+    },
+    {
+      "path": "backend/trade-service/src/main/resources/application.properties",
+      "sha256": "ad3c2f494e433fa6d3f8f00552764a662419c95f7cb14678b4193dd0cb862661"
+    },
+    {
+      "path": "backend/trade-service/src/main/resources/db/business/V001__business_baseline.sql",
+      "sha256": "1f136731077aad50a808f9cb08ad5b9c62527d952c980089ff1c766bb7ba7373"
+    },
+    {
+      "path": "backend/trade-service/src/main/resources/db/business/V002__reliability.sql",
+      "sha256": "e5dfded424af2dc81bbb5d721a5bafd51135d806389a7d4023e3b130b8ead7aa"
+    },
+    {
+      "path": "backend/trade-service/src/test/java/cn/community/trade/TradeReliabilityTest.java",
+      "sha256": "b05cb8b16c72f20fb077130443b21cd28162cdc718672443cf49acc9fdfd469f"
+    },
+    {
+      "path": "docs/contracts/业务契约-第5—6周.md",
+      "sha256": "b0a3609488b8bd87bc057c9b3bfd6f25630efb4bbc3f8e0d8b22a555c0117b05"
+    },
+    {
+      "path": "docs/contracts/业务契约-M1.md",
+      "sha256": "150e251a987c1f6eca47f16316554bf654e9f533b72bc712d7508e5287ba61e9"
+    },
+    {
+      "path": "docs/contracts/openapi-m1.json",
+      "sha256": "fc083e8d917c1156bac66fad4f9089ea98f54b9b0364033c16fc2486d4a15aa2"
+    },
+    {
+      "path": "frontend/business-tests/flow.spec.ts",
+      "sha256": "dfa1c50d760f7ea97a73eb8e0f8f29f558b244c59fed43c8d4840393c58ae898"
+    },
+    {
+      "path": "frontend/business-tests/week56-management.spec.ts",
+      "sha256": "567bd26d7a64b9c720104172ac0247bb127aaba4d404eae04d9841bee02295a0"
+    },
+    {
+      "path": "frontend/package-lock.json",
+      "sha256": "96f5ea31dd4d7c13e906a39b4bb0234bada013c57cc8f1df7d0afa1fac9300f2"
+    },
+    {
+      "path": "frontend/package.json",
+      "sha256": "923d04fe1290077c3805523d4b43675f4109f2471ddf87cbff24ed257aba8dd8"
+    },
+    {
+      "path": "frontend/playwright.business.config.ts",
+      "sha256": "2c1f92d2df33a8c903f9fe1cfe2ba560cdff289b37e7a8ef6a433ed2371411f3"
+    },
+    {
+      "path": "frontend/playwright.regression.config.ts",
+      "sha256": "af0585fe2dff319bd57fb8e8659ad90231cd5a3f7f6e45e9b996564ce4e518b9"
+    },
+    {
+      "path": "frontend/regression-tests/business-state.spec.ts",
+      "sha256": "6a556ca21cce0247e39e7815ea1848f4e49fb1b75a7279ed22e614ad04bf2b32"
+    },
+    {
+      "path": "frontend/regression-tests/management-state.spec.ts",
+      "sha256": "e084b174c7a565e12bcdfa51aaac4e26e039c4db4d9e417f792d950f58d80ada"
+    },
+    {
+      "path": "frontend/src/App.vue",
+      "sha256": "668db980719e6fb18e7503d49f09eebcb7bc6b6f75622bfb85b7feb81913d624"
+    },
+    {
+      "path": "frontend/src/business/api.ts",
+      "sha256": "7e3a8750c761ce386d4befa0f41c27d08ecea215d0e33ce356c499482802b148"
+    },
+    {
+      "path": "frontend/src/business/business-time.ts",
+      "sha256": "115d9e2494658c2e025e0949380879e30df23a77b314b8e8e1951a3ade15f70d"
+    },
+    {
+      "path": "frontend/src/business/BusinessApp.vue",
+      "sha256": "cd54a44301e7fcf7171d3752046c2ce3fb62c4cf315ee3dc1a49b5b3783fda05"
+    },
+    {
+      "path": "frontend/src/business/money.ts",
+      "sha256": "f87c1a599c3428cd5da73faf4b073e39143726cc5044d987687175c06e0199d0"
+    },
+    {
+      "path": "frontend/src/business/ResourcePanel.vue",
+      "sha256": "ac4a704debaa3056db0f425b7928faa994571762eff00958b91eef653db3d401"
+    },
+    {
+      "path": "frontend/src/business/router.ts",
+      "sha256": "281909116b23fbf17def343f591ae292ad614320b582d1701722c5e05934ce1e"
+    },
+    {
+      "path": "frontend/src/business/types.ts",
+      "sha256": "7e5af149916b5d5f628d169d075a8690df087085ce3b4784c67e9bd899077d4c"
+    },
+    {
+      "path": "frontend/src/main.ts",
+      "sha256": "fe32e3701e6e20d32dffcf3b45cdb6ce2d3fdc4a2cc6eabee52dee716cdf01e3"
+    },
+    {
+      "path": "mvnw",
+      "sha256": "cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02"
+    },
+    {
+      "path": "mvnw.cmd",
+      "sha256": "4a361e1374a3e5ad6d03e18e9adc0cf181ac5058ac6203b76f0ba3b456b56481"
+    },
+    {
+      "path": "pom.xml",
+      "sha256": "bcabe2d531e08a3a836ed9009b01f6d3f3c1272410b5da63e63bfb6530960b37"
+    },
+    {
+      "path": "scripts/Build-AppImage.ps1",
+      "sha256": "373e023abe63d08ca481324a1f194d7568e25dd69269ef3df691dfc55997083d"
+    },
+    {
+      "path": "scripts/Build-Backend.ps1",
+      "sha256": "29478ec50e8ec91f04e3a23326a148ab7b1a277f1108685264d61105b05686d3"
+    },
+    {
+      "path": "scripts/Business-Paths.ps1",
+      "sha256": "150c6253c10bfa51f3e57475276bdb15220ed398a3a1d71d67157f073aee54e0"
+    },
+    {
+      "path": "scripts/business-smoke.mjs",
+      "sha256": "9c297ef4a7232e6b3f233c06654bf79433d90ffa998d6924920f465311b553cd"
+    },
+    {
+      "path": "scripts/Check-BusinessContract.mjs",
+      "sha256": "e2a5aa96979903cf423b4de0972e4539a3149b8354a41083c62b54f9939eb76d"
+    },
+    {
+      "path": "scripts/Collect-Week56Evidence.mjs",
+      "sha256": "9d6b4eec74f2c910520976cc791509862ee7e2ff4626d48e757feeff04d05e8a"
+    },
+    {
+      "path": "scripts/Common.ps1",
+      "sha256": "b8372d63d4a3d3faafc165101983c01d9003dea9b5810e5b428ec94fefe8e3f8"
+    },
+    {
+      "path": "scripts/Initialize-Business.ps1",
+      "sha256": "ba8a7237e79d8681901f101122e831654551931402c736e68de6647e0763ea6c"
+    },
+    {
+      "path": "scripts/Initialize-Local.ps1",
+      "sha256": "e16c136a94dda34a06268e6c74e206fcdbccf6dc5a8f9ca47873586a192b2208"
+    },
+    {
+      "path": "scripts/Install-Toolchain.ps1",
+      "sha256": "6c6b009bcaeb90fc1602d6d60915617e9168cdc5f33dd04aa66e7795b45b6c8e"
+    },
+    {
+      "path": "scripts/Invoke-Smoke.ps1",
+      "sha256": "508ba12a6ae2cca96918524887d8a3176142c2136dadce9550b5e1e6c9629a62"
+    },
+    {
+      "path": "scripts/Load-LocalConfig.ps1",
+      "sha256": "5f60aeda4d20ff1cded952fde8637330bde4ec53f76284d2b391c04b8baddf3a"
+    },
+    {
+      "path": "scripts/Prepare-BusinessWindows.ps1",
+      "sha256": "19883c0b29027c3a82b2817ff86ec6453e112c86486a0aa3fb97d1790e98b683"
+    },
+    {
+      "path": "scripts/Resume-BusinessPayment.ps1",
+      "sha256": "801ef2a79f24d473c2e99a9d30582bebe7f39060a094570097bb1974eab75f8d"
+    },
+    {
+      "path": "scripts/Retry-BusinessOutbox.ps1",
+      "sha256": "81508b8bbaecafbc3716c077de6561ba75f2c117f2baba795fa7d6e457103eea"
+    },
+    {
+      "path": "scripts/Start-Business.ps1",
+      "sha256": "2c00d1b6327ee243251e81a0efece15183504ebd01dfbf6b259aba07e8637b0e"
+    },
+    {
+      "path": "scripts/Start-BusinessFrontend.ps1",
+      "sha256": "8bdedfd1911259d68037c2b15c9471128574d03cdbf7c1d3937a80c3da3076a1"
+    },
+    {
+      "path": "scripts/Start-Frontend.ps1",
+      "sha256": "5cf5a371c775d9253f6b1575a6d61ebd9c0026c43cd4332c59b4e84e5a544322"
+    },
+    {
+      "path": "scripts/Start-Local.ps1",
+      "sha256": "ed951bff83dbe9084e1f2a10e4e41b230876d044b466bbb550dd00296070004c"
+    },
+    {
+      "path": "scripts/Stop-Business.ps1",
+      "sha256": "22e83e4677e962c4d15bd24f6c3d5f7e4243d129ac5d45469ac02bf63aeb998e"
+    },
+    {
+      "path": "scripts/Stop-Local.ps1",
+      "sha256": "62462fc219f89ab04c190927d29cd33e89634a4c7c85006abb46a45e38989397"
+    },
+    {
+      "path": "scripts/Test-Business.ps1",
+      "sha256": "68b9bb7e26b8128322bd606ab1336913f14438d0b01ca35dc51c31928d105afb"
+    },
+    {
+      "path": "scripts/Test-BusinessBrowser.ps1",
+      "sha256": "1babea74a4f3e745ee326e7a37a8bb4cb783f62360ff7f40e4a1e664f9a4792d"
+    },
+    {
+      "path": "scripts/Test-BusinessPaths.ps1",
+      "sha256": "c7e5d030d5d5033e5be14c90722d9a37da51df175031bce5369dc750855f8be1"
+    },
+    {
+      "path": "scripts/Test-BusinessRecovery.ps1",
+      "sha256": "d8546375e7e064ca079ba5f35c3099aeb5f3493c2bdc8a632282dc9753a3d7a3"
+    },
+    {
+      "path": "scripts/Test-BusinessReliability.ps1",
+      "sha256": "bdad202936266dd25d2b89fe9a588036b9574252ac9931ef33a05403d6903d61"
+    },
+    {
+      "path": "scripts/Test-Container.ps1",
+      "sha256": "0cc65367343960e005223a11548c7e7a4edc11a841dcce3a4ec8435421b92a49"
+    },
+    {
+      "path": "scripts/Test-FailureGuards.ps1",
+      "sha256": "5c0938f4ab3c8c2edd14ec5c27d0a17cb63e620ca5c8c5604a692db4e607b1a1"
+    },
+    {
+      "path": "scripts/Test-Frontend.ps1",
+      "sha256": "d3713cfe823a2b9e670071c2109895d7375fd5e7faba18d4d5d72a84685d1f6d"
+    },
+    {
+      "path": "scripts/Test-Scripts.ps1",
+      "sha256": "8320b8521791d2bf9bc3f341d2b71aab4a7ae6cd0df55e9f9ad3d9dee68c5a96"
+    },
+    {
+      "path": "scripts/Test-StartupRecovery.ps1",
+      "sha256": "4b978f7a13cd0ca98176e182aeae210c64fd239952831c2dbcacd7a73a0d3db9"
+    },
+    {
+      "path": "scripts/Test-Week56.ps1",
+      "sha256": "7eb163497f6a907d9de097c68c1d93eacd680a6cb0dc5c77d63a57c3a3a3ab98"
+    },
+    {
+      "path": "scripts/Test-Week56Migrations.ps1",
+      "sha256": "b33445694befd0a7c5a9c166312088ad7399197e8e352819c3947e8e89cc5e7a"
+    },
+    {
+      "path": "scripts/toolchain.lock.json",
+      "sha256": "2e47bf8536bb014726dd4099c7297d2ece3cf367a3de885b9b1bc542f73cc3e8"
+    },
+    {
+      "path": "scripts/Update-Week56Contract.mjs",
+      "sha256": "13834c64bda017700962b12e7fe52e248b2ad0aa3c1fba6ec64a10f3e3da17de"
+    },
+    {
+      "path": "scripts/Use-Toolchain.ps1",
+      "sha256": "a34aa1a8a18e0f0970f90043e1dd5b03c764b43303a708b11ef246be8c016c84"
+    },
+    {
+      "path": "scripts/Verify-Project.ps1",
+      "sha256": "84e4b4da70505702d3b9b3ae5b7653ab57a1a31272891b80023ce4b462e22d0e"
+    },
+    {
+      "path": "scripts/VerifyBusinessMigrations.java",
+      "sha256": "1cddfc59d38d73856a0741e8f16a6e2365e854262014ed20afc93a85f04c8c41"
+    },
+    {
+      "path": "scripts/week56-check.mjs",
+      "sha256": "e78c36b1dc733c03c3f0ad16390538e8c2f2b10edb33fd8b271eb63fb5f9c778"
+    }
+  ]
+}

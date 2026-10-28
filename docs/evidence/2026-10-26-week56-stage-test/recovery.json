@@ -1,0 +1,17 @@
+{
+  "sourceReport": ".runtime/business/recovery/20261026-131413/result.json",
+  "checks": [
+    {
+      "name": "Late payment after parking restart refunds without reviving reservation",
+      "status": "PASS",
+      "reservationId": "362891902296202"
+    },
+    {
+      "name": "Identity outage fails closed; existing session works after recovery",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "at": "2026-10-26T05:14:54.3979559Z",
+  "realAiAccepted": false
+}

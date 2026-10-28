@@ -1,0 +1,17 @@
+{
+  "sourceReport": ".runtime/business/contracts/contract-check.json",
+  "createdAt": "2026-10-26T05:10:34.067Z",
+  "status": "PASS",
+  "paths": 41,
+  "operations": 47,
+  "handlers": 47,
+  "localReferences": 463,
+  "checks": [
+    "handler coverage",
+    "path parameters",
+    "operation IDs",
+    "local references",
+    "security declarations"
+  ],
+  "limits": "Structural checks; not a full OpenAPI metaschema validator or exhaustive runtime response validation."
+}

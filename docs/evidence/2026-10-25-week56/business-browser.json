@@ -1,0 +1,57 @@
+{
+  "sourceReport": ".runtime/business/browser/20261025-113401/browser-results.json",
+  "stats": {
+    "startTime": "2026-10-25T03:34:03.519Z",
+    "duration": 45102.450000000004,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "login, query, reserve, pay, property entry/exit, overtime bill through UI",
+      "file": "flow.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 16501
+        }
+      ]
+    },
+    {
+      "title": "platform creates community and grants roles and property using searchable UI",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1925
+        }
+      ]
+    },
+    {
+      "title": "owner publication, actual property rejection and approval, window in yuan and foreign denial",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4351
+        }
+      ]
+    },
+    {
+      "title": "new driver and approved resource complete 8 + 2 = 10 yuan through actual role UI",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 18286
+        }
+      ]
+    }
+  ]
+}

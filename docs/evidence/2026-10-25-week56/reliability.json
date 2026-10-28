@@ -1,0 +1,54 @@
+{
+  "sourceReport": ".runtime/optimization-reliability.json",
+  "backendFingerprint": "423cdbaf868761d50a9e939884ad9dcdce0d3d36a7f32877c1b8159d13cc49d6",
+  "checks": [
+    {
+      "name": "atomic-login-limit-and-orphan-TTL-repair",
+      "status": "PASS"
+    },
+    {
+      "metrics": {
+        "service": "identity-service",
+        "counts": [],
+        "oldestPendingAgeSeconds": 0
+      },
+      "name": "outbox-operations-9081",
+      "status": "PASS"
+    },
+    {
+      "metrics": {
+        "service": "parking-service",
+        "counts": [
+          {
+            "status": "SENT",
+            "count": 219
+          }
+        ],
+        "oldestPendingAgeSeconds": 0,
+        "deadLetterCount": 0,
+        "brokerReachable": true
+      },
+      "name": "outbox-operations-9082",
+      "status": "PASS"
+    },
+    {
+      "metrics": {
+        "service": "trade-service",
+        "counts": [
+          {
+            "status": "SENT",
+            "count": 89
+          }
+        ],
+        "oldestPendingAgeSeconds": 0,
+        "deadLetterCount": 0,
+        "brokerReachable": true
+      },
+      "name": "outbox-operations-9083",
+      "status": "PASS"
+    }
+  ],
+  "endedAt": "2026-10-25T03:35:55.5582296Z",
+  "realAiAccepted": false,
+  "status": "PASS"
+}

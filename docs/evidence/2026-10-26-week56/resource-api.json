@@ -1,0 +1,62 @@
+{
+  "sourceReport": ".runtime/business/week56/20261026-125933/api-results.json",
+  "backendFingerprint": "423cdbaf868761d50a9e939884ad9dcdce0d3d36a7f32877c1b8159d13cc49d6",
+  "createdAt": "2026-10-26T04:59:44.443Z",
+  "results": [
+    {
+      "name": "registration cannot self-authorize; default driver and multi-role session revocation",
+      "status": "PASS",
+      "durationMs": 2393
+    },
+    {
+      "name": "communities and property scope; revoked sessions after reassignment",
+      "status": "PASS",
+      "durationMs": 993
+    },
+    {
+      "name": "vehicle normalization, uniqueness and ownership",
+      "status": "PASS",
+      "durationMs": 56
+    },
+    {
+      "name": "draft, reject, resubmit, approve; stale review rejected",
+      "status": "PASS",
+      "durationMs": 152
+    },
+    {
+      "name": "window validation, adjacent intervals, concurrent overlap and public whitelist",
+      "status": "PASS",
+      "durationMs": 86
+    },
+    {
+      "name": "quote change requires confirmation; reservation protects resources",
+      "status": "PASS",
+      "durationMs": 130
+    },
+    {
+      "name": "community disable rejects new bookings but allows existing fulfillment",
+      "status": "PASS",
+      "durationMs": 4411
+    },
+    {
+      "name": "authorization versions serialize first and existing grants on MySQL",
+      "status": "PASS",
+      "durationMs": 1029
+    },
+    {
+      "name": "partial quote rejected; legacy query and booking remain compatible; real resource races",
+      "status": "PASS",
+      "durationMs": 250
+    },
+    {
+      "name": "owner revocation preserves published resources; vehicle binding remains unique after disable",
+      "status": "PASS",
+      "durationMs": 695
+    },
+    {
+      "name": "audit authorization and account disable",
+      "status": "PASS",
+      "durationMs": 340
+    }
+  ]
+}

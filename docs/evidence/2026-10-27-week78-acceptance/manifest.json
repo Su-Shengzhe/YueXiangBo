@@ -1,0 +1,33 @@
+{
+  "reports": {
+    "load": "20261027180434",
+    "correctness": "20261027180314",
+    "migrations": "20261027175227"
+  },
+  "scope": "MySQL migration and packaged-controller transactions; excludes gateway HTTP throughput",
+  "createdAt": "2026-10-27T10:21:24.3896984Z",
+  "buildId": "20261027-172156-c81d0d75",
+  "testSources": [
+    {
+      "path": "scripts/VerifyParkingConcurrency.java",
+      "sha256": "598dd71db6e6cdb7d99a2237e0546ba83d477201ac698f56d4b4cee96a6f6002"
+    },
+    {
+      "path": "scripts/Test-ParkingConcurrency.ps1",
+      "sha256": "a6396c4d88efaced488be417ed2eadcdf4f1a159f1221fddec27eb5d30bec7ea"
+    },
+    {
+      "path": "scripts/Test-Week56Migrations.ps1",
+      "sha256": "b33445694befd0a7c5a9c166312088ad7399197e8e352819c3947e8e89cc5e7a"
+    },
+    {
+      "path": "scripts/VerifyBusinessMigrations.java",
+      "sha256": "1cddfc59d38d73856a0741e8f16a6e2365e854262014ed20afc93a85f04c8c41"
+    },
+    {
+      "path": "scripts/Collect-Week78Acceptance.ps1",
+      "sha256": "65144063fa79b0b0fd93c18c3878fba5c4d5a4e99a6ab459081d8ccea59138a7"
+    }
+  ],
+  "backendFingerprint": "3a8e1e034b2c4be41fbab5f708de6502bb7791632cd122ad7c4d464c15870bd8"
+}

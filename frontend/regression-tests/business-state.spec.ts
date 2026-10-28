@@ -73,7 +73,7 @@ test('changing price filter during a pending search discards its old results', a
   await fixture(page)
   await page.route('**/api/v1/spaces/search?**',async route=>{await new Promise(r=>setTimeout(r,500));await route.fulfill({json:{code:'OK',data:{items:[{id:'20',name:'stale',hourlyFen:500,estimatedFen:500}],total:1}}})})
   await page.getByRole('button',{name:'查询车位',exact:true}).click()
-  await page.getByLabel('最高小时价格（分）',{exact:true}).fill('100')
+  await page.getByLabel('最高小时价格（元／小时）',{exact:true}).fill('100')
   await expect(page.getByRole('button',{name:'查询车位',exact:true})).toBeEnabled()
   await expect(page.getByRole('button',{name:'预约此车位'})).toHaveCount(0)
 })
@@ -120,3 +120,4 @@ test.describe('business timezone and cancellation', () => {
     await expect(page.getByRole('button', { name: '取消预约', exact: true })).toHaveAttribute('title', '预约已开始，不能自主取消')
   })
 })
+

@@ -1,0 +1,21 @@
+{
+  "sourceReport": ".runtime/business/admin-concurrency/20261026131309/results.json",
+  "method": "Packaged IdentityAdmin controller, actual Spring transactions, isolated MySQL schema; no gateway HTTP",
+  "sourceFingerprint": "423cdbaf868761d50a9e939884ad9dcdce0d3d36a7f32877c1b8159d13cc49d6",
+  "status": "PASS",
+  "createdAt": "2026-10-26T05:13:19.9056945Z",
+  "checks": [
+    {
+      "name": "PASS disable-disable rounds=10 active-admin=1 audit=1 revoked-session=1 version-sum=3",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS revoke-revoke rounds=10 active-admin=1 audit=1 revoked-session=1 version-sum=3",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS disable-revoke rounds=10 active-admin=1 audit=1 revoked-session=1 version-sum=3",
+      "status": "PASS"
+    }
+  ]
+}

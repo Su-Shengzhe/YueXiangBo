@@ -1,0 +1,62 @@
+{
+  "buildId": "20261024-163558-f93226c5",
+  "total": 41.0,
+  "suites": [
+    {
+      "failures": 0,
+      "skipped": 0,
+      "tests": 5,
+      "errors": 0,
+      "name": "cn.community.foundation.MoneyTest"
+    },
+    {
+      "failures": 0,
+      "skipped": 0,
+      "tests": 2,
+      "errors": 0,
+      "name": "cn.community.foundation.OutboxTest"
+    },
+    {
+      "failures": 0,
+      "skipped": 0,
+      "tests": 8,
+      "errors": 0,
+      "name": "cn.community.identity.IdentityAdminTest"
+    },
+    {
+      "failures": 0,
+      "skipped": 0,
+      "tests": 5,
+      "errors": 0,
+      "name": "cn.community.parkingservice.DemoWindowsTest"
+    },
+    {
+      "failures": 0,
+      "skipped": 0,
+      "tests": 2,
+      "errors": 0,
+      "name": "cn.community.parkingservice.ProbeProfileTest"
+    },
+    {
+      "failures": 0,
+      "skipped": 0,
+      "tests": 3,
+      "errors": 0,
+      "name": "cn.community.parkingservice.ProbeStoreTest"
+    },
+    {
+      "failures": 0,
+      "skipped": 0,
+      "tests": 11,
+      "errors": 0,
+      "name": "cn.community.parkingservice.ResourceManagementTest"
+    },
+    {
+      "failures": 0,
+      "skipped": 0,
+      "tests": 5,
+      "errors": 0,
+      "name": "cn.community.trade.TradeReliabilityTest"
+    }
+  ]
+}

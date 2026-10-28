@@ -1,0 +1,72 @@
+{
+  "results": [
+    {
+      "status": "PASS",
+      "name": "w56_20261027175227_fresh_identity-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261027175227_fresh_parking-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261027175227_fresh_trade-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261027175227_restore_identity-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261027175227_restore_parking-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261027175227_restore_trade-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "restore-restore-and-historical-facts-preserved"
+    },
+    {
+      "status": "PASS",
+      "name": "restore-unlinked-historical-orders",
+      "count": 0
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261027175227_legacy_identity-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261027175227_legacy_parking-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261027175227_legacy_trade-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "legacy-restore-and-historical-facts-preserved"
+    },
+    {
+      "status": "PASS",
+      "name": "legacy-unlinked-historical-orders",
+      "count": 0
+    }
+  ],
+  "createdAt": "2026-10-27T09:53:21.3235956Z",
+  "sourceFingerprint": "3a8e1e034b2c4be41fbab5f708de6502bb7791632cd122ad7c4d464c15870bd8",
+  "migrationSummaries": [
+    "PASS w56_20261027175227_fresh_identity migrated=4 repeat=0 validated",
+    "PASS w56_20261027175227_fresh_parking migrated=6 repeat=0 validated",
+    "PASS w56_20261027175227_fresh_trade migrated=2 repeat=0 validated",
+    "PASS w56_20261027175227_legacy_identity migrated=2 repeat=0 validated",
+    "PASS w56_20261027175227_legacy_parking migrated=3 repeat=0 validated",
+    "PASS w56_20261027175227_legacy_trade migrated=0 repeat=0 validated",
+    "PASS w56_20261027175227_restore_identity migrated=1 repeat=0 validated",
+    "PASS w56_20261027175227_restore_parking migrated=2 repeat=0 validated",
+    "PASS w56_20261027175227_restore_trade migrated=0 repeat=0 validated"
+  ],
+  "sourceRun": ".runtime/business/migrations/20261027175227"
+}

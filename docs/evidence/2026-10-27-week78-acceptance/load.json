@@ -1,0 +1,44 @@
+{
+  "sourceFingerprint": "3a8e1e034b2c4be41fbab5f708de6502bb7791632cd122ad7c4d464c15870bd8",
+  "createdAt": "2026-10-27T10:19:46.6917758Z",
+  "method": "Packaged BusinessParking controller, actual Spring transactions, isolated MySQL schema; no gateway HTTP",
+  "status": "PASS",
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "PASS load communities=same concurrency=10 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=same concurrency=25 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=same concurrency=50 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=different concurrency=10 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=different concurrency=25 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=different concurrency=50 no-errors no-active-orders outbox-atomic"
+    }
+  ],
+  "environment": [
+    "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+  ],
+  "metrics": [
+    "METRIC communities=same concurrency=10 cycles=6113 cyclesPerSecond=50.94 p50Ms=183.78 p95Ms=244.53 p99Ms=374.11 errors={} warmErrors=0 active=0",
+    "METRIC communities=same concurrency=25 cycles=5823 cyclesPerSecond=48.53 p50Ms=450.99 p95Ms=648.95 p99Ms=2089.53 errors={} warmErrors=0 active=0",
+    "METRIC communities=same concurrency=50 cycles=6171 cyclesPerSecond=51.43 p50Ms=900.19 p95Ms=1093.23 p99Ms=3069.23 errors={} warmErrors=0 active=0",
+    "METRIC communities=different concurrency=10 cycles=15690 cyclesPerSecond=130.75 p50Ms=65.14 p95Ms=91.51 p99Ms=344.44 errors={} warmErrors=0 active=0",
+    "METRIC communities=different concurrency=25 cycles=14201 cyclesPerSecond=118.34 p50Ms=168.95 p95Ms=457.01 p99Ms=825.00 errors={} warmErrors=0 active=0",
+    "METRIC communities=different concurrency=50 cycles=16183 cyclesPerSecond=134.86 p50Ms=326.12 p95Ms=417.76 p99Ms=2171.82 errors={} warmErrors=0 active=0"
+  ],
+  "sourceRun": ".runtime/business/parking-concurrency/20261027180434"
+}

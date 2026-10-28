@@ -1,0 +1,156 @@
+{
+  "sourceReport": ".runtime/optimization-browser.json",
+  "stats": {
+    "startTime": "2026-10-25T03:30:19.361Z",
+    "duration": 10476.145999999999,
+    "expected": 13,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "new reservation never renders or pays using a previous bill when loading fails",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 956
+        }
+      ]
+    },
+    {
+      "title": "changing the time invalidates the displayed quote until another query",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 457
+        }
+      ]
+    },
+    {
+      "title": "server quote change clears stale cards and asks for a fresh query",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 498
+        }
+      ]
+    },
+    {
+      "title": "changing price filter during a pending search discards its old results",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1347
+        }
+      ]
+    },
+    {
+      "title": "slow assistant does not disable business navigation or querying",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 539
+        }
+      ]
+    },
+    {
+      "title": "Beijing input and API instants stay consistent in another browser timezone",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 411
+        }
+      ]
+    },
+    {
+      "title": "dismissed confirmation does not cancel; accepting it submits once",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 487
+        }
+      ]
+    },
+    {
+      "title": "at the exact start boundary cancellation is disabled",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 396
+        }
+      ]
+    },
+    {
+      "title": "yuan parser preserves cents and rejects overprecision and out of range input",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3
+        }
+      ]
+    },
+    {
+      "title": "changing review community during slow request never renders old community data",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1205
+        }
+      ]
+    },
+    {
+      "title": "lost write response reloads state and blocks a blind duplicate creation",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 445
+        }
+      ]
+    },
+    {
+      "title": "stale role version preserves draft and requires explicit second save",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 492
+        }
+      ]
+    },
+    {
+      "title": "mobile management remains within viewport and rapid navigation keeps the requested route",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 420
+        }
+      ]
+    }
+  ]
+}

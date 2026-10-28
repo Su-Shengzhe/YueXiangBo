@@ -1,0 +1,53 @@
+{
+  "sourceReport": ".runtime/optimization-reliability.json",
+  "checks": [
+    {
+      "name": "atomic-login-limit-and-orphan-TTL-repair",
+      "status": "PASS"
+    },
+    {
+      "name": "outbox-operations-9081",
+      "status": "PASS",
+      "metrics": {
+        "service": "identity-service",
+        "counts": [],
+        "oldestPendingAgeSeconds": 0
+      }
+    },
+    {
+      "name": "outbox-operations-9082",
+      "status": "PASS",
+      "metrics": {
+        "service": "parking-service",
+        "counts": [
+          {
+            "status": "SENT",
+            "count": 258
+          }
+        ],
+        "oldestPendingAgeSeconds": 0,
+        "deadLetterCount": 0,
+        "brokerReachable": true
+      }
+    },
+    {
+      "name": "outbox-operations-9083",
+      "status": "PASS",
+      "metrics": {
+        "service": "trade-service",
+        "counts": [
+          {
+            "status": "SENT",
+            "count": 104
+          }
+        ],
+        "oldestPendingAgeSeconds": 0,
+        "deadLetterCount": 0,
+        "brokerReachable": true
+      }
+    }
+  ],
+  "status": "PASS",
+  "endedAt": "2026-10-26T05:14:12.6973172Z",
+  "realAiAccepted": false
+}

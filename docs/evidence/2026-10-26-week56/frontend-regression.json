@@ -1,0 +1,211 @@
+{
+  "sourceReport": ".runtime/optimization-browser.json",
+  "stats": {
+    "startTime": "2026-10-26T05:02:57.160Z",
+    "duration": 14914.447,
+    "expected": 18,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "new reservation never renders or pays using a previous bill when loading fails",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1085
+        }
+      ]
+    },
+    {
+      "title": "changing the time invalidates the displayed quote until another query",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 476
+        }
+      ]
+    },
+    {
+      "title": "server quote change clears stale cards and asks for a fresh query",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 499
+        }
+      ]
+    },
+    {
+      "title": "changing price filter during a pending search discards its old results",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1361
+        }
+      ]
+    },
+    {
+      "title": "slow assistant does not disable business navigation or querying",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 623
+        }
+      ]
+    },
+    {
+      "title": "Beijing input and API instants stay consistent in another browser timezone",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 485
+        }
+      ]
+    },
+    {
+      "title": "dismissed confirmation does not cancel; accepting it submits once",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 553
+        }
+      ]
+    },
+    {
+      "title": "at the exact start boundary cancellation is disabled",
+      "file": "business-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 437
+        }
+      ]
+    },
+    {
+      "title": "yuan parser preserves cents and rejects overprecision and out of range input",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 8
+        }
+      ]
+    },
+    {
+      "title": "changing review community during slow request never renders old community data",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1269
+        }
+      ]
+    },
+    {
+      "title": "lost write response reloads state and blocks a blind duplicate creation",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 523
+        }
+      ]
+    },
+    {
+      "title": "stale role version preserves draft and requires explicit second save",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 527
+        }
+      ]
+    },
+    {
+      "title": "mobile management remains within viewport and rapid navigation keeps the requested route",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 583
+        }
+      ]
+    },
+    {
+      "title": "mixed roles keep public communities independent of property scope (true)",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 578
+        }
+      ]
+    },
+    {
+      "title": "mixed roles keep public communities independent of property scope (false)",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 593
+        }
+      ]
+    },
+    {
+      "title": "property orders ignore delayed old community and page responses",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 509
+        }
+      ]
+    },
+    {
+      "title": "unknown management write survives navigation and same-account relogin without exposing it to another account",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1094
+        }
+      ]
+    },
+    {
+      "title": "mobile driver and owner query, orders, publication and windows fit viewport",
+      "file": "management-state.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 598
+        }
+      ]
+    }
+  ]
+}

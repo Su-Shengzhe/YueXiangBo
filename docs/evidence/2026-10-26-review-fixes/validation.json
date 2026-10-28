@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-10-26T10:25:45.7962092Z",
+  "frontendRegression": {
+    "startTime": "2026-10-26T10:24:07.388Z",
+    "duration": 21808.264,
+    "expected": 20,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "evidenceSelectionTests": {
+    "failed": 0,
+    "passed": 5,
+    "command": "node --test scripts/evidence-reports.test.mjs"
+  },
+  "scope": "Review fixes only; no backend or migration changes; earlier full-stage evidence retained separately",
+  "frontendBuild": "business mode PASS",
+  "files": [
+    {
+      "path": "frontend/src/business/ResourcePanel.vue",
+      "sha256": "304ef6032b34a8a5d02c35b065ae50af4d5f627b21e31da3267b922c8b1efc93"
+    },
+    {
+      "path": "frontend/regression-tests/management-state.spec.ts",
+      "sha256": "bab150ed8fc88472e0aed77d849e2e12128f5f8eab7ab8909c43b6027c60a062"
+    },
+    {
+      "path": "scripts/Collect-Week56Evidence.mjs",
+      "sha256": "0553c679c341c499f42ff808afce4003fbba557b4d8d8575b360c4518bf19a67"
+    },
+    {
+      "path": "scripts/evidence-reports.mjs",
+      "sha256": "ea505a68e54a4e80a59e9a12dd0d8945654528d49e9c9ff878f747cc33431554"
+    },
+    {
+      "path": "scripts/evidence-reports.test.mjs",
+      "sha256": "346f94049006fa657a8a641846fa52c98e7db1b848ff2548ad970f93e2469265"
+    }
+  ]
+}

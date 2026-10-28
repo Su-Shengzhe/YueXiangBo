@@ -1,0 +1,65 @@
+{
+  "method": "Packaged BusinessParking controller, actual Spring transactions, isolated MySQL schema; no gateway HTTP",
+  "sourceFingerprint": "3a8e1e034b2c4be41fbab5f708de6502bb7791632cd122ad7c4d464c15870bd8",
+  "status": "PASS",
+  "createdAt": "2026-10-27T10:03:33.566719Z",
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "PASS contest round=1 requests=100 success=1 RESERVATION_CONFLICT=99 orders=1 outbox=1 guards=1"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS contest round=2 requests=100 success=1 RESERVATION_CONFLICT=99 orders=1 outbox=1 guards=1"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS contest round=3 requests=100 success=1 RESERVATION_CONFLICT=99 orders=1 outbox=1 guards=1"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=same-key rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=different-params rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=same-vehicle rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=window-disable rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=payment-cancel rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=payment-expiry rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=entry-expiry rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=entry-unavailable rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=duplicate-entry rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=duplicate-exit rounds=10 state-and-side-effects-verified"
+    }
+  ],
+  "environment": [
+    "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+  ],
+  "metrics": [],
+  "sourceRun": ".runtime/business/parking-concurrency/20261027180314"
+}

@@ -15,20 +15,20 @@ try{
   assert.equal((await request('/auth/register',null,{username:'bad_'+suffix,password,roles:['PLATFORM']})).status,422)
   for(const name of ['owner','other','propertya','propertyb'])users[name]=await ok('/auth/register',null,{username:name+'_'+suffix,password})
   owner=await login('owner_'+suffix);assert.deepEqual(owner.user.roles,['DRIVER'])
-  await ok('/admin/users/'+users.owner.id+'/roles',admin,{roles:['DRIVER','OWNER']},'PUT')
+  await ok('/admin/users/'+users.owner.id+'/roles',admin,{version:1,roles:['DRIVER','OWNER']},'PUT')
   assert.equal((await request('/auth/me',owner.accessToken)).status,401)
   owner=await login('owner_'+suffix);assert.deepEqual(owner.user.roles,['DRIVER','OWNER'])
   other=await login('other_'+suffix)
   assert.equal((await request('/admin/users/'+users.owner.id+'/roles',other.accessToken,{roles:['PLATFORM']},'PUT')).status,403)
-  assert.equal((await request('/admin/users/5/status',admin,{enabled:false},'PATCH')).code,'LAST_ADMIN')
+  assert.equal((await request('/admin/users/5/status',admin,{version:1,enabled:false},'PATCH')).code,'LAST_ADMIN')
  })
  await check('communities and property scope; revoked sessions after reassignment',async()=>{
   c1=await ok('/communities',admin,{name:'验收A_'+suffix,address:'虚拟社区A'})
   c2=await ok('/communities',admin,{name:'验收B_'+suffix,address:'虚拟社区B'})
-  for(const name of ['propertya','propertyb'])await ok('/admin/users/'+users[name].id+'/roles',admin,{roles:['PROPERTY']},'PUT')
+  for(const name of ['propertya','propertyb'])await ok('/admin/users/'+users[name].id+'/roles',admin,{version:1,roles:['PROPERTY']},'PUT')
   propertyA=await login('propertya_'+suffix)
-  await ok('/admin/communities/'+c1.id+'/administrators',admin,{userIds:[users.propertya.id]},'PUT')
-  await ok('/admin/communities/'+c2.id+'/administrators',admin,{userIds:[users.propertyb.id]},'PUT')
+  await ok('/admin/communities/'+c1.id+'/administrators',admin,{version:0,userIds:[users.propertya.id]},'PUT')
+  await ok('/admin/communities/'+c2.id+'/administrators',admin,{version:0,userIds:[users.propertyb.id]},'PUT')
   assert.equal((await request('/auth/me',propertyA.accessToken)).status,401)
   propertyA=await login('propertya_'+suffix);propertyB=await login('propertyb_'+suffix)
   assert.equal((await request('/property/spaces?communityId='+c1.id,propertyB.accessToken)).status,403)
@@ -89,12 +89,52 @@ try{
   assert.equal(bill.paidPrepayFen+bill.paidOvertimeFen,1500)
   c1=await ok('/communities/'+c1.id,admin,{version:c1.version,enabled:true},'PATCH')
  })
+ await check('authorization versions serialize first and existing grants on MySQL',async()=>{
+  const current=(await ok('/admin/users?query=owner_'+suffix,admin)).items[0]
+  const body={version:current.version,roles:current.roles}
+  const changed=await Promise.all([request('/admin/users/'+current.id+'/roles',admin,body,'PUT'),request('/admin/users/'+current.id+'/roles',admin,body,'PUT')])
+  assert.deepEqual(changed.map(r=>r.status).sort(),[200,409]);assert.equal(changed.find(r=>r.status===409).code,'STALE_VERSION')
+  assert.equal((await request('/auth/me',owner.accessToken)).status,401);owner=await login('owner_'+suffix)
+  const c=await ok('/communities',admin,{name:'授权竞态_'+suffix,address:'虚拟地址'})
+  const grants=await Promise.all([request('/admin/communities/'+c.id+'/administrators',admin,{version:0,userIds:[users.propertya.id]},'PUT'),request('/admin/communities/'+c.id+'/administrators',admin,{version:0,userIds:[users.propertyb.id]},'PUT')])
+  assert.deepEqual(grants.map(r=>r.status).sort(),[200,409]);assert.equal(grants.find(r=>r.status===409).code,'STALE_VERSION')
+  const state=await ok('/admin/communities/'+c.id+'/administrators',admin);assert.equal(state.version,1);assert.equal(state.userIds.length,1)
+  await ok('/admin/communities/'+c.id+'/administrators',admin,{version:1,userIds:[]},'PUT')
+  assert.equal((await request('/admin/communities/'+c.id+'/administrators',admin,{version:1,userIds:[]},'PUT')).code,'STALE_VERSION')
+  propertyA=await login('propertya_'+suffix);propertyB=await login('propertyb_'+suffix)
+  const candidates=await ok('/admin/users?role=PROPERTY&enabled=true&query='+suffix,admin);assert.equal(candidates.total,2);assert.ok(candidates.items.every(u=>u.enabled&&u.roles.includes('PROPERTY')))
+ })
+ await check('partial quote rejected; legacy query and booking remain compatible; real resource races',async()=>{
+  const now=Date.parse((await ok('/demo/clock',owner.accessToken)).now),t=Math.ceil((now+21600000)/900000)*900000
+  let w=await ok('/spaces/'+space.id+'/windows',owner.accessToken,{startAt:iso(t),endAt:iso(t+14400000),hourlyFen:400})
+  const body={vehicleId:vehicle.id,spaceId:space.id,startAt:iso(t),endAt:iso(t+3600000)}
+  for(const field of ['windowId','windowVersion','expectedHourlyFen','expectedPrepayFen'])assert.equal((await request('/reservations',owner.accessToken,{...body,[field]:1},undefined,key())).code,'INCOMPLETE_QUOTE')
+  const oldList=await ok('/spaces/available?'+new URLSearchParams({communityId:c1.id,startAt:body.startAt,endAt:body.endAt}));assert.ok(Array.isArray(oldList))
+  const race=await Promise.all([request('/reservations',owner.accessToken,body,undefined,key()),request('/windows/'+w.id,owner.accessToken,{version:w.version,enabled:false},'PATCH')])
+  if(race[0].status===200){assert.equal(race[1].code,'ACTIVE_RESERVATION');assert.equal(race[0].data.prepayFen,400);await ok('/reservations/'+race[0].data.reservationId+'/cancel',owner.accessToken,{})}
+  else {assert.equal(race[0].code,'OUTSIDE_SHARE_WINDOW');assert.equal(race[1].status,200);w=await ok('/windows/'+w.id,owner.accessToken,{version:race[1].data.version,enabled:true},'PATCH')}
+  const race2=await Promise.all([request('/reservations',owner.accessToken,body,undefined,key()),request('/vehicles/'+vehicle.id,owner.accessToken,{version:vehicle.version,enabled:false},'PATCH')])
+  if(race2[0].status===200){assert.equal(race2[1].code,'ACTIVE_RESERVATION');await ok('/reservations/'+race2[0].data.reservationId+'/cancel',owner.accessToken,{})}
+  else {assert.equal(race2[1].status,200);assert.equal(race2[0].code,'VEHICLE_DISABLED');vehicle=await ok('/vehicles/'+vehicle.id,owner.accessToken,{version:race2[1].data.version,enabled:true},'PATCH')}
+ })
+ await check('owner revocation preserves published resources; vehicle binding remains unique after disable',async()=>{
+  const current=(await ok('/admin/users?query=owner_'+suffix,admin)).items[0]
+  await ok('/admin/users/'+current.id+'/roles',admin,{version:current.version,roles:['DRIVER']},'PUT')
+  assert.equal((await request('/auth/me',owner.accessToken)).status,401);owner=await login('owner_'+suffix)
+  assert.equal((await request('/owner/spaces',owner.accessToken)).status,403)
+  await ok('/admin/users/'+current.id+'/roles',admin,{version:current.version+1,roles:['DRIVER','OWNER']},'PUT');owner=await login('owner_'+suffix)
+  assert.ok((await ok('/owner/spaces',owner.accessToken)).items.some(s=>s.id===space.id))
+  const v=await ok('/vehicles',other.accessToken,{plate:'京A'+suffix.slice(-5).toUpperCase()})
+  await ok('/vehicles/'+v.id,other.accessToken,{version:v.version,enabled:false},'PATCH')
+  assert.equal((await request('/vehicles',owner.accessToken,{plate:v.plate})).code,'DUPLICATE_RESOURCE')
+ })
  await check('audit authorization and account disable',async()=>{
   assert.equal((await request('/admin/audit-logs/parking',owner.accessToken)).status,403)
   assert.ok((await ok('/admin/audit-logs/identity',admin)).total>0)
   assert.ok((await ok('/admin/audit-logs/parking',admin)).total>0)
-  await ok('/admin/users/'+users.other.id+'/status',admin,{enabled:false},'PATCH')
+  await ok('/admin/users/'+users.other.id+'/status',admin,{version:1,enabled:false},'PATCH')
   assert.equal((await request('/auth/me',other.accessToken)).status,401)
   assert.equal((await request('/auth/login',null,{username:'other_'+suffix,password})).code,'ACCOUNT_DISABLED')
  })
 }finally{await mkdir(dir,{recursive:true});await writeFile(dir+'/api-results.json',JSON.stringify({createdAt:new Date().toISOString(),results},null,2))}
+

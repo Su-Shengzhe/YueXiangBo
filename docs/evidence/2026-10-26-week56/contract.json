@@ -1,0 +1,18 @@
+{
+  "sourceReport": ".runtime/business/contracts/contract-check.json",
+  "backendFingerprint": "423cdbaf868761d50a9e939884ad9dcdce0d3d36a7f32877c1b8159d13cc49d6",
+  "createdAt": "2026-10-26T05:03:12.202Z",
+  "status": "PASS",
+  "paths": 41,
+  "operations": 47,
+  "handlers": 47,
+  "localReferences": 463,
+  "checks": [
+    "handler coverage",
+    "path parameters",
+    "operation IDs",
+    "local references",
+    "security declarations"
+  ],
+  "limits": "Structural checks; not a full OpenAPI metaschema validator or exhaustive runtime response validation."
+}

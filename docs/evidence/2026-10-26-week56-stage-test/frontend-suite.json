@@ -1,0 +1,14 @@
+[
+  {
+    "status": "PASS",
+    "name": "frontend-build-default"
+  },
+  {
+    "status": "PASS",
+    "name": "frontend-build-business"
+  },
+  {
+    "status": "PASS",
+    "name": "frontend-regression"
+  }
+]
