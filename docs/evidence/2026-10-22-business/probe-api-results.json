@@ -1,0 +1,63 @@
+{
+  "startedAt": "2026-10-22T04:40:38.7778535Z",
+  "record": {
+    "id": "7aae1fc0-2cf5-4326-b6f9-5d279a420ab3",
+    "label": "smoke-fe3cea0bf20d4ee99b80a3efbc834494"
+  },
+  "scope": "Environment probe only",
+  "status": "PASS",
+  "endedAt": "2026-10-22T04:40:39.7187772Z",
+  "id": "20261022-124038-c633d93d",
+  "messageId": "eb34c883-f8e7-4888-8367-13a67c13b261",
+  "failure": null,
+  "results": [
+    {
+      "status": "PASS",
+      "check": "create_http_201"
+    },
+    {
+      "status": "PASS",
+      "check": "gateway_discovery_mysql_write_read"
+    },
+    {
+      "status": "PASS",
+      "check": "mysql_transaction_rollback_http"
+    },
+    {
+      "status": "PASS",
+      "check": "mysql_transaction_rollback_no_row"
+    },
+    {
+      "status": "PASS",
+      "check": "missing_token_rejected"
+    },
+    {
+      "status": "PASS",
+      "check": "wrong_token_rejected"
+    },
+    {
+      "status": "PASS",
+      "check": "invalid_input_rejected"
+    },
+    {
+      "status": "PASS",
+      "check": "redis_write_read"
+    },
+    {
+      "status": "PASS",
+      "check": "message_submission_http_202"
+    },
+    {
+      "status": "PASS",
+      "check": "rabbit_publish_consume_mysql_receipt"
+    },
+    {
+      "status": "PASS",
+      "check": "internal_endpoint_exists_on_backend"
+    },
+    {
+      "status": "PASS",
+      "check": "gateway_blocks_existing_internal_endpoint"
+    }
+  ]
+}

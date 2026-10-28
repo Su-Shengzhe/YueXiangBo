@@ -123,7 +123,8 @@ function Get-BuildSource {
 function Test-OwnedProcess {
     param($Record)
     $process = Get-Process -Id $Record.pid -ErrorAction SilentlyContinue
-    return ($process -and $process.ProcessName -eq 'java' -and $process.StartTime.ToUniversalTime().Ticks -eq ([DateTimeOffset]$Record.startedAt).UtcTicks)
+    $expected=if($Record.module -eq 'frontend-business'){'node'}else{'java'}
+    return ($process -and $process.ProcessName -eq $expected -and $process.StartTime.ToUniversalTime().Ticks -eq ([DateTimeOffset]$Record.startedAt).UtcTicks)
 }
 
 function Stop-OwnedProcesses {

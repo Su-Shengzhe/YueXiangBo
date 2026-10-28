@@ -1,0 +1,32 @@
+TABLE_SCHEMA	table_count
+identity_db	7
+parking_db	10
+trade_db	9
+service	version	script	success
+identity	001	V001__business_baseline.sql	1
+service	version	script	success
+parking	001	V001__business_baseline.sql	1
+parking	002	V002__entry_block_reason.sql	1
+service	version	script	success
+trade	001	V001__business_baseline.sql	1
+Grants for identity@%
+GRANT USAGE ON *.* TO `identity`@`%`
+GRANT ALL PRIVILEGES ON `identity_db`.* TO `identity`@`%`
+Grants for parking@%
+GRANT USAGE ON *.* TO `parking`@`%`
+GRANT ALL PRIVILEGES ON `parking_db`.* TO `parking`@`%`
+Grants for trade@%
+GRANT USAGE ON *.* TO `trade`@`%`
+GRANT ALL PRIVILEGES ON `trade_db`.* TO `trade`@`%`
+status	COUNT(*)
+SENT	66
+status	COUNT(*)
+SENT	26
+close_reason	COUNT(*)
+USER_CANCELLED	1
+PAYMENT_TIMEOUT	2
+SPACE_UNAVAILABLE	1
+kind	COUNT(*)
+PREPAY	17
+OVERTIME	9
+REFUND	8

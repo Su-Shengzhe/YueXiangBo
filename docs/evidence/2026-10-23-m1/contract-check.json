@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-23T04:22:29.162Z",
+  "status": "PASS",
+  "pathCount": 18,
+  "operationCount": 20,
+  "checks": [
+    "local refs resolve",
+    "path parameters required",
+    "operationId unique",
+    "security schemes resolve",
+    "public business handler coverage"
+  ],
+  "limitations": "Structural and source-coverage check, not full OpenAPI meta-schema validation or live response validation."
+}

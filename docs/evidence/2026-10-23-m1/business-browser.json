@@ -1,0 +1,160 @@
+{
+  "config": {
+    "argv": [
+      "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\.tools\\node\\node-v24.22.0-win-x64\\node.exe",
+      "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.business.config.ts"
+    ],
+    "configFile": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\playwright.business.config.ts",
+    "rootDir": "D:/codex-project/基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划/frontend/business-tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/codex-project/基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/codex-project/基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划/frontend/business-tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 90000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\business-tests",
+        "snapshotDir": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\business-tests",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 90000,
+        "use": {
+          "channel": "msedge",
+          "headless": true,
+          "baseURL": "http://127.0.0.1:5174",
+          "trace": "off",
+          "screenshot": "off"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\.runtime\\business\\browser\\20261023-122711/browser-results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --mode business --port 5174",
+      "url": "http://127.0.0.1:5174",
+      "reuseExistingServer": false,
+      "timeout": 60000
+    }
+  },
+  "suites": [
+    {
+      "title": "flow.spec.ts",
+      "file": "flow.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "login, query, reserve, pay, property entry/exit, overtime bill through UI",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 90000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 11617,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-23T04:27:15.918Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "browser-version",
+                      "contentType": "text/plain",
+                      "body": "MTU2LjAuNDMxNC40Mg=="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "f353db48c569834dc22b-1195308a1d8876971aa6",
+          "file": "flow.spec.ts",
+          "line": 2,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-23T04:27:13.555Z",
+    "duration": 15510.496000000001,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

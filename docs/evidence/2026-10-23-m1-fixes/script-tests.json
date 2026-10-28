@@ -1,0 +1,50 @@
+{
+  "executedAt": "2026-10-23T04:48:15.8372265Z",
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "missing_lock_does_not_choose_latest"
+    },
+    {
+      "status": "PASS",
+      "name": "exact_runtime_version_checked"
+    },
+    {
+      "status": "PASS",
+      "name": "valid_configuration_accepted"
+    },
+    {
+      "status": "PASS",
+      "name": "missing_secret_rejected"
+    },
+    {
+      "status": "PASS",
+      "name": "image_drift_rejected"
+    },
+    {
+      "status": "PASS",
+      "name": "duplicate_ports_rejected"
+    },
+    {
+      "status": "PASS",
+      "name": "duplicate_keys_rejected"
+    },
+    {
+      "status": "PASS",
+      "name": "missing_credentials_with_existing_volumes_rejected"
+    },
+    {
+      "status": "PASS",
+      "name": "empty_process_list_is_written"
+    },
+    {
+      "status": "PASS",
+      "name": "path_boundary_rejects_escape"
+    },
+    {
+      "status": "PASS",
+      "name": "failed_run_replaces_latest_success"
+    }
+  ],
+  "status": "PASS"
+}

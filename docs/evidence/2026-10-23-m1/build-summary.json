@@ -1,0 +1,14 @@
+{
+  "skipped": 0,
+  "at": "2026-10-23T04:26:59.4260111Z",
+  "errors": 0,
+  "scope": "Maven clean verify and frontend builds executed during this M1 verification; no real AI acceptance",
+  "status": "PASS",
+  "tests": 17,
+  "frontendBuilds": [
+    "npm run build",
+    "npm run build -- --mode business"
+  ],
+  "failures": 0,
+  "uiRegressionTests": 3
+}

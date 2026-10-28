@@ -15,7 +15,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw "Maven verification failed. See $runDir/maven.log" }
     $after=Get-BuildSource $root
     if ($after.fingerprint -ne $source.fingerprint) { throw 'Sources changed during build; rebuild before packaging.' }
-    foreach ($module in @('registry','gateway','parking-service')) {
+    foreach ($module in @('registry','gateway','identity-service','parking-service','trade-service')) {
         $path="backend/$module/target/$module-0.1.0-SNAPSHOT.jar"
         $record.artifacts[$module]=@{path=$path;sha256=(Get-FileHash (Join-Path $root $path)).Hash.ToLowerInvariant()}
     }

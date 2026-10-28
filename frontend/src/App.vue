@@ -10,7 +10,7 @@ import 'element-plus/theme-chalk/el-input.css'
 import 'element-plus/theme-chalk/el-table.css'
 import 'element-plus/theme-chalk/el-table-column.css'
 const token=ref('')
-const label=ref('社区停车环境验证')
+const label=ref('悦享泊环境验证')
 const rows=ref<Array<{id:string,label:string,created_at:string}>>([])
 const busy=ref(false)
 const status=ref('请输入本地验证令牌，再读取或保存测试记录。')
@@ -36,7 +36,7 @@ async function run(create: boolean) {
 </script>
 <template>
   <main>
-    <p class="eyebrow">智慧社区停车位共享与结算系统</p>
+    <p class="eyebrow">悦享泊——智慧社区车位共享与结算平台</p>
     <h1>开发环境验证</h1>
     <p>此页验证网关与数据库连接，尚未实现预约、支付或结算业务。</p>
     <el-card>

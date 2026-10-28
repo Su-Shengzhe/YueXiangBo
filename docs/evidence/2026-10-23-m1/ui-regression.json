@@ -1,0 +1,219 @@
+{
+  "config": {
+    "argv": [
+      "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\.tools\\node\\node-v24.22.0-win-x64\\node.exe",
+      "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\node_modules\\@playwright\\test\\cli.js",
+      "test",
+      "--config",
+      "playwright.regression.config.ts"
+    ],
+    "configFile": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\playwright.regression.config.ts",
+    "rootDir": "D:/codex-project/基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划/frontend/regression-tests",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "D:/codex-project/基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划/frontend/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "D:/codex-project/基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划/frontend/regression-tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\regression-tests",
+        "snapshotDir": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\frontend\\regression-tests",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 30000,
+        "use": {
+          "channel": "msedge",
+          "headless": true,
+          "baseURL": "http://127.0.0.1:5176"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "../.runtime/optimization-browser.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.1",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --mode business --port 5176",
+      "url": "http://127.0.0.1:5176",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "business-state.spec.ts",
+      "file": "business-state.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "new reservation never renders or pays using a previous bill when loading fails",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1083,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-23T04:14:34.916Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "578eda2ba8cf6e9390ee-de936d52d5921ab41023",
+          "file": "business-state.spec.ts",
+          "line": 35,
+          "column": 1
+        },
+        {
+          "title": "changing the time invalidates the displayed quote until another query",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 547,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-23T04:14:36.664Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "578eda2ba8cf6e9390ee-82b8cecc96e407524e52",
+          "file": "business-state.spec.ts",
+          "line": 50,
+          "column": 1
+        },
+        {
+          "title": "slow assistant does not disable business navigation or querying",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 662,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-23T04:14:37.231Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "578eda2ba8cf6e9390ee-28f4cb129e7a59fe7deb",
+          "file": "business-state.spec.ts",
+          "line": 60,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-23T04:14:32.372Z",
+    "duration": 6685.843000000001,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

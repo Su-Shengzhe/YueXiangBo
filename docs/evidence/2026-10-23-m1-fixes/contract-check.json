@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "paths": 19,
+  "operations": 21,
+  "checks": [
+    "public controller coverage",
+    "local references"
+  ]
+}

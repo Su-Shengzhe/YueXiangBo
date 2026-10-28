@@ -1,0 +1,52 @@
+{
+  "id": "20261022-180403-710d7dcb",
+  "status": "PASS",
+  "startedAt": "2026-10-22T10:04:03.8187424Z",
+  "endedAt": "2026-10-22T10:04:29.5891262Z",
+  "artifacts": {
+    "identity-service": {
+      "sha256": "cbf6aca065e59d35ce6431149d58b2da5734948f15d1f5e1681071ed6d702ab4",
+      "path": "backend/identity-service/target/identity-service-0.1.0-SNAPSHOT.jar"
+    },
+    "trade-service": {
+      "sha256": "362fb78a3bad106fdf7863932b85772ceadd90e320b490ebf239301996aece9c",
+      "path": "backend/trade-service/target/trade-service-0.1.0-SNAPSHOT.jar"
+    },
+    "parking-service": {
+      "sha256": "7af5fc67ec3f2fc0d77e738eb830f319006814dbe13ff1adf2841013cd7bc0a0",
+      "path": "backend/parking-service/target/parking-service-0.1.0-SNAPSHOT.jar"
+    },
+    "registry": {
+      "sha256": "626c28b90fdce54897412d3719df06b751580727b64b57d83eee2ed16d143160",
+      "path": "backend/registry/target/registry-0.1.0-SNAPSHOT.jar"
+    },
+    "gateway": {
+      "sha256": "55e2d06b660f636979af025c401f4eb232ea6c53e327c15cc058514200eec608",
+      "path": "backend/gateway/target/gateway-0.1.0-SNAPSHOT.jar"
+    }
+  },
+  "sourceFingerprint": "21eb50e5752b35d5f4124b32eb0fe6cbe3b49d2d822acb3429fc46787d536699",
+  "testSuites": [
+    {
+      "name": "cn.community.foundation.MoneyTest",
+      "tests": "4",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "cn.community.parkingservice.ProbeProfileTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "cn.community.parkingservice.ProbeStoreTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ]
+}

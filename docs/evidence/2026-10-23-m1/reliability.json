@@ -1,0 +1,52 @@
+{
+  "realAiAccepted": false,
+  "status": "PASS",
+  "endedAt": "2026-10-23T04:27:32.4832264Z",
+  "checks": [
+    {
+      "name": "atomic-login-limit-and-orphan-TTL-repair",
+      "status": "PASS"
+    },
+    {
+      "name": "outbox-operations-9081",
+      "metrics": {
+        "service": "identity-service",
+        "counts": [],
+        "oldestPendingAgeSeconds": 0
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "outbox-operations-9082",
+      "metrics": {
+        "service": "parking-service",
+        "counts": [
+          {
+            "status": "SENT",
+            "count": 109
+          }
+        ],
+        "oldestPendingAgeSeconds": 0,
+        "deadLetterCount": 0,
+        "brokerReachable": true
+      },
+      "status": "PASS"
+    },
+    {
+      "name": "outbox-operations-9083",
+      "metrics": {
+        "service": "trade-service",
+        "counts": [
+          {
+            "status": "SENT",
+            "count": 43
+          }
+        ],
+        "oldestPendingAgeSeconds": 0,
+        "deadLetterCount": 0,
+        "brokerReachable": true
+      },
+      "status": "PASS"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "20261022-185154-e83e7bb9",
+  "status": "PASS",
+  "endedAt": "2026-10-22T10:52:25.1832471Z",
+  "sourceFingerprint": "f2077aa385f52d034fc90e14c87fb8b9c47e5ed42ac0cdfbb21deb9cc7f43c0d",
+  "artifacts": {
+    "identity-service": {
+      "sha256": "5217d363d4e56dd6d2d60d8033a0c8fafbbdf0e1e99be45198d6f7f19c5082da",
+      "path": "backend/identity-service/target/identity-service-0.1.0-SNAPSHOT.jar"
+    },
+    "registry": {
+      "sha256": "490ccb666af07f29b5228940e3f0d59f6157f984ec741f3b51957bf0a916abab",
+      "path": "backend/registry/target/registry-0.1.0-SNAPSHOT.jar"
+    },
+    "gateway": {
+      "sha256": "55157565ee439511c8d9a6a53f9f8d98172e57105104572b08b69e099190bfa9",
+      "path": "backend/gateway/target/gateway-0.1.0-SNAPSHOT.jar"
+    },
+    "trade-service": {
+      "sha256": "ca970412d8be42e1628d5bb9b967dc1db7946a1c2ef42b4b5ece673729bc2ce9",
+      "path": "backend/trade-service/target/trade-service-0.1.0-SNAPSHOT.jar"
+    },
+    "parking-service": {
+      "sha256": "b3fa5e2536ed52dc3462f8a6f3ad0241790b12b78514f36bd656a00e734f3a6a",
+      "path": "backend/parking-service/target/parking-service-0.1.0-SNAPSHOT.jar"
+    }
+  },
+  "testSuites": [
+    {
+      "name": "cn.community.foundation.MoneyTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "cn.community.foundation.OutboxTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "cn.community.parkingservice.ProbeProfileTest",
+      "tests": "2",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "cn.community.parkingservice.ProbeStoreTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "cn.community.trade.TradeReliabilityTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ]
+}

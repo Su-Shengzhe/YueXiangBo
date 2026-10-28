@@ -1,0 +1,13 @@
+{
+  "dockerRuntimeRecovered": true,
+  "frontend": 5174,
+  "status": "PASS",
+  "services": [
+    9761,
+    9081,
+    9082,
+    9083,
+    9090
+  ],
+  "at": "2026-10-23T08:43:27.6860593Z"
+}

@@ -1,0 +1,46 @@
+name: community-parking-business
+services:
+  mysql:
+    image: ${MYSQL_IMAGE:?Required}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Required}
+    ports: ["127.0.0.1:23306:3306"]
+    volumes:
+      - business-mysql:/var/lib/mysql
+      - ../.runtime/business/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysql -u root -Nse 'SELECT 1'"]
+      interval: 5s
+      timeout: 5s
+      retries: 40
+    mem_limit: 1g
+  redis:
+    image: ${REDIS_IMAGE:?Required}
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?Required}
+    command: ["sh", "-c", "exec redis-server --requirepass \"$$REDIS_PASSWORD\" --appendonly yes"]
+    ports: ["127.0.0.1:26379:6379"]
+    volumes: ["business-redis:/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "REDISCLI_AUTH=$$REDIS_PASSWORD redis-cli ping | grep -q PONG"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    mem_limit: 256m
+  rabbitmq:
+    image: ${RABBITMQ_IMAGE:?Required}
+    environment:
+      RABBITMQ_DEFAULT_USER: parking
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:?Required}
+    ports: ["127.0.0.1:35672:5672", "127.0.0.1:35673:15672"]
+    volumes: ["business-rabbit:/var/lib/rabbitmq"]
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 10s
+      retries: 20
+    mem_limit: 768m
+volumes:
+  business-mysql:
+  business-redis:
+  business-rabbit:

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Community Parking Environment Probe
+  title: 悦享泊 · 开发环境验证接口
   version: 0.1.0
   description: Requires probe plus local or container profile. Infrastructure verification only; not parking business APIs.
 servers:

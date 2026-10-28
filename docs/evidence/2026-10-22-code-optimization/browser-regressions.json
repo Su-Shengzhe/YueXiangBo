@@ -1,0 +1,12 @@
+{
+  "stats": {
+    "startTime": "2026-10-22T10:49:35.662Z",
+    "duration": 4675.642,
+    "expected": 3,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "errors": [],
+  "scope": "mock API regressions"
+}

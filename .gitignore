@@ -13,3 +13,6 @@ deploy/.env.local
 deploy/secrets/
 *.log
 .DS_Store
+
+deploy/.env.business
+frontend/.env.business.local
