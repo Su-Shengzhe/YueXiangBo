@@ -23,7 +23,7 @@ public class BusinessWeb implements WebMvcConfigurer {
    if(path.startsWith("/internal/v1/")){
     String value=req.getHeader("X-Service-Token");Problem.require(value!=null&&MessageDigest.isEqual(serviceToken.getBytes(StandardCharsets.UTF_8),value.getBytes(StandardCharsets.UTF_8)),403,"INTERNAL_FORBIDDEN","内部接口拒绝访问");return true;
    }
-   if(!path.startsWith("/api/v1/")||path.equals("/api/v1/auth/login")||path.equals("/api/v1/communities")&&req.getMethod().equals("GET")||path.equals("/api/v1/spaces/available")&&req.getMethod().equals("GET"))return true;
+   if(!path.startsWith("/api/v1/")||(Set.of("/api/v1/auth/login","/api/v1/auth/register").contains(path)&&req.getMethod().equals("POST"))||Set.of("/api/v1/communities","/api/v1/spaces/available","/api/v1/spaces/search").contains(path)&&req.getMethod().equals("GET"))return true;
    String bearer=req.getHeader("Authorization");tokens.verify(bearer);Map<String,Object> state;
    if(local.isPresent())state=local.get().state(bearer);
    else try{state=identity.get().uri("/internal/v1/auth/state").header("Authorization",bearer).header("X-Service-Token",serviceToken).retrieve().body(Map.class);}

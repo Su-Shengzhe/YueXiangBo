@@ -1,0 +1,13 @@
+ALTER TABLE community ADD COLUMN address VARCHAR(255) NOT NULL DEFAULT '', ADD COLUMN enabled BOOLEAN NOT NULL DEFAULT TRUE, ADD COLUMN version INT NOT NULL DEFAULT 1;
+ALTER TABLE vehicle ADD COLUMN enabled BOOLEAN NOT NULL DEFAULT TRUE, ADD COLUMN version INT NOT NULL DEFAULT 1;
+ALTER TABLE parking_space ADD COLUMN space_code VARCHAR(64) NULL, ADD COLUMN location_desc VARCHAR(255) NOT NULL DEFAULT '', ADD COLUMN space_type VARCHAR(20) NOT NULL DEFAULT 'STANDARD', ADD COLUMN proof_text VARCHAR(1000) NOT NULL DEFAULT '', ADD COLUMN review_status VARCHAR(20) NOT NULL DEFAULT 'DRAFT', ADD COLUMN review_comment VARCHAR(500) NOT NULL DEFAULT '', ADD COLUMN version INT NOT NULL DEFAULT 1;
+UPDATE parking_space SET space_code=name,review_status='APPROVED';
+ALTER TABLE parking_space MODIFY space_code VARCHAR(64) NOT NULL, ADD CONSTRAINT uq_space_code UNIQUE(community_id,space_code);
+ALTER TABLE share_window ADD COLUMN hourly_fen BIGINT NULL, ADD COLUMN enabled BOOLEAN NOT NULL DEFAULT TRUE, ADD COLUMN version INT NOT NULL DEFAULT 1;
+UPDATE share_window w JOIN parking_space s ON s.id=w.space_id SET w.hourly_fen=s.hourly_fen;
+ALTER TABLE share_window MODIFY hourly_fen BIGINT NOT NULL;
+ALTER TABLE reservation_order ADD COLUMN window_id BIGINT NULL;
+UPDATE reservation_order r JOIN (SELECT r2.id,MIN(w.id) AS window_id FROM reservation_order r2 JOIN share_window w ON w.space_id=r2.space_id AND w.start_at<=r2.start_at AND w.end_at>=r2.end_at GROUP BY r2.id HAVING COUNT(*)=1) matched ON matched.id=r.id SET r.window_id=matched.window_id;
+CREATE TABLE space_review(id BIGINT PRIMARY KEY,space_id BIGINT NOT NULL,actor_id BIGINT NOT NULL,decision VARCHAR(20) NOT NULL,comment VARCHAR(500) NOT NULL,created_at DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3));
+ALTER TABLE audit_log ADD COLUMN detail_json TEXT NULL;
+CREATE INDEX ix_window_space_interval ON share_window(space_id,enabled,start_at,end_at);

@@ -1,0 +1,3 @@
+import { createRouter, createWebHashHistory } from 'vue-router'
+export const paths: Record<string, string> = { spaces:'/spaces', orders:'/orders', bill:'/bill', property:'/property/parking', ai:'/assistant', demo:'/demo', vehicles:'/vehicles', owner:'/owner/spaces', reviews:'/property/reviews', communities:'/admin/communities', users:'/admin/users', audit:'/admin/audit' }
+export const router = createRouter({ history:createWebHashHistory(), routes:[...Object.entries(paths).map(([name,path])=>({name,path,component:{render:()=>null}})),{path:'/',redirect:'/spaces'},{path:'/:pathMatch(.*)*',redirect:'/spaces'}] })

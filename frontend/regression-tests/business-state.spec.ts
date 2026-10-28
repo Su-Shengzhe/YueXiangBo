@@ -11,7 +11,7 @@ async function fixture(page: Page) {
     else if (path === '/communities') data = [{ id: '10', name: '测试社区' }]
     else if (path === '/vehicles') data = [{ id: '40', plate: '测试车辆' }]
     else if (path === '/demo/clock') data = { now: '2030-01-01T00:00:00Z' }
-    else if (path === '/spaces/available') data = [{ id: '20', name: '测试车位', hourlyFen: 500, estimatedFen: 500 }]
+    else if (path === '/spaces/search') data = { items: [{ id: '20', name: '测试车位', hourlyFen: 500, estimatedFen: 500, windowId: '30', windowVersion: 1 }], total: 1 }
     else if (path === '/reservations') {
       if (route.request().method() === 'POST') { created = true; data = order('B') }
       else data = created ? [order('B'), order('A')] : [order('A')]
@@ -57,6 +57,27 @@ test('changing the time invalidates the displayed quote until another query', as
   await expect(page.getByRole('button', { name: '预约此车位' })).toBeEnabled()
 })
 
+test('server quote change clears stale cards and asks for a fresh query', async ({ page }) => {
+  await fixture(page)
+  await page.route('**/api/v1/reservations', async route => {
+    if(route.request().method()==='POST')await route.fulfill({status:409,json:{code:'QUOTE_CHANGED',message:'报价或窗口已变化，请重新查询并确认'}})
+    else await route.fallback()
+  })
+  await page.getByRole('button',{name:'查询车位',exact:true}).click()
+  await page.getByRole('button',{name:'预约此车位'}).click()
+  await expect(page.getByRole('status')).toContainText('重新查询')
+  await expect(page.getByRole('button',{name:'预约此车位'})).toHaveCount(0)
+})
+
+test('changing price filter during a pending search discards its old results', async ({ page }) => {
+  await fixture(page)
+  await page.route('**/api/v1/spaces/search?**',async route=>{await new Promise(r=>setTimeout(r,500));await route.fulfill({json:{code:'OK',data:{items:[{id:'20',name:'stale',hourlyFen:500,estimatedFen:500}],total:1}}})})
+  await page.getByRole('button',{name:'查询车位',exact:true}).click()
+  await page.getByLabel('最高小时价格（分）',{exact:true}).fill('100')
+  await expect(page.getByRole('button',{name:'查询车位',exact:true})).toBeEnabled()
+  await expect(page.getByRole('button',{name:'预约此车位'})).toHaveCount(0)
+})
+
 test('slow assistant does not disable business navigation or querying', async ({ page }) => {
   await fixture(page)
   await page.getByRole('button', { name: '停车助手 · 模型桩' }).click()
@@ -73,7 +94,7 @@ test.describe('business timezone and cancellation', () => {
     await fixture(page)
     await expect(page.getByLabel('开始时间', { exact: true })).toHaveValue('2030-01-01T08:30')
     await expect(page.locator('.context')).toContainText('测试社区')
-    const request = page.waitForRequest(r => r.url().includes('/spaces/available'))
+    const request = page.waitForRequest(r => r.url().includes('/spaces/search'))
     await page.getByRole('button', { name: '查询车位', exact: true }).click()
     expect(new URL((await request).url()).searchParams.get('startAt')).toBe('2030-01-01T00:30:00.000Z')
   })

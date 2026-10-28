@@ -1,0 +1,11 @@
+CREATE TABLE role_definition(code VARCHAR(20) PRIMARY KEY);
+INSERT INTO role_definition VALUES ('DRIVER'),('OWNER'),('PROPERTY'),('PLATFORM');
+CREATE TABLE user_role(user_id BIGINT NOT NULL,role_code VARCHAR(20) NOT NULL,PRIMARY KEY(user_id,role_code),FOREIGN KEY(user_id) REFERENCES app_user(id),FOREIGN KEY(role_code) REFERENCES role_definition(code));
+INSERT INTO user_role SELECT id,role FROM app_user;
+CREATE TABLE community_admin(user_id BIGINT NOT NULL,community_id BIGINT NOT NULL,PRIMARY KEY(user_id,community_id),FOREIGN KEY(user_id) REFERENCES app_user(id));
+INSERT INTO community_admin SELECT id,community_id FROM app_user WHERE role='PROPERTY' AND community_id IS NOT NULL;
+CREATE TABLE business_sequence(name VARCHAR(30) PRIMARY KEY,last_id BIGINT NOT NULL);
+INSERT INTO business_sequence SELECT 'business',GREATEST(COALESCE(MAX(id),0),1000000) FROM app_user;
+CREATE TABLE authorization_guard(id INT PRIMARY KEY);
+INSERT INTO authorization_guard VALUES(1);
+ALTER TABLE audit_log ADD COLUMN detail_json TEXT NULL;
