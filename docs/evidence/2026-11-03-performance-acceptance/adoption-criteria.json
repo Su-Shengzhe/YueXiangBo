@@ -1,0 +1,10 @@
+{
+  "registeredAt": "2026-11-03T06:09:19.2818040Z",
+  "minimumSameCommunityThroughputGainPercent": 20,
+  "maximumDifferentCommunityP95RegressionPercent": 15,
+  "note": "Adoption review criteria recorded after first candidate same-community observations and before reverse confirmation; not a statistical confidence claim.",
+  "requiresStabilityGate": true,
+  "requiresAllCorrectnessChecks": true,
+  "maximumDifferentCommunityThroughputRegressionPercent": 10,
+  "action": "Enable only in local business configuration after full repeated measurements meet these criteria; retain false code fallback and reversible configuration"
+}

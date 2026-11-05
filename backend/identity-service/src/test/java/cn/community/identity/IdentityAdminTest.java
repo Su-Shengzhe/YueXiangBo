@@ -11,6 +11,27 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import static org.junit.jupiter.api.Assertions.*;
 
 class IdentityAdminTest {
+ @Test void ordinaryPlatformCannotGrantPermissionsOrPromoteRoles(){
+  api.roles(2,Map.of("version",1,"roles",List.of("PLATFORM")),admin(1));
+  assertEquals("AUTHORIZATION_ADMIN_REQUIRED",assertThrows(Problem.class,()->api.permissions(2,Map.of("version",2,"permissions",List.of("REFUND_APPROVE")),admin(2))).code);
+  assertEquals("AUTHORIZATION_ADMIN_REQUIRED",assertThrows(Problem.class,()->api.roles(1,Map.of("version",1,"roles",List.of("PLATFORM")),admin(2))).code);
+  assertEquals("SELF_AUTHORIZATION",assertThrows(Problem.class,()->api.permissions(1,Map.of("version",1,"permissions",List.of()),admin(1))).code);
+  assertEquals("LAST_AUTHORIZATION_ADMIN",assertThrows(Problem.class,()->api.status(1,Map.of("version",1,"enabled",false),admin(1))).code);
+ }
+ @Test void accountPermissionsOverrideRoleDefaultsAndRevokeSessions(){
+  api.roles(2,Map.of("version",1,"roles",List.of("PLATFORM")),admin(1));
+  var result=api.permissions(2,Map.of("version",2,"permissions",List.of("REFUND_READ")),admin(1));
+  var effective=AccountPermissions.resolve(db,2,Set.of("PLATFORM"));
+  assertTrue(effective.contains("REFUND_READ"));assertFalse(effective.contains("FUNDS_RECOVER"));assertFalse(effective.contains("REFUND_APPROVE"));
+  assertTrue(effective.contains("USER_MANAGE"));assertEquals(3,result.get("version"));
+  assertTrue(db.queryForObject("SELECT revoked FROM login_session WHERE jti='session'",Boolean.class));
+  assertEquals(1,db.queryForObject("SELECT COUNT(*) FROM audit_log WHERE action='ACCOUNT_PERMISSIONS'",Integer.class));
+  assertEquals("STALE_VERSION",assertThrows(Problem.class,()->api.permissions(2,Map.of("version",2,"permissions",List.of()),admin(1))).code);
+  assertThrows(Problem.class,()->api.permissions(2,Map.of("version",3,"permissions",List.of("USER_MANAGE")),admin(1)));
+  assertFalse(AccountPermissions.resolve(db,2,Set.of("DRIVER")).contains("REFUND_READ"));
+  var actor=Actor.from(Map.of("id","2","roles",List.of("PLATFORM"),"communities",List.of(),"permissions",List.of("REFUND_READ")));
+  actor.permission("REFUND_READ");assertThrows(Problem.class,()->actor.permission("FUNDS_RECOVER"));
+ }
  @Test void concurrentRoleUpdatesRejectLostUpdate() throws Exception {
   try(var pool=Executors.newFixedThreadPool(2)){
    Callable<String> change=()->{try{api.roles(2,Map.of("version",1,"roles",List.of("DRIVER","OWNER")),admin(1));return "OK";}catch(Problem p){return p.code;}};
@@ -43,11 +64,10 @@ class IdentityAdminTest {
  }
  JdbcTemplate db;IdentityAdmin api;
  MockHttpServletRequest admin(long id){var req=new MockHttpServletRequest();req.setAttribute("actor",new Actor(id,Set.of("PLATFORM"),Set.of()));return req;}
- @BeforeEach void setup(){var ds=new DriverManagerDataSource("jdbc:h2:mem:"+UUID.randomUUID()+";MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;LOCK_TIMEOUT=5000","sa","");db=new JdbcTemplate(ds);new ResourceDatabasePopulator(new ClassPathResource("db/business/V001__business_baseline.sql"),new ClassPathResource("db/business/V002__reliability.sql"),new ClassPathResource("db/business/V003__resource_management.sql"),new ClassPathResource("db/business/V004__authorization_versions.sql")).execute(ds);db.update("INSERT INTO app_user(id,username,password_hash,role) VALUES(1,'admin','hash','PLATFORM'),(2,'driver','hash','DRIVER')");db.update("INSERT INTO user_role VALUES(1,'PLATFORM'),(2,'DRIVER')");db.update("INSERT INTO login_session VALUES('session',2,DATEADD('DAY',1,CURRENT_TIMESTAMP),FALSE)");api=new IdentityAdmin(db,new DataSourceTransactionManager(ds),"http://127.0.0.1:1","test");}
+ @BeforeEach void setup(){var ds=new DriverManagerDataSource("jdbc:h2:mem:"+UUID.randomUUID()+";MODE=MySQL;DATABASE_TO_LOWER=TRUE;DB_CLOSE_DELAY=-1;LOCK_TIMEOUT=5000","sa","");db=new JdbcTemplate(ds);new ResourceDatabasePopulator(new ClassPathResource("db/business/V001__business_baseline.sql"),new ClassPathResource("db/business/V002__reliability.sql"),new ClassPathResource("db/business/V003__resource_management.sql"),new ClassPathResource("db/business/V004__authorization_versions.sql"),new ClassPathResource("db/business/V005__account_permissions.sql")).execute(ds);db.update("INSERT INTO app_user(id,username,password_hash,role) VALUES(1,'admin','hash','PLATFORM'),(2,'driver','hash','DRIVER')");db.update("INSERT INTO user_role VALUES(1,'PLATFORM'),(2,'DRIVER')");db.update("INSERT INTO login_session VALUES('session',2,DATEADD('DAY',1,CURRENT_TIMESTAMP),FALSE)");db.update("INSERT INTO account_permission VALUES(1,'ACCOUNT_AUTHORIZE',TRUE)");api=new IdentityAdmin(db,new DataSourceTransactionManager(ds),"http://127.0.0.1:1","test");}
  @Test void roleGrantIsMultipleAndRevokesExistingSessions(){api.roles(2,Map.of("version",1,"roles",List.of("DRIVER","OWNER")),admin(1));assertEquals(2,db.queryForObject("SELECT COUNT(*) FROM user_role WHERE user_id=2",Integer.class));assertEquals(true,db.queryForObject("SELECT revoked FROM login_session WHERE jti='session'",Boolean.class));assertEquals(1,db.queryForObject("SELECT COUNT(*) FROM audit_log WHERE action='USER_ROLES'",Integer.class));}
  @Test void lastAdministratorCannotBeRemovedOrDisabled(){assertEquals("LAST_ADMIN",assertThrows(Problem.class,()->api.roles(1,Map.of("version",1,"roles",List.of("DRIVER")),admin(1))).code);assertEquals("LAST_ADMIN",assertThrows(Problem.class,()->api.status(1,Map.of("version",1,"enabled",false),admin(1))).code);assertEquals(true,db.queryForObject("SELECT enabled FROM app_user WHERE id=1",Boolean.class));assertEquals("PLATFORM",db.queryForObject("SELECT role_code FROM user_role WHERE user_id=1",String.class));}
  @Test void staleActorCannotWriteAfterRevocation(){assertEquals(403,assertThrows(Problem.class,()->api.roles(1,Map.of("version",1,"roles",List.of("DRIVER")),admin(2))).status);}
  @Test void concurrentAdministratorDisablesCannotRemoveBoth() throws Exception {api.roles(2,Map.of("version",1,"roles",List.of("PLATFORM")),admin(1));try(var pool=Executors.newFixedThreadPool(2)){Callable<Boolean> a=()->{try{api.status(1,Map.of("version",1,"enabled",false),admin(1));return true;}catch(Problem e){return false;}};Callable<Boolean> b=()->{try{api.status(2,Map.of("version",2,"enabled",false),admin(2));return true;}catch(Problem e){return false;}};var first=pool.submit(a);var second=pool.submit(b);assertNotEquals(first.get(10,TimeUnit.SECONDS),second.get(10,TimeUnit.SECONDS));}assertEquals(1,db.queryForObject("SELECT COUNT(*) FROM app_user WHERE enabled=TRUE",Integer.class));}
  @Test void unknownRoleRejectedAndPasswordNeverListed(){assertEquals(422,assertThrows(Problem.class,()->api.roles(2,Map.of("version",1,"roles",List.of("SUPERUSER")),admin(1))).status);assertFalse(Data.json(api.users(1,20,"","",null,admin(1))).contains("password"));}
 }
-

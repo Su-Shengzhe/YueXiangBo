@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-31T09:56:41.9138217Z",
+  "services": [
+    {
+      "port": 9761,
+      "service": "registry",
+      "status": "UP"
+    },
+    {
+      "port": 9081,
+      "service": "identity",
+      "status": "UP"
+    },
+    {
+      "port": 9082,
+      "service": "parking",
+      "status": "UP"
+    },
+    {
+      "port": 9083,
+      "service": "trade",
+      "status": "UP"
+    },
+    {
+      "port": 9090,
+      "service": "gateway",
+      "status": "UP"
+    }
+  ],
+  "dockerVersion": "29.3.0",
+  "optimizationDefault": "disabled",
+  "status": "PASS"
+}

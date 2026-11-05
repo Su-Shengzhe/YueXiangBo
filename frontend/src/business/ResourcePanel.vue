@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch, onUnmounted } from 'vue'
 import { api, ApiError } from './api'
+import AccountPermissionsPanel from './AccountPermissionsPanel.vue'
+const permissionUser=ref('')
 import { businessDate, businessInstant, businessInput } from './business-time'
 import { yuanToFen, fenToYuan } from './money'
 import { pendingManagement } from './pending-management'
@@ -75,6 +77,7 @@ watch([community,source],()=>{page.value=1;rows.value=[];void load().catch(handl
  <section class="management"><div class="title-row"><h1>{{titles[section]}}</h1><button @click="refresh" :disabled="busy">刷新管理列表</button></div>
  <p v-if="notice" role="status" :class="['notice',{error:failed}]">{{notice}}</p>
  <p v-if="unknownWrite" role="alert" class="notice">上次保存结果待确认，已暂停写操作。请刷新并核对相关记录；窗口及授权操作请打开对应详情核对，已有记录无需重建。<button :disabled="!checkedUnknown||busy" @click="confirmUnknown">已核对记录，恢复操作</button></p>
+ <AccountPermissionsPanel v-if="section==='users' && permissionUser" :key="permissionUser" :user-id="permissionUser" @close="permissionUser=''" @expired="emit('expired')" @saved="permissionUser===user.id ? emit('expired') : run(load)" />
  <form v-if="section==='users'" @submit.prevent="searchUsers"><label>搜索用户<input v-model="userQuery" maxlength="40" placeholder="用户名或用户 ID"></label><button :disabled="busy">搜索用户</button></form>
  <div class="manage-tools"><button v-if="['vehicles','owner','communities'].includes(section)" @click="start()" :disabled="busy">{{section==='vehicles'?'绑定车辆':section==='owner'?'发布车位':'新增社区'}}</button>
  <label v-if="section==='reviews'">审核社区<select v-model="community"><option v-for="c in communities.filter(c=>user.roles.includes('PLATFORM')||user.communities?.includes(c.id))" :value="c.id" :key="c.id">{{c.name}}</option></select></label>
@@ -83,7 +86,7 @@ watch([community,source],()=>{page.value=1;rows.value=[];void load().catch(handl
  <div class="panel table-wrap"><table><thead><tr><th>记录</th><th>{{section==='audit'?'操作详情':'状态与详情'}}</th><th v-if="section!=='audit'">操作</th></tr></thead><tbody>
  <tr v-for="row in rows" :key="row.id"><td><b>{{row.plate||row.name||row.username||(row.action&&(auditNames[row.action]||row.action))}}</b><br><code>{{row.id}}</code><small v-if="row.createdAt">{{businessDate(row.createdAt || '')}}</small></td>
  <td><template v-if="section==='audit'">操作者 {{row.actorId}} · 对象 {{row.resourceId}} · 成功<p>{{auditSummary(row)}}</p><details><summary>原始详情</summary><p class="audit-detail">{{row.detailJson}}</p></details></template><template v-else><span class="status">{{row.enabled?'启用':'停用'}}</span> <span v-if="row.reviewStatus">{{labels[row.reviewStatus]}}</span><p>{{row.address||row.locationDesc||row.roles?.join(' / ')}}</p><small v-if="row.proofText">证明：{{row.proofText}}</small><small v-if="row.reviewComment">审核意见：{{row.reviewComment}}</small><small v-if="row.communities?.length">物业社区：{{row.communities.join(', ')}}</small></template></td>
- <td v-if="section!=='audit'" class="actions"><template v-if="['vehicles','communities','users'].includes(section)"><button @click="start(row)" :disabled="busy">{{section==='users'?'设置角色':'编辑'}}</button><button @click="toggle(row)" :disabled="busy">{{row.enabled?'停用':'启用'}}</button><button v-if="section==='communities'" @click="openAuthorization(row)" :disabled="busy">物业授权</button></template>
+ <td v-if="section!=='audit'" class="actions"><template v-if="['vehicles','communities','users'].includes(section)"><button v-if="section==='users' && row.roles?.includes('PLATFORM') && user.permissions?.includes('ACCOUNT_AUTHORIZE') && row.id!==user.id" :disabled="busy" @click="permissionUser=row.id">资金权限</button><button @click="start(row)" :disabled="busy||(section==='users'&&!user.permissions?.includes('ACCOUNT_AUTHORIZE'))">{{section==='users'?'设置角色':'编辑'}}</button><button @click="toggle(row)" :disabled="busy">{{row.enabled?'停用':'启用'}}</button><button v-if="section==='communities'" @click="openAuthorization(row)" :disabled="busy">物业授权</button></template>
  <template v-if="section==='owner'"><button @click="start(row)" :disabled="busy||row.reviewStatus==='PENDING'">编辑车位</button><button v-if="['DRAFT','REJECTED'].includes(row.reviewStatus || '')" @click="submit(row)" :disabled="busy">提交审核</button><button @click="openWindows(row)" :disabled="busy">共享窗口</button></template>
  <template v-if="section==='reviews'"><template v-if="row.reviewStatus==='PENDING'"><button @click="review(row,'APPROVE')" :disabled="busy">通过</button><button @click="review(row,'REJECT')" :disabled="busy">驳回</button></template><button @click="ban(row)" :disabled="busy">{{row.enabled?'封禁':'恢复'}}</button></template></td></tr></tbody></table><p v-if="!rows.length&&!busy" class="empty">暂无记录</p></div>
  <div class="pagination"><button :disabled="busy||page===1" @click="page--;run(load)">上一页</button><span>第 {{page}} 页 · 共 {{total}} 条</span><button :disabled="busy||page*20>=total" @click="page++;run(load)">下一页</button></div>
@@ -106,6 +109,3 @@ watch([community,source],()=>{page.value=1;rows.value=[];void load().catch(handl
 <style scoped>
 .manage-tools,.pagination{display:flex;align-items:center;gap:12px;margin:18px 0;flex-wrap:wrap}.manage-form{margin-top:24px}.manage-form label{margin:12px 0}.manage-form button{margin:8px 8px 0 0}.check{display:flex;align-items:center;gap:8px}.check input{width:auto}.audit-detail{max-width:700px;overflow-wrap:anywhere}.window-calendar{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}.window-calendar article{border:1px solid #cbd9d3;border-left:4px solid #186b50;border-radius:8px;padding:14px}.window-calendar span{display:block}.window-calendar .disabled{opacity:.65;border-left-color:#999}
 </style>
-
-
-

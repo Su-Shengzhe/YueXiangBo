@@ -1,0 +1,13 @@
+{
+  "build": "20261030-125121-310b7244",
+  "browserRun": "20261030-125517",
+  "browserTests": 7,
+  "browserStatus": "PASS",
+  "migrationChecks": 13,
+  "scope": "Per-platform-account finance permission configuration with session revocation and live cross-service enforcement",
+  "limitations": [
+    "User management permissions are not changed by finance settings",
+    "Refund approval workflow remains unimplemented",
+    "Performance comparison remains outstanding"
+  ]
+}

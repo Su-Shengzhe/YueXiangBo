@@ -1,0 +1,16 @@
+{
+  "remaining": [
+    "Seven-day deadline and evidence resubmission",
+    "Legacy refund allocation mapping",
+    "Unified automatic refund engine and failed application retry",
+    "Additional fault scenarios",
+    "Controlled performance comparison"
+  ],
+  "browserFullFail": 1,
+  "failure": "Ambiguous test status locator after adding approval panel",
+  "scope": "Completed-order partial refund application, approval, allocation, posting and UI",
+  "build": "20261030-184030-b87ea191",
+  "browserFullRun": "20261030-184405",
+  "browserFullPass": 6,
+  "targetedRetest": "PASS"
+}

@@ -1,0 +1,16 @@
+{
+  "removedFiles": [],
+  "finalSourceFingerprint": "01e38f9871b7b5ca647950d684f5747c635e7a092aeb9b787068019021dde0ad",
+  "measuredSourceFingerprint": "b376232adfd7c1078d4f516ad17fea5286fcdd1e63409ac9db18fa63c0a82ece",
+  "parkingCompiledClassesUnchanged": true,
+  "scope": "Performance applies to unchanged parking classes and foundation sources. Trade HTTP regression rerun after exact numeric validation.",
+  "measuredBuild": "20261102-104510-39d5499a",
+  "parkingAndFoundationSourcesUnchanged": true,
+  "finalParkingClasses": "59AD05C7FF0B5A2D12A0C8B25320F4B080936E254C9FE14837E72BB9FC1AEA0B",
+  "measuredParkingClasses": "59AD05C7FF0B5A2D12A0C8B25320F4B080936E254C9FE14837E72BB9FC1AEA0B",
+  "changedFiles": [
+    "backend/trade-service/src/main/java/cn/community/trade/RefundContracts.java",
+    "backend/trade-service/src/test/java/cn/community/trade/TradeReliabilityTest.java"
+  ],
+  "finalBuild": "20261102-212038-2f7957aa"
+}

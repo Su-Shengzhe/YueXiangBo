@@ -1,0 +1,90 @@
+{
+  "tests": [
+    {
+      "title": "account finance permissions revoke sessions and enforce cross-service access",
+      "file": "account-permissions.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 6168
+        }
+      ]
+    },
+    {
+      "title": "login, query, reserve, pay, property entry/exit, overtime bill through UI",
+      "file": "flow.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 16321
+        }
+      ]
+    },
+    {
+      "title": "refund retry preserves its original key after reload and unknown response",
+      "file": "refund-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2204
+        }
+      ]
+    },
+    {
+      "title": "refund management is reachable by platform and denied to driver",
+      "file": "refund-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1638
+        }
+      ]
+    },
+    {
+      "title": "platform creates community and grants roles and property using searchable UI",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 63833
+        }
+      ]
+    },
+    {
+      "title": "owner publication, actual property rejection and approval, window in yuan and foreign denial",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 5860
+        }
+      ]
+    },
+    {
+      "title": "new driver and approved resource complete 8 + 2 = 10 yuan through actual role UI",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 23196
+        }
+      ]
+    }
+  ],
+  "stats": {
+    "startTime": "2026-11-02T07:53:08.905Z",
+    "duration": 125079.215,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "sourceRun": "20261102-155306"
+}

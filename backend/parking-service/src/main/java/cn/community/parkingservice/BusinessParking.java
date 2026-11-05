@@ -13,8 +13,10 @@ import org.springframework.boot.ApplicationRunner;
 @RestController @Profile("business")
 public class BusinessParking implements Events.Handler {
  private static final org.slf4j.Logger LOG=org.slf4j.LoggerFactory.getLogger(BusinessParking.class);
+ private final String communityLock;
+ private static String communityLock(JdbcTemplate db){try(var connection=Objects.requireNonNull(db.getDataSource()).getConnection()){return Boolean.parseBoolean(System.getProperty("parking.community-shared-lock","false"))&&"MySQL".equals(connection.getMetaData().getDatabaseProductName())?" FOR SHARE":" FOR UPDATE";}catch(java.sql.SQLException e){throw new IllegalStateException(e);}}
  private final JdbcTemplate db;private final TransactionTemplate tx;private final TransactionTemplate expiryTx;private final BusinessClock clock;
- public BusinessParking(JdbcTemplate db,PlatformTransactionManager manager,BusinessClock clock){this.db=db;this.tx=new TransactionTemplate(manager);this.expiryTx=new TransactionTemplate(manager);this.expiryTx.setTimeout(5);this.clock=clock;}
+ public BusinessParking(JdbcTemplate db,PlatformTransactionManager manager,BusinessClock clock){this.db=db;this.communityLock=communityLock(db);this.tx=new TransactionTemplate(manager);this.expiryTx=new TransactionTemplate(manager);this.expiryTx.setTimeout(5);this.clock=clock;}
  @Bean @org.springframework.boot.autoconfigure.condition.ConditionalOnProperty(name="business.demo",havingValue="true") ApplicationRunner demoParking(){return args->{if(db.queryForObject("SELECT COUNT(*) FROM community",Integer.class)==0)tx.executeWithoutResult(s->{
   db.update("INSERT INTO community(id,name) VALUES(10,'青禾智慧社区')");
   db.update("INSERT INTO vehicle(id,user_id,plate) VALUES(40,1,'粤BDEMO01'),(41,2,'粤BDEMO02')");
@@ -26,7 +28,7 @@ public class BusinessParking implements Events.Handler {
  private void own(Map<String,Object> o,Actor a){Problem.require(((Number)o.get("user_id")).longValue()==a.id(),404,"NOT_FOUND","记录不存在");}
  private Map<String,Object> view(Map<String,Object> o){var v=Data.row(o);v.put("reservationId",v.remove("id"));return v;}
  private void event(String type,Map<String,Object> order){Events.add(db,"trade-service",type,Data.row(order));}
- private void lock(long vehicle,long space){var p=one("SELECT community_id FROM parking_space WHERE id=?",space);one("SELECT id FROM community WHERE id=? FOR UPDATE",p.get("community_id"));one("SELECT id FROM vehicle WHERE id=? FOR UPDATE",vehicle);one("SELECT id FROM parking_space WHERE id=? FOR UPDATE",space);}
+ private void lock(long vehicle,long space){var p=one("SELECT community_id FROM parking_space WHERE id=?",space);one("SELECT id FROM community WHERE id=?"+communityLock,p.get("community_id"));one("SELECT id FROM vehicle WHERE id=? FOR UPDATE",vehicle);one("SELECT id FROM parking_space WHERE id=? FOR UPDATE",space);}
  private void lock(Map<String,Object> o){lock(((Number)o.get("vehicle_id")).longValue(),((Number)o.get("space_id")).longValue());one("SELECT id FROM reservation_order WHERE id=? FOR UPDATE",o.get("id"));}
  private Instant[] interval(String start,String end){Instant a=Instant.parse(start),b=Instant.parse(end),now=clock.now();long secs=Duration.between(a,b).getSeconds();
   Problem.require(a.getNano()==0&&b.getNano()==0&&a.getEpochSecond()%900==0&&b.getEpochSecond()%900==0,422,"TIME_ALIGNMENT","时间需按15分钟对齐");

@@ -1,0 +1,11 @@
+{
+  "adoption": "adoption-decision.json",
+  "performance": "performance-comparison.json",
+  "acceptedAt": "2026-11-03T11:34:41.4681900Z",
+  "build": "20261102-214124-ad6aad15",
+  "scope": "Refund optimization and controlled local performance acceptance",
+  "health": "final-health.json",
+  "functionalRegression": "enabled-regression.json",
+  "remainingItems": [],
+  "status": "PASS"
+}

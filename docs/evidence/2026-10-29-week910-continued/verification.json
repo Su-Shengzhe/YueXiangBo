@@ -1,0 +1,35 @@
+{
+  "recordedAt": "2026-10-29T10:50:19.0255421Z",
+  "scope": "Incremental recovery, refund retry UI and contract verification; not completion of all seven categories",
+  "buildId": "20261029-184553-bfc6938e",
+  "sourceFingerprint": "f250b6e313d4db2cf44101e063658298f99e1480376a03bb59bf877821cfbe15",
+  "backend": {
+    "errors": 0,
+    "tests": 62,
+    "failures": 0
+  },
+  "frontend": {
+    "tests": 2,
+    "mode": "business",
+    "note": "Unknown-response recovery is browser-intercepted; authorization uses live gateway",
+    "build": "PASS",
+    "browserRun": "20261029-184447"
+  },
+  "businessRun": "20261029-184832",
+  "recoveryRun": "20261029-184912",
+  "mysqlMigrationRuns": [
+    "20261029135332",
+    "20261029182527"
+  ],
+  "parkingLoad": {
+    "status": "PASS",
+    "note": "Concurrent build and other tests; correctness evidence only",
+    "timingsControlled": false,
+    "run": "20261029182528",
+    "groups": 6
+  },
+  "openapi": {
+    "status": "PASS",
+    "internalReferences": 497
+  }
+}

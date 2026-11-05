@@ -1,0 +1,407 @@
+{
+  "sourceFingerprint": "16a6cf91ba1e4676e10d48352fdc0b48ccefa5c9f004d83a07343689ed8f630e",
+  "repeatMappingUnchanged": true,
+  "status": "PASS",
+  "passes": [
+    {
+      "round": 1,
+      "items": [
+        {
+          "reservationId": "362807015342080",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362808146509824",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362808882753536",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362810126393344",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362811145977856",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891657687040",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891690737664",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296064",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296066",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296069",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296071",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296073",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296076",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296080",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296083",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296085",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296096",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296099",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296135",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296158",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296161",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296162",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296198",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296201",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296202",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296212",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296215",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296216",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296218",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296221",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296223",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296226",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296227",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296229",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296232",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296233",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296243",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296246",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296255",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296263",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296264",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296266",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296269",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296270",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296272",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296275",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296276",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296284",
+          "status": "PASS"
+        }
+      ],
+      "originalFactsUnchanged": true,
+      "orders": 48,
+      "review": 0
+    },
+    {
+      "round": 2,
+      "items": [
+        {
+          "reservationId": "362807015342080",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362808146509824",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362808882753536",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362810126393344",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362811145977856",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891657687040",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891690737664",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296064",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296066",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296069",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296071",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296073",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296076",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296080",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296083",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296085",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296096",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296099",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296135",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296158",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296161",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296162",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296198",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296201",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296202",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296212",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296215",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296216",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296218",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296221",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296223",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296226",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296227",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296229",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296232",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296233",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296243",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296246",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296255",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296263",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296264",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296266",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296269",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296270",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296272",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296275",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296276",
+          "status": "PASS"
+        },
+        {
+          "reservationId": "362891902296284",
+          "status": "PASS"
+        }
+      ],
+      "originalFactsUnchanged": true,
+      "orders": 48,
+      "review": 0
+    }
+  ]
+}

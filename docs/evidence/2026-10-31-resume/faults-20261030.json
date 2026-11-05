@@ -1,0 +1,39 @@
+{
+  "runnerSha256": "def130016b344d5fa7bf8a55fb8fcdfca4683110b767f809dd208df557763772",
+  "createdAt": "2026-10-30T12:56:05.3934989Z",
+  "measureSeconds": 120,
+  "metrics": [],
+  "environment": [],
+  "status": "PASS",
+  "sharedCommunityLock": false,
+  "checks": [
+    {
+      "name": "PASS definitive-failure-no-ledger",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS unknown-five-queries-review-no-resubmit",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS claim-before-submit-crash-query-only",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS committed-receipt-lost-response-recovered-once",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS delayed-old-worker-fenced-after-lease-takeover",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS non-demo-fault-rejected",
+      "status": "PASS"
+    }
+  ],
+  "mode": "correctness",
+  "warmupSeconds": 30,
+  "sourceFingerprint": "ce21498f75546f37eb1e1a34ba53a5fb187b701e54dc84e12762d9726bb6a3db",
+  "method": "Packaged BusinessParking controller, actual Spring transactions, isolated MySQL schema; no gateway HTTP"
+}

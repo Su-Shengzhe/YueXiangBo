@@ -1,7 +1,8 @@
 #requires -Version 7.0
-param([ValidateSet('correctness','load')][string]$Mode='correctness')
+param([ValidateSet('correctness','load')][string]$Mode='correctness',[switch]$SharedCommunityLock,[ValidateRange(5,60)][int]$WarmupSeconds=30,[ValidateRange(10,180)][int]$MeasureSeconds=120,[ValidateSet(23306,23316)][int]$MySqlPort=23306)
 $ErrorActionPreference='Stop'
 $root=Split-Path $PSScriptRoot -Parent
+if(Test-Path "$root/.runtime/business/performance-stop-request.txt"){throw 'Performance stop requested; completed measurements are retained'}
 . "$PSScriptRoot/Use-Toolchain.ps1"
 $config=Read-LocalConfig "$root/deploy/.env.business"
 $env:MYSQL_ROOT_PASSWORD=$config.MYSQL_ROOT_PASSWORD
@@ -12,7 +13,7 @@ $build=Get-Content "$root/.runtime/backend-build.json" -Raw|ConvertFrom-Json
 if((Get-BuildSource $root).fingerprint -ne $build.source.fingerprint){throw 'Backend build does not match source'}
 $jar=Join-Path $root $build.artifacts.'parking-service'.path
 if((Get-FileHash $jar).Hash.ToLowerInvariant() -ne $build.artifacts.'parking-service'.sha256){throw 'Parking artifact changed'}
-$report=@{status='RUNNING';mode=$Mode;sourceFingerprint=$build.source.fingerprint;checks=@();method='Packaged BusinessParking controller, actual Spring transactions, isolated MySQL schema; no gateway HTTP';runnerSha256=(Get-FileHash "$PSScriptRoot/VerifyParkingConcurrency.java").Hash.ToLowerInvariant()}
+$report=@{status='RUNNING';mode=$Mode;sharedCommunityLock=[bool]$SharedCommunityLock;warmupSeconds=$WarmupSeconds;measureSeconds=$MeasureSeconds;sourceFingerprint=$build.source.fingerprint;checks=@();method='Packaged BusinessParking controller, actual Spring transactions, isolated MySQL schema; no gateway HTTP';runnerSha256=(Get-FileHash "$PSScriptRoot/VerifyParkingConcurrency.java").Hash.ToLowerInvariant()}
 Push-Location $root
 try {
  Add-Type -AssemblyName System.IO.Compression.FileSystem
@@ -21,7 +22,7 @@ try {
   if($entry.FullName -match '^BOOT-INF/lib/[^/]+\.jar$'){[IO.Compression.ZipFileExtensions]::ExtractToFile($entry,(Join-Path "$directory/lib" $entry.Name))}
   elseif($entry.FullName -match '^BOOT-INF/classes/(cn/[A-Za-z0-9_/$]+\.class)$'){$target=Join-Path "$directory/classes" $Matches[1];$null=New-Item -ItemType Directory -Force (Split-Path $target);[IO.Compression.ZipFileExtensions]::ExtractToFile($entry,$target)}
  }}finally{$zip.Dispose()}
- & java -cp "$directory/classes;$directory/lib/*" scripts/VerifyParkingConcurrency.java "w78_parking_$id" $Mode *> "$directory/run.log"
+ & java -Xms256m -Xmx512m "-Dtest.mysql.port=$MySqlPort" "-Dparking.community-shared-lock=$($SharedCommunityLock.IsPresent.ToString().ToLowerInvariant())" "-Dload.warmup.seconds=$WarmupSeconds" "-Dload.measure.seconds=$MeasureSeconds" -cp "$directory/classes;$directory/lib/*" scripts/VerifyParkingConcurrency.java "w78_parking_$id" $Mode *> "$directory/run.log"
  if($LASTEXITCODE -ne 0){throw 'Parking MySQL concurrency failed; inspect private run.log'}
  foreach($line in (Get-Content "$directory/run.log"|Where-Object {$_ -like 'PASS *'})){$report.checks+=@{status='PASS';name=$line}}
  $expected=if($Mode -eq 'load'){6}else{13}

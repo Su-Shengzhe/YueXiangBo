@@ -4,7 +4,21 @@ const names={owner:'wo_'+suffix,driver:'wd_'+suffix,property:'wp_'+suffix,foreig
 const users:Record<string,{id:string}>={}
 let admin='',communityId='',spaceId='',start='',end='',reservationId=''
 async function api(request:APIRequestContext,path:string,token?:string,body?:unknown,method?:string){const r=await request.fetch(base+path,{method:method||(body===undefined?'GET':'POST'),headers:{...(token?{Authorization:'Bearer '+token}:{}),'Idempotency-Key':crypto.randomUUID()},data:body});expect(r.ok(),path+': '+await r.text()).toBeTruthy();return (await r.json()).data}
-async function login(page:Page,name:string,pass=password){await page.goto('/');await page.getByLabel('账号',{exact:true}).fill(name);await page.getByLabel('密码',{exact:true}).fill(pass);await page.getByRole('button',{name:'登录',exact:true}).click();await expect(page.getByRole('button',{name:'退出登录',exact:true})).toBeVisible()}
+async function login(page:Page,name:string,pass=password){
+ await page.goto('/');await page.getByLabel('账号',{exact:true}).fill(name);await page.getByLabel('密码',{exact:true}).fill(pass)
+ const submit=async()=>{const response=page.waitForResponse(r=>r.url().endsWith('/api/v1/auth/login')&&r.request().method()==='POST');await page.getByRole('button',{name:'登录',exact:true}).click();return response}
+ let response=await submit()
+ if(response.status()===429){
+  // The serial suite shares the demo administrator with preceding specs.
+  // Respect the real one-minute limiter; never retry other login failures.
+  test.setTimeout(160000)
+  await expect(page.getByRole('alert')).toContainText('登录过于频繁')
+  await page.waitForTimeout(61000)
+  response=await submit()
+ }
+ expect(response.ok(),'UI login response').toBeTruthy()
+ await expect(page.getByRole('button',{name:'退出登录',exact:true})).toBeVisible()
+}
 async function logout(page:Page){await page.getByRole('button',{name:'退出登录',exact:true}).click();await expect(page.getByRole('heading',{name:'欢迎登录'})).toBeVisible()}
 async function userRow(page:Page,name:string){await page.getByLabel('搜索用户',{exact:true}).fill(name);await page.getByRole('button',{name:'搜索用户',exact:true}).click();const row=page.getByRole('row').filter({hasText:name});await expect(row).toBeVisible();return row}
 

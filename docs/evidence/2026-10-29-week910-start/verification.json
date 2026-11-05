@@ -1,0 +1,64 @@
+{
+  "sourceFingerprint": "356e5def142efa5b0a65d46f53ecbd427233c51f60b6c059f2f550bf58263fd5",
+  "buildId": "20261029-132349-323cbad4",
+  "date": "2026-10-29",
+  "integration": "NOT_VERIFIED",
+  "gateG0": "NOT_PASSED",
+  "suites": [
+    {
+      "suite": "cn.community.foundation.MoneyTest",
+      "failures": 0,
+      "tests": 5,
+      "errors": 0
+    },
+    {
+      "suite": "cn.community.foundation.OutboxTest",
+      "failures": 0,
+      "tests": 2,
+      "errors": 0
+    },
+    {
+      "suite": "cn.community.identity.IdentityAdminTest",
+      "failures": 0,
+      "tests": 8,
+      "errors": 0
+    },
+    {
+      "suite": "cn.community.parkingservice.DemoWindowsTest",
+      "failures": 0,
+      "tests": 5,
+      "errors": 0
+    },
+    {
+      "suite": "cn.community.parkingservice.ProbeProfileTest",
+      "failures": 0,
+      "tests": 2,
+      "errors": 0
+    },
+    {
+      "suite": "cn.community.parkingservice.ProbeStoreTest",
+      "failures": 0,
+      "tests": 3,
+      "errors": 0
+    },
+    {
+      "suite": "cn.community.parkingservice.ReservationRecoveryTest",
+      "failures": 0,
+      "tests": 12,
+      "errors": 0
+    },
+    {
+      "suite": "cn.community.parkingservice.ResourceManagementTest",
+      "failures": 0,
+      "tests": 11,
+      "errors": 0
+    },
+    {
+      "suite": "cn.community.trade.TradeReliabilityTest",
+      "failures": 0,
+      "tests": 8,
+      "errors": 0
+    }
+  ],
+  "status": "PASS"
+}

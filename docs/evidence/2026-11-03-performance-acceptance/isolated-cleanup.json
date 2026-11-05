@@ -1,0 +1,20 @@
+{
+  "status": "STOPPED",
+  "createdAt": "2026-11-03T05:54:05.4948787Z",
+  "syncBinlog": 1,
+  "image": "mysql@sha256:0f51e63e537a1f176423fa03ef559aabe6fa4372a53160a44bc7e75da7d15364",
+  "container": "yuexiangbo-perf-20261103135342",
+  "port": 23316,
+  "storage": {
+    "Number": 1,
+    "FriendlyName": "WD PC SN740 SDDPMQD-1T00-1101",
+    "BusType": "NVMe",
+    "Size": 1024209543168
+  },
+  "imageId": "sha256:0f51e63e537a1f176423fa03ef559aabe6fa4372a53160a44bc7e75da7d15364",
+  "memoryLimit": "1g",
+  "flushLogAtCommit": 1,
+  "dataDirectory": "E:\\codex-performance-yuexiangbo\\20261103135342",
+  "removedTestData": true,
+  "stoppedAt": "2026-11-03T06:31:21.5731119Z"
+}

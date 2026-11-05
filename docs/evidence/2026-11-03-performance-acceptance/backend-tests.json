@@ -1,0 +1,78 @@
+{
+  "errors": 0.0,
+  "tests": 78.0,
+  "build": "20261102-214124-ad6aad15",
+  "failures": 0.0,
+  "suites": [
+    {
+      "errors": 0,
+      "tests": 5,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.foundation.MoneyTest"
+    },
+    {
+      "errors": 0,
+      "tests": 2,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.foundation.OutboxTest"
+    },
+    {
+      "errors": 0,
+      "tests": 10,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.identity.IdentityAdminTest"
+    },
+    {
+      "errors": 0,
+      "tests": 5,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.trade.RefundAllocationTest"
+    },
+    {
+      "errors": 0,
+      "tests": 23,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.trade.TradeReliabilityTest"
+    },
+    {
+      "errors": 0,
+      "tests": 5,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.parkingservice.DemoWindowsTest"
+    },
+    {
+      "errors": 0,
+      "tests": 2,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.parkingservice.ProbeProfileTest"
+    },
+    {
+      "errors": 0,
+      "tests": 3,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.parkingservice.ProbeStoreTest"
+    },
+    {
+      "errors": 0,
+      "tests": 12,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.parkingservice.ReservationRecoveryTest"
+    },
+    {
+      "errors": 0,
+      "tests": 11,
+      "skipped": 0,
+      "failures": 0,
+      "suite": "cn.community.parkingservice.ResourceManagementTest"
+    }
+  ]
+}

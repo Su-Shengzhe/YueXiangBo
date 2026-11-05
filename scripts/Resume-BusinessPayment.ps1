@@ -8,7 +8,7 @@ $sql=@"
 START TRANSACTION;
 SET @reservation=(SELECT reservation_id FROM payment_attempt WHERE id=$AttemptId);
 SELECT reservation_id FROM trade_order WHERE reservation_id=@reservation FOR UPDATE;
-UPDATE payment_attempt SET status='UNKNOWN',retry_count=0,next_retry_at=UTC_TIMESTAMP(3),lease_until=NULL,lease_token=NULL
+UPDATE payment_attempt SET status='UNKNOWN',query_count=0,next_retry_at=UTC_TIMESTAMP(3),lease_until=NULL,lease_token=NULL
 WHERE id=$AttemptId AND status='REVIEW';
 SET @resumed=ROW_COUNT();
 UPDATE trade_order SET bill_version=bill_version+1 WHERE reservation_id=@reservation AND @resumed=1;

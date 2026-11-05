@@ -1,0 +1,11 @@
+{
+  "stats": {
+    "startTime": "2026-11-02T13:44:38.156Z",
+    "duration": 121981.94900000001,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "source": ".runtime/business/browser/20261102-214436/browser-results.json"
+}

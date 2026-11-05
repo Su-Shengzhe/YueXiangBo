@@ -1,0 +1,450 @@
+{
+  "status": "PASS",
+  "artifacts": {
+    "registry": {
+      "path": "backend/registry/target/registry-0.1.0-SNAPSHOT.jar",
+      "sha256": "4cd2a59be27a5b67505f5451e82d63910dd88a0618703b375ced59d1ac0d07c4"
+    },
+    "parking-service": {
+      "path": "backend/parking-service/target/parking-service-0.1.0-SNAPSHOT.jar",
+      "sha256": "f75ceb55f9801855b848d731eee5470fdd2ca182210ded3f9dabe2116e3eac64"
+    },
+    "trade-service": {
+      "path": "backend/trade-service/target/trade-service-0.1.0-SNAPSHOT.jar",
+      "sha256": "f8f754bc8a35280f30a6e491eda72f13c0c41527d555d5ed7b765235c6060e5b"
+    },
+    "identity-service": {
+      "path": "backend/identity-service/target/identity-service-0.1.0-SNAPSHOT.jar",
+      "sha256": "96a5e2b933795eb2d604c888e26e49cc5e479b07a79176bca9e451cf1d20048f"
+    },
+    "gateway": {
+      "path": "backend/gateway/target/gateway-0.1.0-SNAPSHOT.jar",
+      "sha256": "99c8c9ae9a763326bc65c2a30807a28212a11c41c32ffc538d0a6da95fb3cf4f"
+    }
+  },
+  "endedAt": "2026-11-02T13:42:15.7702624Z",
+  "id": "20261102-214124-ad6aad15",
+  "startedAt": "2026-11-02T13:41:24.8133582Z",
+  "source": {
+    "commit": "6e57e5180f33879b6eb29e67d011571fa17eb8e7",
+    "files": [
+      {
+        "path": ".mvn/maven.config",
+        "sha256": "149c61fc57ea014600bba4c9cfe0a959ce1f838097c2b3682ddf217c6c91bdad"
+      },
+      {
+        "path": ".mvn/wrapper/maven-wrapper.properties",
+        "sha256": "51b221ede4e074d19bb44d6d485bb7b298e77874572a09697aba0a9e234e0745"
+      },
+      {
+        "path": "backend/foundation/hs_err_pid22744.log",
+        "sha256": "cd159a0efff58050add5bff079f2a9ca84b2700e41fadf819a577911a2622092"
+      },
+      {
+        "path": "backend/foundation/hs_err_pid29300.log",
+        "sha256": "510eac396c6630ae39eceac234862242cb234aca91724f816f46ae984f5f2a2b"
+      },
+      {
+        "path": "backend/foundation/hs_err_pid35368.log",
+        "sha256": "eb6174ad0894700f741d9a41a02de92f8a5890c802b8aaa2aebc1959e4e6b516"
+      },
+      {
+        "path": "backend/foundation/hs_err_pid6688.log",
+        "sha256": "44f7985b7b52db7db822a3809b4a16cc7a89ea1694d20a95185be1233b28fb2c"
+      },
+      {
+        "path": "backend/foundation/pom.xml",
+        "sha256": "f8a628f29b891c9ff94cf317bfa949adf944f7147b9404e3642f8b11aabf273f"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/Actor.java",
+        "sha256": "14d5a97970b3e795851b52690d8645bfa2afc316da09f270865fb5c5a55a83b1"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/BusinessClock.java",
+        "sha256": "2d691da3813c81cdcbb9aadeefdc1fb6ee7bf77022137bf50f964c4760d10895"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/BusinessErrors.java",
+        "sha256": "98226da2750ad6213af89cb9c9c325dfe5ada931f9df0ea8fa71816f3b83100a"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/BusinessWeb.java",
+        "sha256": "8c13e273fc08c653b9d3ae54046587e8967704f08468ea9d303cf3320baa29aa"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/Data.java",
+        "sha256": "cd0858a5c2a58836c06cd270c66edf8984f15af0a69a11eefad39eaa67713c22"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/Events.java",
+        "sha256": "74a8f0e9c7a5b12db5c5e1e09083082d0d1d7c425f4fc024f20f12488b0406a6"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/IdentityLookup.java",
+        "sha256": "b001f61dddea2845bf3f957f2376e0463281682065156b9d30d2e3bf17f22233"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/Management.java",
+        "sha256": "23817127fb810a82cb954d670a80897fec82f72063fbe76defa66445ad9f9fbb"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/OutboxOperations.java",
+        "sha256": "af2c9d373441450dc8ff0c1e14915f6f0f58cabde6697972d98379879135f978"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/Problem.java",
+        "sha256": "b5198cffd511d579b848f40e2037e86677db3f66735b19a7d84a4a90d1678b3e"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/Requests.java",
+        "sha256": "e698246d8525cff68c93340e7135cf1876c5121559cc9c114c96808a5c5b605f"
+      },
+      {
+        "path": "backend/foundation/src/main/java/cn/community/foundation/Tokens.java",
+        "sha256": "7e7a3848a6303d591e48c92761336dcf28fe9a797afcc63ceb837c65858bc6c2"
+      },
+      {
+        "path": "backend/foundation/src/test/java/cn/community/foundation/MoneyTest.java",
+        "sha256": "64c00ee411b37221e33bcb43214c144094c6e7d55545172fa3f3e6a0e38495ea"
+      },
+      {
+        "path": "backend/foundation/src/test/java/cn/community/foundation/OutboxTest.java",
+        "sha256": "611c9cb11934731a686e8e6c002fd4352d0b7ba49a58ccab4b0980c2d64941b1"
+      },
+      {
+        "path": "backend/gateway/pom.xml",
+        "sha256": "a1cd4094d3ec646602fa1c6175505f7b5909b5b30e6d2eb570d79d417d11d4d5"
+      },
+      {
+        "path": "backend/gateway/src/main/java/cn/community/gateway/Application.java",
+        "sha256": "20bd8ab2755a1e55993b1a7d2717f140af7059a2f7915bff941216c9d6b9d4ae"
+      },
+      {
+        "path": "backend/gateway/src/main/resources/application-business.properties",
+        "sha256": "739c4a30c327a8ee1529eab320c2ef99619fa278dec529590285652ac7e6fbaf"
+      },
+      {
+        "path": "backend/gateway/src/main/resources/application-container.properties",
+        "sha256": "fec7e0a6a959bcf0995c1b171f274edc684eb0ead948d0be7599eb734c55e4a5"
+      },
+      {
+        "path": "backend/gateway/src/main/resources/application-local.properties",
+        "sha256": "00af69216e8bd82e0fb3e77675b4cec9517550ec10a77820d457334e03f3d4bd"
+      },
+      {
+        "path": "backend/gateway/src/main/resources/application-probe.properties",
+        "sha256": "f3a43e62e97c52ec747ebe998657da9365b4608a30b231c7f2a65b549bad1698"
+      },
+      {
+        "path": "backend/gateway/src/main/resources/application.properties",
+        "sha256": "4f1d809e97648436e0b1013ed475729c9f71657bd66ce4f1676ffb118d037b36"
+      },
+      {
+        "path": "backend/identity-service/pom.xml",
+        "sha256": "5827fe8d5458367def651ce17281bb61207dc2c9464d42b5f6d2ba86c7759198"
+      },
+      {
+        "path": "backend/identity-service/src/main/java/cn/community/identity/AccountPermissions.java",
+        "sha256": "c58999935f5896ae6b7a354977ce0c1ef1fdebacca55952cccc3bb0077e8e114"
+      },
+      {
+        "path": "backend/identity-service/src/main/java/cn/community/identity/Application.java",
+        "sha256": "142d732040594c187f218e8796c2e29d77e14b51a9b2a599e5a01159762b1b78"
+      },
+      {
+        "path": "backend/identity-service/src/main/java/cn/community/identity/IdentityAdmin.java",
+        "sha256": "6ac64175aca63428faf412061e185b1c22ba620c55b85d39b064e9d4b0dbb6be"
+      },
+      {
+        "path": "backend/identity-service/src/main/java/cn/community/identity/IdentityApi.java",
+        "sha256": "f7c98926a6e7317132bf63619b5be5edcfcb047c07f9c91e9506cf2f90254ddb"
+      },
+      {
+        "path": "backend/identity-service/src/main/java/cn/community/identity/LoginLimit.java",
+        "sha256": "19f64ae6044b294ae781549792470e61366af4e15fa8b0435122b6b01c0db53c"
+      },
+      {
+        "path": "backend/identity-service/src/main/resources/application-business.properties",
+        "sha256": "b3a1a6f1fb8c4ce4f01cab8c7823d938a340d07dd615aeae3c930c359be1cd20"
+      },
+      {
+        "path": "backend/identity-service/src/main/resources/application.properties",
+        "sha256": "9f48b26713974928f303976fbec477f4ccbe7726e6d14536dbdfc6545b0b30cc"
+      },
+      {
+        "path": "backend/identity-service/src/main/resources/db/business/V001__business_baseline.sql",
+        "sha256": "105a2f9fea90ab9ad356fba30f42bf84835e9e6e36ff0368027b64a3bb23f83e"
+      },
+      {
+        "path": "backend/identity-service/src/main/resources/db/business/V002__reliability.sql",
+        "sha256": "dfdaec9449b5997b786402b7f86072ce93c60b133a647b6cbbde9155302fad64"
+      },
+      {
+        "path": "backend/identity-service/src/main/resources/db/business/V003__resource_management.sql",
+        "sha256": "8ff27d2247122ed195d47ea0df0d8c08f89d0826e1310e16729af7c80ac49210"
+      },
+      {
+        "path": "backend/identity-service/src/main/resources/db/business/V004__authorization_versions.sql",
+        "sha256": "faa238ec9c35cb951aa4f77c39d154e104dfc6548431da2dce0e862580ae3a1f"
+      },
+      {
+        "path": "backend/identity-service/src/main/resources/db/business/V005__account_permissions.sql",
+        "sha256": "2f7325fead352c63b487b487ef613c0058b83c51baac9a5b1fc3a83a92cf631e"
+      },
+      {
+        "path": "backend/identity-service/src/main/resources/db/business/V006__authorization_administrator.sql",
+        "sha256": "94fc28a48e42c68f6e9cf4fb580107c7d309b6ad8f7cfd63a65f3993f230bcf2"
+      },
+      {
+        "path": "backend/identity-service/src/test/java/cn/community/identity/IdentityAdminTest.java",
+        "sha256": "25540e07fbfe46b1ab1acd5842cf0ac47548ef7b4d71ac0876e1a9df9086d774"
+      },
+      {
+        "path": "backend/parking-service/pom.xml",
+        "sha256": "bfa1b8521481e875c02a31c9241486097d8bb419e4a5e0fc723703f778931fdd"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/AiPrototype.java",
+        "sha256": "c52c5d2bf7d659abaf1ce528c903af062b2feb1f505451e20638dc91c26ba7c6"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/Application.java",
+        "sha256": "e981b14078a5b31a81e18588330c7feb43e1afb918995bd6617c4fc971c20007"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/BusinessListener.java",
+        "sha256": "8867db86ba44f8bb020e20e64b51e74d411e0dcb6c3b0a42e473394b0c0fe6a0"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/BusinessParking.java",
+        "sha256": "b5489f0a99b8474b4a4b5ea08aa8190c684fefecb20d118b15a4b16fe912528b"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/DemoWindows.java",
+        "sha256": "9de567be7e7375a9191d529edce4c62b58dc54a40549ec5c9588805c63858d37"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/InternalProbeController.java",
+        "sha256": "c6b5b763b96b1fed276e40f4e2c18421930a9f73dbd5238ee7e4c41c540e81ad"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ParkingRequests.java",
+        "sha256": "d7157b0e9577c762716f73b9073e7b33ee48f32781de1809d2d31567e987b3d6"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ProbeController.java",
+        "sha256": "577231d5c8265a281cf790ff98a2f8f9e7a9a25fec79a6cca31cf617d8fbfe03"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ProbeStore.java",
+        "sha256": "f34968ad1c9ff78c9db050f4b6c0ce5916b80262ff63f6d4dd8c946174388c97"
+      },
+      {
+        "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ResourceManagement.java",
+        "sha256": "e24ff2750e34ecfc89ea9439f6bc42eb9d935a270263a4be6deffc51e0dac209"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/application-business.properties",
+        "sha256": "24cc2e7f7e59f5834efbb8156a551ecbc74f4b75503e481fe1c52b3119c4f6b8"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/application-container.properties",
+        "sha256": "e1e343069090dd08fd3b612464aaf257fed2b65d675d921db8cc64927e1581ac"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/application-local.properties",
+        "sha256": "e7f5dbbd4dba0b49dc473cd94c36372496b6aea424f1fc65102bfbd30b306ad6"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/application-probe.properties",
+        "sha256": "7af023467aa188b450f51bfb6d1d861da78f15a1e76a44d596be1606efbaf994"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/application.properties",
+        "sha256": "8c627309c28904748003f926ec3823e7eeaddaea9cb27c71578e66f70fe66b3e"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/db/business/V001__business_baseline.sql",
+        "sha256": "e80668510316ce69c00e2b2a711f19dbf44822ae84067ac3bcc1b188dd3146a7"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/db/business/V002__entry_block_reason.sql",
+        "sha256": "afe1b1fec36f9298affc78dcd2ce9cc0006804d4b482e03c1aef6623de6c0b1b"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/db/business/V003__reliability.sql",
+        "sha256": "255ba4e4c0e6fd38b6e50632e739b84c1df6bb7f660ee2f440f05ad1665be0fa"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/db/business/V004__resource_management.sql",
+        "sha256": "510921f7ce66d4a431d7235c4b92fe30f0ea59f840241f16de8f8b28443adc76"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/db/business/V005__reservation_recovery.sql",
+        "sha256": "41d9cd7b107f8268280db88ce2cd3fece01cad35758c3aa31d4a3dd5ffad8e2c"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/db/business/V006__expiry_retry.sql",
+        "sha256": "03dbf5dd2327c0d85a727c53b178719ef9b36035737d555a4b89ad5cc6b0b3d9"
+      },
+      {
+        "path": "backend/parking-service/src/main/resources/db/probe/V001__environment_probe.sql",
+        "sha256": "cabbb4ca1543c792485aaf950d92a7678d70ae69847e7cbc886d3dfd527ca3f4"
+      },
+      {
+        "path": "backend/parking-service/src/test/java/cn/community/parkingservice/DemoWindowsTest.java",
+        "sha256": "2eb17080ad7294a70eb7cb071ff3ea43b2c12c080f60921d22437943da855c76"
+      },
+      {
+        "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ProbeProfileTest.java",
+        "sha256": "54ddbb4d4c78c703083209723812a3123f40874a69ee8785993fc2193959ac89"
+      },
+      {
+        "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ProbeStoreTest.java",
+        "sha256": "3a67e1431085fc89f6c26ad01fbb11f53d491bffaa6153639b419b7d5fcfc96a"
+      },
+      {
+        "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ReservationRecoveryTest.java",
+        "sha256": "d4e9f5b16d6ad38868e29593284ec69a29977a48071aa8f1a6baa1dce9a079b5"
+      },
+      {
+        "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ResourceManagementTest.java",
+        "sha256": "a2921558d0162c169a6157a8c0433ff3e27306a00347ed2e324e61d80bdb8f7e"
+      },
+      {
+        "path": "backend/registry/pom.xml",
+        "sha256": "96a147c7d7aac7274e73efcfa4f393d7998573955d15074355f9c966867294ca"
+      },
+      {
+        "path": "backend/registry/src/main/java/cn/community/registry/Application.java",
+        "sha256": "d382a1ddd046c9c21dd17f0f70f0e5deb747e59c2d6b5006de33802fe5bbd692"
+      },
+      {
+        "path": "backend/registry/src/main/resources/application-container.properties",
+        "sha256": "276883836a8af7522479ed2a3084f7fbd6b77d2239cf823f473eba49d7b3d329"
+      },
+      {
+        "path": "backend/registry/src/main/resources/application-local.properties",
+        "sha256": "1ddefd08e04776cab0c5e4f4188b34f82f72e73fb2abc556221dfe069389fd85"
+      },
+      {
+        "path": "backend/registry/src/main/resources/application.properties",
+        "sha256": "4a7c53f52106b85181b48e9059567a36476ce8766d6e01d86eb80b273df2b741"
+      },
+      {
+        "path": "backend/trade-service/pom.xml",
+        "sha256": "85e0a858c7d19863ffaba9317295e88796884099fcf8073a9aec674de1a9adf4"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/Application.java",
+        "sha256": "ca74e2817ab7ab12fac1e596afaeeca5e5b053507faa8b5196a5e7a649a65bd0"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/BusinessListener.java",
+        "sha256": "f3306a14c0850f8ac514978440b6c8a113e7c8820e458f120b1cf7f451e7f8a9"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/BusinessTrade.java",
+        "sha256": "08696cc380a4af8bcc3c78b9790a30a73e3e01ae174ff6b574a8b3ed7276350d"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/PaymentPosting.java",
+        "sha256": "a9aa9edb2618af3b57f2ec8fe7ebbc9db4a5738833bc3207fcbb1baf387d5060"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/PaymentWorker.java",
+        "sha256": "024aeafd56a9e55d99b9c4eb86e3668e891fa322aede17cb98970d0c05edd1c2"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/RefundAllocation.java",
+        "sha256": "7853db0e31937bf2193b2e08d72effb41dd6431f822316f94ff26cf47662d84f"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/RefundApplications.java",
+        "sha256": "07313ee74c4ed069822168acf46036f55adcf14de5b6564f9553e8cc878e8a91"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/RefundContracts.java",
+        "sha256": "1d5940b8aecf1386f60581c97f0199f0d1d7feefa2d57242b391e67a8a9bd4c6"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/RefundLedger.java",
+        "sha256": "8380082a23313d0ccef013cc23631f3df76f77558d83cb9dc8d6dc9891328565"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/RefundRecoveryService.java",
+        "sha256": "8020ffec6f9c9aebbe35d78a99491c9b19ca7d4a2289d90435c8974fc85787d1"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/SimulatedChannel.java",
+        "sha256": "8fe01039b2aa9f9201d4ffd9deb0b10bd98a015d11c87436f9e487a3d006a7d8"
+      },
+      {
+        "path": "backend/trade-service/src/main/java/cn/community/trade/TradeAccounting.java",
+        "sha256": "397b27bbd3ddb85b91eeaf2ea7f0e0e1c45d823da540b5ebb59fc496d6822ad0"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/application-business.properties",
+        "sha256": "350c2ed345efe1d2c6062344eab28220ac265fc649001c34a9cd2ac0d0b5f892"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/application.properties",
+        "sha256": "ad3c2f494e433fa6d3f8f00552764a662419c95f7cb14678b4193dd0cb862661"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/db/business/V001__business_baseline.sql",
+        "sha256": "1f136731077aad50a808f9cb08ad5b9c62527d952c980089ff1c766bb7ba7373"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/db/business/V002__reliability.sql",
+        "sha256": "e5dfded424af2dc81bbb5d721a5bafd51135d806389a7d4023e3b130b8ead7aa"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/db/business/V003__refund_retry_chain.sql",
+        "sha256": "4279dc01cb83720f39d3c7e7ead0b8d9e56b90440769956549b05b75973e3af0"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/db/business/V004__payment_query_budget.sql",
+        "sha256": "ee1d2a03201eed3cb95cf379d659df46b9285a6da1ed786bb8d54f7861dca1cc"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/db/business/V005__channel_call_audit.sql",
+        "sha256": "e1aabe707f00c9cd057aa208523c31aa9ee810f1a42f96df3a7f557f2527ec96"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/db/business/V006__refund_applications.sql",
+        "sha256": "59ee504adaefe08c8b0b6d7633f156766606966ab49e818d0f1762659acaacfc"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/db/business/V007__refund_deadline_evidence.sql",
+        "sha256": "d600e3c4f3e16aad34ae29b4d3f5528f5e0851e5c0b43bc184045d11df133926"
+      },
+      {
+        "path": "backend/trade-service/src/main/resources/db/business/V008__refund_receipt_allocations.sql",
+        "sha256": "b798bb415e1f675374979c91e2d1c0380513ca704fbc7248e17012cfd249d947"
+      },
+      {
+        "path": "backend/trade-service/src/test/java/cn/community/trade/RefundAllocationTest.java",
+        "sha256": "66b717cee217050dd2ab5135384071189026dd7ccf18e17fd4dd2b17e4c1e2d9"
+      },
+      {
+        "path": "backend/trade-service/src/test/java/cn/community/trade/TradeReliabilityTest.java",
+        "sha256": "838ec05d6dd06d9bd88c2b942a76da0473f031b34dce4921b140ccc482352b16"
+      },
+      {
+        "path": "mvnw",
+        "sha256": "cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02"
+      },
+      {
+        "path": "mvnw.cmd",
+        "sha256": "4a361e1374a3e5ad6d03e18e9adc0cf181ac5058ac6203b76f0ba3b456b56481"
+      },
+      {
+        "path": "pom.xml",
+        "sha256": "b434c2feaee64911076ba69b212212d431897abb8472c6738dcda3c1df563221"
+      }
+    ],
+    "fingerprint": "1c4e786d2ab9e61c37556a71b744b064276fe86fe749d99157fb4b6816295069"
+  }
+}

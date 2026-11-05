@@ -1,0 +1,58 @@
+{
+  "warmupSeconds": 20,
+  "runs": [
+    {
+      "hostAfter": {
+        "diskWritesPerSecond": 0,
+        "availableMemoryMB": 9315,
+        "diskQueue": 0,
+        "cpuPercent": 6,
+        "at": "2026-11-03T05:52:47.6996857Z",
+        "diskWriteBytesPerSecond": 0
+      },
+      "sourceFingerprint": "1c4e786d2ab9e61c37556a71b744b064276fe86fe749d99157fb4b6816295069",
+      "sharedCommunityLock": false,
+      "environment": [
+        "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+      ],
+      "hostBefore": {
+        "diskWritesPerSecond": 1552,
+        "availableMemoryMB": 9094,
+        "diskQueue": 0,
+        "cpuPercent": 20,
+        "at": "2026-11-03T05:44:22.8099913Z",
+        "diskWriteBytesPerSecond": 49443193
+      },
+      "directory": "20261103134423",
+      "metrics": [
+        "METRIC communities=same concurrency=10 cycles=3260 cyclesPerSecond=54.33 p50Ms=170.19 p95Ms=258.52 p99Ms=311.63 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=8479 totalWaitMs=692001",
+        "METRIC diagnostics communities=same concurrency=10 tenSecondCompletions=[510, 541, 534, 565, 534, 576] sampledWaitingLocks={community=685} samplingErrors=0",
+        "METRIC communities=same concurrency=25 cycles=3346 cyclesPerSecond=55.77 p50Ms=428.98 p95Ms=560.56 p99Ms=640.21 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=8999 totalWaitMs=1897693",
+        "METRIC diagnostics communities=same concurrency=25 tenSecondCompletions=[522, 557, 544, 590, 558, 575] sampledWaitingLocks={community=1886} samplingErrors=0",
+        "METRIC communities=same concurrency=50 cycles=2623 cyclesPerSecond=43.72 p50Ms=878.89 p95Ms=2276.51 p99Ms=2689.81 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=7693 totalWaitMs=4006449",
+        "METRIC diagnostics communities=same concurrency=50 tenSecondCompletions=[533, 569, 569, 526, 263, 163] sampledWaitingLocks={community=3983} samplingErrors=0",
+        "METRIC communities=different concurrency=10 cycles=989 cyclesPerSecond=16.48 p50Ms=498.71 p95Ms=1165.47 p99Ms=2797.69 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=3818 totalWaitMs=601366",
+        "METRIC diagnostics communities=different concurrency=10 tenSecondCompletions=[141, 176, 102, 207, 178, 185] sampledWaitingLocks={share_window=334, business_sequence=259} samplingErrors=0",
+        "METRIC communities=different concurrency=25 cycles=2644 cyclesPerSecond=44.07 p50Ms=550.58 p95Ms=701.35 p99Ms=915.67 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=10215 totalWaitMs=1787087",
+        "METRIC diagnostics communities=different concurrency=25 tenSecondCompletions=[375, 441, 457, 462, 456, 453] sampledWaitingLocks={share_window=978, business_sequence=808} samplingErrors=0",
+        "METRIC communities=different concurrency=50 cycles=2693 cyclesPerSecond=44.88 p50Ms=1084.60 p95Ms=1266.40 p99Ms=1367.28 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=10847 totalWaitMs=3801957",
+        "METRIC diagnostics communities=different concurrency=50 tenSecondCompletions=[412, 454, 462, 443, 450, 472] sampledWaitingLocks={share_window=2013, business_sequence=1770} samplingErrors=0"
+      ],
+      "runnerSha256": "cdd6011e7eb3a5dcea47c0faa40141efe94e355e51fd9ff932896214fef7ee51",
+      "pair": 0
+    }
+  ],
+  "servicesRestored": true,
+  "error": "Performance stop requested; completed measurements are retained",
+  "status": "FAIL",
+  "optimizationDefault": "disabled",
+  "measureSeconds": 60,
+  "candidateFirst": false,
+  "applicationStoppedDuringMeasurements": true
+}

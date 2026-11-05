@@ -1,0 +1,21 @@
+{
+  "minAvailableMB": 7974.0,
+  "cpuMax": 85.0,
+  "cpuMean": 24.708823529411763,
+  "samples": 340,
+  "diskQueueMax": [
+    {
+      "maxQueue": 7.0,
+      "disk": "_Total"
+    },
+    {
+      "maxQueue": 7.0,
+      "disk": "0 C: D:"
+    },
+    {
+      "maxQueue": 4.0,
+      "disk": "1 E:"
+    }
+  ],
+  "errors": 0
+}

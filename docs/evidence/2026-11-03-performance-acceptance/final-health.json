@@ -1,0 +1,28 @@
+{
+  "frontendStatus": 200,
+  "status": "PASS",
+  "sharedCommunityLock": true,
+  "at": "2026-11-03T11:34:10.2495577Z",
+  "services": [
+    {
+      "port": 9761,
+      "status": "UP"
+    },
+    {
+      "port": 9081,
+      "status": "UP"
+    },
+    {
+      "port": 9082,
+      "status": "UP"
+    },
+    {
+      "port": 9083,
+      "status": "UP"
+    },
+    {
+      "port": 9090,
+      "status": "UP"
+    }
+  ]
+}

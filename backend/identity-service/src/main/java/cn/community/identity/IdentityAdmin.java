@@ -14,7 +14,38 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 
 @RestController @Profile("business")
 public class IdentityAdmin {
+ @GetMapping("/api/v1/admin/users/{id}/permissions") public Map<String,Object> permissions(@PathVariable long id,HttpServletRequest req){
+  Actor.of(req).permission("USER_MANAGE");
+  return permissionView(id);
+ }
+ private Map<String,Object> permissionView(long id){
+  var user=Management.one(db,"SELECT id,version FROM app_user WHERE id=?",id);
+  var roles=new HashSet<>(db.queryForList("SELECT role_code FROM user_role WHERE user_id=?",String.class,id));
+  return Map.of("id",Long.toString(id),"version",user.get("version"),"permissions",AccountPermissions.resolve(db,id,roles));
+ }
+ @PutMapping("/api/v1/admin/users/{id}/permissions") public Map<String,Object> permissions(@PathVariable long id,@RequestBody Map<String,Object> input,HttpServletRequest req){
+  Actor actor=Actor.of(req);actor.permission("USER_MANAGE");
+  Problem.require(input.get("permissions") instanceof List<?>,422,"INVALID_ARGUMENT","permissions必须为权限数组");
+  var selected=new HashSet<String>();for(Object value:(List<?>)input.get("permissions"))selected.add(Objects.toString(value,""));
+  Problem.require(AccountPermissions.FINANCE.containsAll(selected),422,"INVALID_ARGUMENT","只能设置资金操作权限");
+  return tx.execute(s->{
+   guard(actor);authorizationAdministrator(actor);
+   Problem.require(actor.id()!=id,403,"SELF_AUTHORIZATION","不能修改本人的资金权限");
+   var user=Management.one(db,"SELECT id,version FROM app_user WHERE id=? FOR UPDATE",id);Management.version(input,user);
+   Problem.require(db.queryForObject("SELECT COUNT(*) FROM user_role WHERE user_id=? AND role_code='PLATFORM'",Integer.class,id)==1,422,"INVALID_ROLE","仅支持平台账号的资金权限配置");
+   db.update("DELETE FROM account_permission WHERE user_id=? AND permission_code<>'ACCOUNT_AUTHORIZE'",id);
+   for(String permission:AccountPermissions.FINANCE)db.update("INSERT INTO account_permission VALUES(?,?,?)",id,permission,selected.contains(permission));
+   db.update("UPDATE app_user SET version=version+1 WHERE id=?",id);revoke(id);
+   Management.audit(db,actor,"ACCOUNT_PERMISSIONS",id,Map.of("permissions",selected));return permissionView(id);
+  });
+ }
  private final JdbcTemplate db;private final TransactionTemplate tx;private final RestClient parking;private final String serviceToken;
+ private void authorizationAdministrator(Actor actor){
+  Problem.require(db.queryForObject("SELECT COUNT(*) FROM account_permission WHERE user_id=? AND permission_code='ACCOUNT_AUTHORIZE' AND granted=TRUE",Integer.class,actor.id())==1,403,"AUTHORIZATION_ADMIN_REQUIRED","仅授权管理员可变更权限或角色");
+ }
+ private void retainAuthorizationAdministrator(){
+  Problem.require(db.queryForObject("SELECT COUNT(*) FROM account_permission p JOIN app_user u ON u.id=p.user_id JOIN user_role r ON r.user_id=u.id WHERE p.permission_code='ACCOUNT_AUTHORIZE' AND p.granted=TRUE AND u.enabled=TRUE AND r.role_code='PLATFORM'",Integer.class)>0,409,"LAST_AUTHORIZATION_ADMIN","必须保留至少一名启用的授权管理员");
+ }
  public IdentityAdmin(JdbcTemplate db,PlatformTransactionManager manager,@Value("${business.parking-url:http://127.0.0.1:9082}")String url,@Value("${business.service-token}")String token){this.db=db;tx=new TransactionTemplate(manager);serviceToken=token;var factory=new SimpleClientHttpRequestFactory();factory.setConnectTimeout(2000);factory.setReadTimeout(2000);parking=RestClient.builder().baseUrl(url).requestFactory(factory).build();}
  private void guard(Actor actor){
   db.queryForObject("SELECT id FROM authorization_guard WHERE id=1 FOR UPDATE",Integer.class);
@@ -33,15 +64,15 @@ public class IdentityAdmin {
   @SuppressWarnings("unchecked") var items=(List<Map<String,Object>>)result.get("items");
   for(var item:items){item.put("roles",db.queryForList("SELECT role_code FROM user_role WHERE user_id=? ORDER BY role_code",String.class,item.get("id")));item.put("communities",db.queryForList("SELECT community_id FROM community_admin WHERE user_id=? ORDER BY community_id",Long.class,item.get("id")).stream().map(Object::toString).toList());}return result;
  }
- @PatchMapping("/api/v1/admin/users/{id}/status") public Map<String,Object> status(@PathVariable long id,@RequestBody Map<String,Object> in,HttpServletRequest req){Actor a=Actor.of(req);a.permission("USER_MANAGE");boolean enabled=Management.enabled(in);return tx.execute(s->{guard(a);var row=Management.one(db,"SELECT id,version FROM app_user WHERE id=? FOR UPDATE",id);Management.version(in,row);db.update("UPDATE app_user SET enabled=?,version=version+1 WHERE id=?",enabled,id);lastAdmin();revoke(id);Management.audit(db,a,"USER_STATUS",id,Map.of("enabled",enabled));return Map.of("id",Long.toString(id),"enabled",enabled,"version",((Number)row.get("version")).intValue()+1);});}
+ @PatchMapping("/api/v1/admin/users/{id}/status") public Map<String,Object> status(@PathVariable long id,@RequestBody Map<String,Object> in,HttpServletRequest req){Actor a=Actor.of(req);a.permission("USER_MANAGE");boolean enabled=Management.enabled(in);return tx.execute(s->{guard(a);var row=Management.one(db,"SELECT id,version FROM app_user WHERE id=? FOR UPDATE",id);Management.version(in,row);db.update("UPDATE app_user SET enabled=?,version=version+1 WHERE id=?",enabled,id);lastAdmin();retainAuthorizationAdministrator();revoke(id);Management.audit(db,a,"USER_STATUS",id,Map.of("enabled",enabled));return Map.of("id",Long.toString(id),"enabled",enabled,"version",((Number)row.get("version")).intValue()+1);});}
  @PutMapping("/api/v1/admin/users/{id}/roles") public Map<String,Object> roles(@PathVariable long id,@RequestBody Map<String,Object> in,HttpServletRequest req){
   Actor a=Actor.of(req);a.permission("USER_MANAGE");Object value=in.get("roles");Problem.require(value instanceof List<?>,422,"INVALID_ARGUMENT","roles必须为角色数组");Set<String> roles=new TreeSet<>();for(Object v:(List<?>)value)roles.add(Objects.toString(v,""));Problem.require(!roles.isEmpty()&&Set.of("DRIVER","OWNER","PROPERTY","PLATFORM").containsAll(roles),422,"INVALID_ARGUMENT","角色无效");
-  return tx.execute(s->{guard(a);var row=Management.one(db,"SELECT id,version FROM app_user WHERE id=? FOR UPDATE",id);Management.version(in,row);db.update("DELETE FROM user_role WHERE user_id=?",id);for(String role:roles)db.update("INSERT INTO user_role VALUES(?,?)",id,role);
+  return tx.execute(s->{guard(a);authorizationAdministrator(a);var row=Management.one(db,"SELECT id,version FROM app_user WHERE id=? FOR UPDATE",id);Management.version(in,row);db.update("DELETE FROM user_role WHERE user_id=?",id);for(String role:roles)db.update("INSERT INTO user_role VALUES(?,?)",id,role);
    if(!roles.contains("PROPERTY")){
     for(long communityId:db.queryForList("SELECT community_id FROM community_admin WHERE user_id=?",Long.class,id))db.update("UPDATE community_authorization SET version=version+1 WHERE community_id=?",communityId);
     db.update("DELETE FROM community_admin WHERE user_id=?",id);
    }
-   db.update("UPDATE app_user SET version=version+1 WHERE id=?",id);lastAdmin();revoke(id);Management.audit(db,a,"USER_ROLES",id,Map.of("roles",roles));return Map.of("id",Long.toString(id),"roles",roles,"version",((Number)row.get("version")).intValue()+1);});
+   db.update("UPDATE app_user SET version=version+1 WHERE id=?",id);lastAdmin();retainAuthorizationAdministrator();revoke(id);Management.audit(db,a,"USER_ROLES",id,Map.of("roles",roles));return Map.of("id",Long.toString(id),"roles",roles,"version",((Number)row.get("version")).intValue()+1);});
  }
  @GetMapping("/api/v1/admin/communities/{id}/administrators") public Map<String,Object> administrators(@PathVariable long id,HttpServletRequest req){Actor a=Actor.of(req);a.permission("COMMUNITY_AUTHORIZE");return tx.execute(s->{guard(a);return authorization(id);});}
  private Map<String,Object> authorization(long id){

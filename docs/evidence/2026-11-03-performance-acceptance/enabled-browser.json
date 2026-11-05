@@ -1,0 +1,90 @@
+{
+  "stats": {
+    "startTime": "2026-11-03T06:31:49.823Z",
+    "duration": 113965.441,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "account finance permissions revoke sessions and enforce cross-service access",
+      "file": "account-permissions.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 3997
+        }
+      ]
+    },
+    {
+      "title": "login, query, reserve, pay, property entry/exit, overtime bill through UI",
+      "file": "flow.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 14823
+        }
+      ]
+    },
+    {
+      "title": "refund retry preserves its original key after reload and unknown response",
+      "file": "refund-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1736
+        }
+      ]
+    },
+    {
+      "title": "refund management is reachable by platform and denied to driver",
+      "file": "refund-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2242
+        }
+      ]
+    },
+    {
+      "title": "platform creates community and grants roles and property using searchable UI",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 63191
+        }
+      ]
+    },
+    {
+      "title": "owner publication, actual property rejection and approval, window in yuan and foreign denial",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4447
+        }
+      ]
+    },
+    {
+      "title": "new driver and approved resource complete 8 + 2 = 10 yuan through actual role UI",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 17821
+        }
+      ]
+    }
+  ],
+  "sourceRun": "20261103-143147"
+}

@@ -1,0 +1,5 @@
+{
+  "scenario": "real unstable measurements rejected by CI acceptance gate",
+  "unstableReportRejected": true,
+  "status": "PASS"
+}

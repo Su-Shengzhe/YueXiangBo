@@ -1,0 +1,12 @@
+{
+  "thresholdCV": 0.15,
+  "note": "Correctness success does not imply a stable baseline. All exploratory and confirmation data retained.",
+  "optimizationDecision": "KEEP_DISABLED",
+  "confirmationUnstableGroups": 12,
+  "loadRuns": 6,
+  "loadGroups": 36,
+  "correctnessChecks": 26,
+  "executionStatus": "PASS",
+  "acceptanceStatus": "UNSTABLE",
+  "initialUnstableGroups": 4
+}

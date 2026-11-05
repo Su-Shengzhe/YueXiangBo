@@ -1,0 +1,95 @@
+{
+  "performanceDecision": "KEEP_DISABLED_NO_STABLE_GAIN",
+  "createdAt": "2026-10-31T09:58:26.9862171Z",
+  "scope": "local final regression and isolated comparative experiment",
+  "files": [
+    {
+      "sha256": "b30463433ab35e06f924497e6852af5f3cc4681aff22ae7630d697536f2f6c67",
+      "file": "backend-tests.json"
+    },
+    {
+      "sha256": "bfdb437a1a23058cb97fee688252394e85b897573dfa69830f3e4d68a6991262",
+      "file": "browser.json"
+    },
+    {
+      "sha256": "81e565b30824f97f37616ee298ee37b65761c242319f51580db50aff5663d3b5",
+      "file": "build.json"
+    },
+    {
+      "sha256": "5d2b1f348ed9b2619d2f87a4c01591f1793349d2320ece03aaed8385868d8e0a",
+      "file": "final-health.json"
+    },
+    {
+      "sha256": "17603e93f23afa857a9f768c51f1a9653715445c0bff155a31074ce20eb71f4a",
+      "file": "frontend-build.json"
+    },
+    {
+      "sha256": "cb4cbffb816f11a38c56fde1c3dfd8a1f8ec17c9838631301520d9162c7bbd45",
+      "file": "history-mapping.json"
+    },
+    {
+      "sha256": "fd9a8c7d6f4934bec5d27d0b780a8e757a27012fd0b5a0e8b9afacdbe3f8db4d",
+      "file": "lock-table.md"
+    },
+    {
+      "sha256": "39f9eb50b3ddb65500934e65c63c96ba3c91dfbe16efbb451e0dd8a28bb5f800",
+      "file": "migrations.json"
+    },
+    {
+      "sha256": "1743038d881dac2456335b58c20bc6cf7946813808d5011a83558400ca23c57f",
+      "file": "parking-20261031173405.json"
+    },
+    {
+      "sha256": "90c98f667999cea290b634733de3e26a03e6d1886294509121dac5ae186015f3",
+      "file": "parking-20261031173427.json"
+    },
+    {
+      "sha256": "4c7a9fc7738fb0f85e5835379d7770af98bdf04b47fe319b11e29910f449bfb2",
+      "file": "parking-20261031173448.json"
+    },
+    {
+      "sha256": "2e5383d0690ac81934ae13beb0caa9b74f6bc3f7e53eb15883d8b035193a3f6b",
+      "file": "parking-20261031173901.json"
+    },
+    {
+      "sha256": "63a89e625c44d449dbd2b2808ffcdf80ef00477850a516609f791aa94b5a5ded",
+      "file": "parking-20261031174446.json"
+    },
+    {
+      "sha256": "c89947dad57b63fd8f8a3b66534c1af7e511d615c0a530813ca9b700e9e0139e",
+      "file": "parking-20261031174534.json"
+    },
+    {
+      "sha256": "ac5da94f7fa86089941b85e395da581d2d468ec3418ad8443bcf8636bfc71d09",
+      "file": "parking-20261031174623.json"
+    },
+    {
+      "sha256": "588996dbbc8c7b8e00b0db6ac70cba05cddc0a13169fcac230a66bc18a1fe48f",
+      "file": "parking-20261031175046.json"
+    },
+    {
+      "sha256": "bbb089b612968d9e2e67c0414c5476c65f7c18c3f6016308eadaf7c298b7db87",
+      "file": "performance-forward.json"
+    },
+    {
+      "sha256": "1243a2382d9111f253150c850f92019676925d88bfa0be6536a7030b3349f982",
+      "file": "performance-reverse.json"
+    },
+    {
+      "sha256": "ca7afb76e2cf48942d4a4c4d3e59968601e5ed54f7cc254bcf32c245bfcf1484",
+      "file": "performance-table.md"
+    },
+    {
+      "sha256": "587212382f573e402370d995ac896324e8a1260d1fac05ab012244f4c9d3c535",
+      "file": "recovery.json"
+    },
+    {
+      "sha256": "30503bd200771f62274b377c8566e9eb59440addafa6669c02180ba81de8befd",
+      "file": "response-loss.json"
+    },
+    {
+      "sha256": "3500fd9949127eca63c46d9299dc86127d5a04d88c4870bef62b2d1c107b7713",
+      "file": "trade-faults.json"
+    }
+  ]
+}

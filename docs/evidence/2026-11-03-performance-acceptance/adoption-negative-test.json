@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "case": "Known unstable experiment is rejected before configuration mutation",
+  "configurationUnchanged": true
+}

@@ -7,6 +7,10 @@ test('login, query, reserve, pay, property entry/exit, overtime bill through UI'
     return (await response.json()).data.accessToken
   }
   const admin = await loginApi('admin'), driver = await loginApi('driver')
+  for(const input of [{reservationId:-1,amountFen:1.5},{reservationId:-1.5,amountFen:1}]){
+    const rejected=await request.post(api+'/refund-applications',{headers:{Authorization:'Bearer '+driver,'Idempotency-Key':crypto.randomUUID()},data:{...input,reason:'验证金额和编号不能截断小数'}})
+    expect(rejected.status()).toBe(422)
+  }
   async function advance(now: string) {
     const response = await request.post(api + '/demo/clock', { headers: { Authorization: 'Bearer ' + admin }, data: { now } })
     expect(response.ok()).toBeTruthy()
@@ -63,6 +67,55 @@ test('login, query, reserve, pay, property entry/exit, overtime bill through UI'
   await expect(page.locator('.amounts > div').filter({ hasText: '已付合计' }).locator('b')).toHaveText('¥7.50', { timeout: 20000 })
   await page.screenshot({ path: process.env.BUSINESS_REPORT_DIR + '/bill-page.png', fullPage: true })
   await test.info().attach('browser-version', { body: browser.version(), contentType: 'text/plain' })
+  await page.getByRole('button',{name:'我的预约与账单',exact:true}).click()
+  await page.getByLabel('预约编号',{exact:true}).fill(String(order.reservationId))
+  await page.getByLabel('申请金额（元）',{exact:true}).fill('1.00')
+  await page.getByLabel('退款原因',{exact:true}).fill('核实服务差异，申请部分退款')
+  await page.getByRole('button',{name:'提交退款申请',exact:true}).click()
+  await expect(page.getByText('申请已受理，等待审批。',{exact:true})).toBeVisible()
+  await page.getByRole('button',{name:'退出登录',exact:true}).click()
+  await loginUi('admin')
+  await page.getByRole('button',{name:'退款执行',exact:true}).click()
+  await page.getByLabel('审批说明',{exact:true}).fill('核查后批准部分退款')
+  const applicationRow=page.getByRole('row').filter({hasText:String(order.reservationId)}).filter({hasText:'待审批'})
+  await applicationRow.getByRole('button',{name:'驳回退款',exact:true}).click()
+  await expect(page.getByText('审批结果已确认，退款结果以执行状态为准。',{exact:true})).toBeVisible()
+  await page.getByRole('button',{name:'退出登录',exact:true}).click()
+  await loginUi('driver')
+  await page.getByRole('button',{name:'我的预约与账单',exact:true}).click()
+  await page.getByRole('row').filter({hasText:String(order.reservationId)}).filter({hasText:'已驳回'}).getByRole('button',{name:'补充证据重提'}).click()
+  await page.getByLabel('证据说明',{exact:true}).fill('补充现场记录，证明服务存在差异')
+  await page.getByRole('button',{name:'提交退款申请',exact:true}).click()
+  await expect(page.getByText('申请已受理，等待审批。',{exact:true})).toBeVisible()
+  await page.getByRole('button',{name:'退出登录',exact:true}).click()
+  await loginUi('admin')
+  await page.getByRole('button',{name:'退款执行',exact:true}).click()
+  await page.getByLabel('审批说明',{exact:true}).fill('新增证据核验通过')
+  const decisionKeys:string[]=[]
+  let loseDecisionResponse=true
+  await page.route('**/refund-applications/*/decision',async route=>{
+    decisionKeys.push(route.request().headers()['idempotency-key']||'')
+    if(loseDecisionResponse){loseDecisionResponse=false;await route.fetch();await route.abort('failed')}
+    else await route.continue()
+  })
+  await applicationRow.getByRole('button',{name:'批准退款',exact:true}).click()
+  await expect(page.getByRole('button',{name:'核对未确认审批'})).toBeVisible()
+  await expect(page.getByRole('button',{name:'核对未确认审批'})).toBeEnabled()
+  await page.reload()
+  await loginUi('admin')
+  await page.getByRole('button',{name:'退款执行',exact:true}).click()
+  await expect(page.getByRole('button',{name:'核对未确认审批'})).toBeVisible()
+  await page.getByRole('button',{name:'核对未确认审批'}).click()
+  await expect(page.getByText('审批结果已确认，退款结果以执行状态为准。',{exact:true})).toBeVisible()
+  expect(decisionKeys).toHaveLength(2);expect(decisionKeys[0]).toBeTruthy();expect(decisionKeys[1]).toBe(decisionKeys[0])
+  await expect.poll(async()=>{
+    const response=await request.get(api+'/bills/'+order.reservationId,{headers:{Authorization:'Bearer '+driver}})
+    return (await response.json()).data.refundFen
+  },{timeout:20000}).toBe(100)
+  await page.getByRole('button',{name:'刷新退款申请',exact:true}).click()
+  await expect(page.getByRole('row').filter({hasText:String(order.reservationId)}).filter({hasText:'退款完成'})).toHaveCount(1)
+  await page.getByRole('button',{name:'退出登录',exact:true}).click()
+  await loginUi('driver')
   await page.getByRole('button', { name: '停车助手 · 模型桩' }).click()
   await page.getByRole('button', { name: '发送问题' }).click()
   await expect(page.locator('.answer')).toContainText('模型桩示例')

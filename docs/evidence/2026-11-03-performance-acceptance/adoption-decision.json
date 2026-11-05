@@ -1,0 +1,252 @@
+{
+  "rollback": "Set PARKING_COMMUNITY_SHARED_LOCK=false in deploy/.env.business, then Stop-Business.ps1 and Start-Business.ps1",
+  "status": "APPROVED",
+  "reportSha256": "2a4f04a9a9bad500545a967010a19f0d77717e48c0203ef1f161483eaa0b8d58",
+  "scope": "local business launcher",
+  "enabled": true,
+  "summary": [
+    {
+      "scenario": "different/10",
+      "baselineMeanCyclesPerSecond": 81.725,
+      "candidateMeanCyclesPerSecond": 82.44999999999999,
+      "throughputChangePercent": 0.8871214438666231,
+      "baselineMeanP95Ms": 239.135,
+      "candidateMeanP95Ms": 249.485,
+      "baselineSamples": [
+        {
+          "scenario": "different/10",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 82.1,
+          "p95Ms": 238.95
+        },
+        {
+          "scenario": "different/10",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 81.35,
+          "p95Ms": 239.32
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "different/10",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 81.13,
+          "p95Ms": 252.36
+        },
+        {
+          "scenario": "different/10",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 83.77,
+          "p95Ms": 246.61
+        }
+      ]
+    },
+    {
+      "scenario": "different/25",
+      "baselineMeanCyclesPerSecond": 81.815,
+      "candidateMeanCyclesPerSecond": 81.08,
+      "throughputChangePercent": -0.8983682698771589,
+      "baselineMeanP95Ms": 478.62,
+      "candidateMeanP95Ms": 487.13,
+      "baselineSamples": [
+        {
+          "scenario": "different/25",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 82.8,
+          "p95Ms": 476.38
+        },
+        {
+          "scenario": "different/25",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 80.83,
+          "p95Ms": 480.86
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "different/25",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 81.53,
+          "p95Ms": 488.17
+        },
+        {
+          "scenario": "different/25",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 80.63,
+          "p95Ms": 486.09
+        }
+      ]
+    },
+    {
+      "scenario": "different/50",
+      "baselineMeanCyclesPerSecond": 80.92500000000001,
+      "candidateMeanCyclesPerSecond": 79.56,
+      "throughputChangePercent": -1.6867469879518149,
+      "baselineMeanP95Ms": 827.77,
+      "candidateMeanP95Ms": 854.325,
+      "baselineSamples": [
+        {
+          "scenario": "different/50",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 81.18,
+          "p95Ms": 837.74
+        },
+        {
+          "scenario": "different/50",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 80.67,
+          "p95Ms": 817.8
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "different/50",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 80.5,
+          "p95Ms": 828.32
+        },
+        {
+          "scenario": "different/50",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 78.62,
+          "p95Ms": 880.33
+        }
+      ]
+    },
+    {
+      "scenario": "same/10",
+      "baselineMeanCyclesPerSecond": 43.94,
+      "candidateMeanCyclesPerSecond": 81.485,
+      "throughputChangePercent": 85.44606281292673,
+      "baselineMeanP95Ms": 353.625,
+      "candidateMeanP95Ms": 240.035,
+      "baselineSamples": [
+        {
+          "scenario": "same/10",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 44.33,
+          "p95Ms": 342.31
+        },
+        {
+          "scenario": "same/10",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 43.55,
+          "p95Ms": 364.94
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "same/10",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 81.67,
+          "p95Ms": 247.6
+        },
+        {
+          "scenario": "same/10",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 81.3,
+          "p95Ms": 232.47
+        }
+      ]
+    },
+    {
+      "scenario": "same/25",
+      "baselineMeanCyclesPerSecond": 44.025000000000006,
+      "candidateMeanCyclesPerSecond": 82.775,
+      "throughputChangePercent": 88.0181714934696,
+      "baselineMeanP95Ms": 728.69,
+      "candidateMeanP95Ms": 484.09000000000003,
+      "baselineSamples": [
+        {
+          "scenario": "same/25",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 45.13,
+          "p95Ms": 688.63
+        },
+        {
+          "scenario": "same/25",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 42.92,
+          "p95Ms": 768.75
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "same/25",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 82.38,
+          "p95Ms": 475.72
+        },
+        {
+          "scenario": "same/25",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 83.17,
+          "p95Ms": 492.46
+        }
+      ]
+    },
+    {
+      "scenario": "same/50",
+      "baselineMeanCyclesPerSecond": 43.555,
+      "candidateMeanCyclesPerSecond": 81.19,
+      "throughputChangePercent": 86.40798989783032,
+      "baselineMeanP95Ms": 1312.575,
+      "candidateMeanP95Ms": 808.285,
+      "baselineSamples": [
+        {
+          "scenario": "same/50",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 44.33,
+          "p95Ms": 1291.98
+        },
+        {
+          "scenario": "same/50",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 42.78,
+          "p95Ms": 1333.17
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "same/50",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 80.1,
+          "p95Ms": 824.18
+        },
+        {
+          "scenario": "same/50",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 82.28,
+          "p95Ms": 792.39
+        }
+      ]
+    }
+  ],
+  "restartRequired": true,
+  "sourceFingerprint": "1c4e786d2ab9e61c37556a71b744b064276fe86fe749d99157fb4b6816295069",
+  "at": "2026-11-03T06:30:03.2722651Z"
+}

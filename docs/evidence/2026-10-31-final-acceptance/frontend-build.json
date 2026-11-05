@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "command": "npm.cmd --prefix frontend run build -- --mode business",
+  "date": "2026-10-31",
+  "typescriptChecked": true
+}

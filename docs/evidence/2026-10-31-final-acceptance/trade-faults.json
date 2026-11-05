@@ -1,0 +1,39 @@
+{
+  "environment": [],
+  "warmupSeconds": 30,
+  "createdAt": "2026-10-31T04:33:41.7278127Z",
+  "metrics": [],
+  "runnerSha256": "def130016b344d5fa7bf8a55fb8fcdfca4683110b767f809dd208df557763772",
+  "mode": "correctness",
+  "checks": [
+    {
+      "name": "PASS definitive-failure-no-ledger",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS unknown-five-queries-review-no-resubmit",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS claim-before-submit-crash-query-only",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS committed-receipt-lost-response-recovered-once",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS delayed-old-worker-fenced-after-lease-takeover",
+      "status": "PASS"
+    },
+    {
+      "name": "PASS non-demo-fault-rejected",
+      "status": "PASS"
+    }
+  ],
+  "status": "PASS",
+  "method": "Packaged PaymentWorker, actual Spring transactions, isolated MySQL schema; no gateway HTTP",
+  "measureSeconds": 120,
+  "sharedCommunityLock": false,
+  "sourceFingerprint": "16a6cf91ba1e4676e10d48352fdc0b48ccefa5c9f004d83a07343689ed8f630e"
+}

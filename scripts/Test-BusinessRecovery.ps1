@@ -37,7 +37,9 @@ function Stop-Module([string]$Name) {
 }
 try {
     $driver=(Success (Call-Business '/auth/login' '' @{username='driver';password=$config.DEMO_DRIVER_PASSWORD})).accessToken
-    $n=[DateTimeOffset]::Parse((Success (Call-Business '/demo/clock' $driver)).now)
+    # ConvertFrom-Json may already return a UTC DateTime. Preserve its Kind;
+    # Parse would stringify it without an offset and reinterpret it as local time.
+    $n=[DateTimeOffset]((Success (Call-Business '/demo/clock' $driver)).now)
     $start=[DateTimeOffset]::FromUnixTimeSeconds([long]([Math]::Ceiling(($n.ToUnixTimeSeconds()+7200)/900)*900))
     $body=@{vehicleId='40';spaceId='20';startAt=$start.ToString('o');endAt=$start.AddMinutes(30).ToString('o')}
     $order=Success (Call-Business '/reservations' $driver $body ([Guid]::NewGuid().ToString()))

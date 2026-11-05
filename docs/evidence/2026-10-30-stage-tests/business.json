@@ -1,0 +1,66 @@
+{
+  "at": "2026-10-30T04:32:40.454Z",
+  "realAiAccepted": false,
+  "reservationId": "362891902296228",
+  "results": [
+    {
+      "name": "login and current authorization",
+      "status": "PASS",
+      "durationMs": 901
+    },
+    {
+      "name": "available query, alignment and vehicle ownership",
+      "status": "PASS",
+      "durationMs": 107
+    },
+    {
+      "name": "concurrent reservation and idempotent retry",
+      "status": "PASS",
+      "durationMs": 188
+    },
+    {
+      "name": "durable payment, duplicate key, owner-only bill",
+      "status": "PASS",
+      "durationMs": 1372
+    },
+    {
+      "name": "property entry and exit with overtime",
+      "status": "PASS",
+      "durationMs": 3404
+    },
+    {
+      "name": "paid cancellation refunds once",
+      "status": "PASS",
+      "durationMs": 3407
+    },
+    {
+      "name": "unpaid expiry cannot be paid or revived",
+      "status": "PASS",
+      "durationMs": 1177
+    },
+    {
+      "name": "blocked arrival is retained and refunded as space unavailable",
+      "status": "PASS",
+      "durationMs": 5245
+    },
+    {
+      "name": "AI isolation timings",
+      "status": "PASS",
+      "ordinaryMaxMs": 15,
+      "timeoutMs": 20090,
+      "mode": "STUB",
+      "concurrentSlowRequests": 10,
+      "consecutiveFailures": 5
+    },
+    {
+      "name": "AI stub normal/failure and 30-second delay isolation",
+      "status": "PASS",
+      "durationMs": 20161
+    },
+    {
+      "name": "logout revokes token across services",
+      "status": "PASS",
+      "durationMs": 63
+    }
+  ]
+}

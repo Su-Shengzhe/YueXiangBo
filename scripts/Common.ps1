@@ -138,13 +138,13 @@ function Stop-OwnedProcesses {
 }
 
 function Wait-HttpReady {
-    param([string]$Uri, [hashtable]$Headers=@{}, [int]$TimeoutSeconds=90, [Nullable[int]]$ProcessId=$null)
+    param([string]$Uri, [hashtable]$Headers=@{}, [int]$TimeoutSeconds=90, [Nullable[int]]$ProcessId=$null, [int]$ExpectedStatus=200)
     $deadline=[DateTime]::UtcNow.AddSeconds($TimeoutSeconds)
     do {
         if ($ProcessId -and !(Get-Process -Id $ProcessId -ErrorAction SilentlyContinue)) { throw 'Application exited before readiness. Inspect this run directory.' }
         try {
-            $response=Invoke-WebRequest $Uri -Headers $Headers -TimeoutSec 3
-            if ($response.StatusCode -eq 200) { return }
+            $response=Invoke-WebRequest $Uri -Headers $Headers -TimeoutSec 3 -SkipHttpErrorCheck
+            if ($response.StatusCode -eq $ExpectedStatus) { return }
         } catch {}
         Start-Sleep -Milliseconds 500
     } while ([DateTime]::UtcNow -lt $deadline)

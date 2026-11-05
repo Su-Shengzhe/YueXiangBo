@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "warmupSeconds": 10,
+  "candidateFirst": true,
+  "optimizationDefault": "disabled",
+  "applicationStoppedDuringMeasurements": true,
+  "measureSeconds": 30,
+  "servicesRestored": true,
+  "runs": [
+    {
+      "environment": [
+        "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+      ],
+      "directory": "20261031174623",
+      "sharedCommunityLock": true,
+      "metrics": [
+        "METRIC communities=same concurrency=10 cycles=1349 cyclesPerSecond=44.97 p50Ms=216.49 p95Ms=300.34 p99Ms=378.34 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=4924 totalWaitMs=287074",
+        "METRIC communities=same concurrency=25 cycles=1377 cyclesPerSecond=45.90 p50Ms=536.34 p95Ms=667.01 p99Ms=811.61 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=5343 totalWaitMs=890929",
+        "METRIC communities=same concurrency=50 cycles=1263 cyclesPerSecond=42.10 p50Ms=1113.88 p95Ms=1669.43 p99Ms=3435.57 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=5170 totalWaitMs=1904027",
+        "METRIC communities=different concurrency=10 cycles=1360 cyclesPerSecond=45.33 p50Ms=214.60 p95Ms=300.76 p99Ms=342.71 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=5075 totalWaitMs=287419",
+        "METRIC communities=different concurrency=25 cycles=1369 cyclesPerSecond=45.63 p50Ms=536.44 p95Ms=682.91 p99Ms=805.28 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=5400 totalWaitMs=892250",
+        "METRIC communities=different concurrency=50 cycles=1360 cyclesPerSecond=45.33 p50Ms=1108.58 p95Ms=1328.40 p99Ms=1468.85 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=5461 totalWaitMs=1909503"
+      ],
+      "sourceFingerprint": "16a6cf91ba1e4676e10d48352fdc0b48ccefa5c9f004d83a07343689ed8f630e"
+    },
+    {
+      "environment": [
+        "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+      ],
+      "directory": "20261031175046",
+      "sharedCommunityLock": false,
+      "metrics": [
+        "METRIC communities=same concurrency=10 cycles=706 cyclesPerSecond=23.53 p50Ms=415.31 p95Ms=512.94 p99Ms=619.06 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=1859 totalWaitMs=352935",
+        "METRIC communities=same concurrency=25 cycles=725 cyclesPerSecond=24.17 p50Ms=1001.25 p95Ms=1290.93 p99Ms=1585.38 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=1999 totalWaitMs=966839",
+        "METRIC communities=same concurrency=50 cycles=748 cyclesPerSecond=24.93 p50Ms=1957.17 p95Ms=2346.00 p99Ms=2493.54 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=2093 totalWaitMs=2014407",
+        "METRIC communities=different concurrency=10 cycles=1380 cyclesPerSecond=46.00 p50Ms=212.34 p95Ms=286.97 p99Ms=341.61 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=5083 totalWaitMs=287716",
+        "METRIC communities=different concurrency=25 cycles=1233 cyclesPerSecond=41.10 p50Ms=588.63 p95Ms=787.91 p99Ms=1059.00 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=5011 totalWaitMs=891764",
+        "METRIC communities=different concurrency=50 cycles=1385 cyclesPerSecond=46.17 p50Ms=1088.36 p95Ms=1247.40 p99Ms=1333.59 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=5541 totalWaitMs=1906494"
+      ],
+      "sourceFingerprint": "16a6cf91ba1e4676e10d48352fdc0b48ccefa5c9f004d83a07343689ed8f630e"
+    }
+  ]
+}

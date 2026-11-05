@@ -1,0 +1,60 @@
+{
+  "createdAt": "2026-10-31T04:33:30.6807851Z",
+  "results": [
+    {
+      "status": "PASS",
+      "name": "w56_20261031123233_fresh_identity-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261031123233_fresh_parking-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261031123233_fresh_trade-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261031123233_restore_identity-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261031123233_restore_parking-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261031123233_restore_trade-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "restore-restore-and-historical-facts-preserved"
+    },
+    {
+      "status": "PASS",
+      "count": 0,
+      "name": "restore-unlinked-historical-orders"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261031123233_legacy_identity-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261031123233_legacy_parking-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "w56_20261031123233_legacy_trade-flyway-migrate-validate-repeat"
+    },
+    {
+      "status": "PASS",
+      "name": "legacy-restore-and-historical-facts-preserved"
+    },
+    {
+      "status": "PASS",
+      "count": 0,
+      "name": "legacy-unlinked-historical-orders"
+    }
+  ],
+  "sourceFingerprint": "16a6cf91ba1e4676e10d48352fdc0b48ccefa5c9f004d83a07343689ed8f630e"
+}

@@ -1,0 +1,33 @@
+{
+  "measureSeconds": 60,
+  "warmupSeconds": 20,
+  "order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "changes": [
+    "Truncate disposable workload tables before each scenario to remove DELETE purge backlog",
+    "Fixed JVM heap 256 to 512 MB",
+    "Count only complete cycles within measurement window",
+    "Sample waiting lock tables every second and host load every five seconds"
+  ],
+  "priorEvidence": "docs/evidence/2026-11-02-refund-optimization/performance-acceptance.json",
+  "communities": [
+    "same",
+    "different"
+  ],
+  "acceptance": "All 12 variant/scenario groups must have two samples and CV <= 0.15. Zero application errors, zero active orders, atomic outbox. No automatic enablement.",
+  "concurrency": [
+    10,
+    25,
+    50
+  ],
+  "registeredAt": "2026-11-03T05:55:20.3326481Z",
+  "scope": "Controller and actual MySQL transactions; local independent storage comparison, not a production HTTP capacity claim",
+  "cvThreshold": 0.15,
+  "storage": "Dedicated persistent MySQL datadir on separate physical NVMe SSD E:, same immutable image, 1 GiB limit, flush-at-commit=1 and sync-binlog=1",
+  "hostSampling": "Every 5 seconds: per-physical-disk queues and byte rates, CPU, available memory",
+  "supersedes": "20261103-134337 stopped after one complete baseline run due to observed throughput collapse and shared disk queue spikes. Its full results retained."
+}

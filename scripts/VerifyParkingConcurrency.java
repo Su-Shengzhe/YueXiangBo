@@ -72,25 +72,38 @@ class VerifyParkingConcurrency {
   }
  }
  static void load()throws Exception{
+  int warmup=Integer.getInteger("load.warmup.seconds",30),duration=Integer.getInteger("load.measure.seconds",120);
   for(boolean separate:List.of(false,true))for(int concurrency:List.of(10,25,50)){
+   // Only the disposable, name-validated test schema is touched. Avoid a large
+   // DELETE undo/purge backlog from one scenario contaminating the next one.
+   for(String table:List.of("parking_event","parking_request_guard","idempotency_record","audit_log","outbox_event","reservation_order"))db.execute("TRUNCATE TABLE "+table);
    reset(concurrency,separate);
-   System.out.println("START load communities="+(separate?"different":"same")+" concurrency="+concurrency+" warmupSeconds=30 measureSeconds=120");System.out.flush();
-   long begin=System.nanoTime(),measure=begin+TimeUnit.SECONDS.toNanos(30),end=measure+TimeUnit.SECONDS.toNanos(120);
+   System.out.println("START load communities="+(separate?"different":"same")+" concurrency="+concurrency+" warmupSeconds="+warmup+" measureSeconds="+duration);System.out.flush();
+   long waitsBefore=innodbStatus("Innodb_row_lock_waits"),waitMsBefore=innodbStatus("Innodb_row_lock_time");
+   long begin=System.nanoTime(),measure=begin+TimeUnit.SECONDS.toNanos(warmup),end=measure+TimeUnit.SECONDS.toNanos(duration);
    var latencies=new ConcurrentLinkedQueue<Long>();var errors=new ConcurrentHashMap<String,AtomicInteger>();var warmErrors=new AtomicInteger();
+   var buckets=new AtomicIntegerArray((duration+9)/10);var lockSamples=new ConcurrentHashMap<String,AtomicLong>();
+   var sampler=Executors.newSingleThreadScheduledExecutor();var samplingErrors=new AtomicInteger();
+   sampler.scheduleAtFixedRate(()->{try{for(var row:db.queryForList("SELECT OBJECT_NAME,COUNT(*) AS n FROM performance_schema.data_locks WHERE OBJECT_SCHEMA=DATABASE() AND LOCK_STATUS='WAITING' GROUP BY OBJECT_NAME"))lockSamples.computeIfAbsent(row.get("OBJECT_NAME").toString(),x->new AtomicLong()).addAndGet(((Number)row.get("n")).longValue());}catch(Exception e){samplingErrors.incrementAndGet();}},0,1,TimeUnit.SECONDS);
    try(var pool=Executors.newFixedThreadPool(concurrency)){
-    var futures=new ArrayList<Future<?>>();for(int i=1;i<=concurrency;i++){int v=i;futures.add(pool.submit(()->{while(System.nanoTime()<end){long start=System.nanoTime();boolean measured=start>=measure;try{long id=reserve(v,v,key());api.cancel(id,actor(v,"DRIVER"));if(measured)latencies.add(System.nanoTime()-start);}catch(Exception e){if(measured)errors.computeIfAbsent(e instanceof Problem p?p.code:e.getClass().getSimpleName(),x->new AtomicInteger()).incrementAndGet();else warmErrors.incrementAndGet();}}}));}for(var f:futures)f.get(180,TimeUnit.SECONDS);
-   }
+    var futures=new ArrayList<Future<?>>();for(int i=1;i<=concurrency;i++){int v=i;futures.add(pool.submit(()->{while(System.nanoTime()<end){long start=System.nanoTime();boolean measured=start>=measure;try{long id=reserve(v,v,key());api.cancel(id,actor(v,"DRIVER"));long completed=System.nanoTime();if(measured&&completed<=end){latencies.add(completed-start);buckets.incrementAndGet((int)TimeUnit.NANOSECONDS.toSeconds(completed-measure)/10);}}catch(Exception e){if(measured)errors.computeIfAbsent(e instanceof Problem p?p.code:e.getClass().getSimpleName(),x->new AtomicInteger()).incrementAndGet();else warmErrors.incrementAndGet();}}}));}for(var f:futures)f.get(warmup+duration+30,TimeUnit.SECONDS);
+   }finally{sampler.shutdownNow();require(sampler.awaitTermination(10,TimeUnit.SECONDS),"Lock sampler did not stop");}
    var sorted=new ArrayList<>(latencies);Collections.sort(sorted);require(!sorted.isEmpty(),"No load samples");
    int active=db.queryForObject("SELECT COUNT(*) FROM reservation_order WHERE status<>'CANCELLED'",Integer.class);
-   System.out.printf(Locale.ROOT,"METRIC communities=%s concurrency=%d cycles=%d cyclesPerSecond=%.2f p50Ms=%.2f p95Ms=%.2f p99Ms=%.2f errors=%s warmErrors=%d active=%d%n",separate?"different":"same",concurrency,sorted.size(),sorted.size()/120.0,percentile(sorted,.50),percentile(sorted,.95),percentile(sorted,.99),errors,warmErrors.get(),active);
+   System.out.printf(Locale.ROOT,"METRIC communities=%s concurrency=%d cycles=%d cyclesPerSecond=%.2f p50Ms=%.2f p95Ms=%.2f p99Ms=%.2f errors=%s warmErrors=%d active=%d%n",separate?"different":"same",concurrency,sorted.size(),sorted.size()/(double)duration,percentile(sorted,.50),percentile(sorted,.95),percentile(sorted,.99),errors,warmErrors.get(),active);
+   System.out.printf(Locale.ROOT,"METRIC locks communities=%s concurrency=%d scope=warmup-and-measurement waits=%d totalWaitMs=%d%n",separate?"different":"same",concurrency,innodbStatus("Innodb_row_lock_waits")-waitsBefore,innodbStatus("Innodb_row_lock_time")-waitMsBefore);
+   System.out.printf("METRIC diagnostics communities=%s concurrency=%d tenSecondCompletions=%s sampledWaitingLocks=%s samplingErrors=%d%n",separate?"different":"same",concurrency,buckets,lockSamples,samplingErrors.get());
+   require(samplingErrors.get()==0,"Lock sampling unavailable");
    require(errors.isEmpty()&&warmErrors.get()==0&&active==0,"Load failure");require(count("outbox_event")==2*count("reservation_order"),"Load missing outbox");
    System.out.println("PASS load communities="+(separate?"different":"same")+" concurrency="+concurrency+" no-errors no-active-orders outbox-atomic");System.out.flush();
   }
  }
+ static long innodbStatus(String name){return db.queryForObject("SHOW GLOBAL STATUS LIKE '"+name+"'",(r,n)->Long.parseLong(r.getString(2)));}
  static double percentile(List<Long> values,double p){return values.get((int)Math.ceil(values.size()*p)-1)/1e6;}
  public static void main(String[] args)throws Exception{
   String schema=args[0];require(schema.matches("w78_parking_[0-9]{14}"),"Unsafe schema");require(Set.of("correctness","load").contains(args[1]),"Invalid mode");
-  String server="jdbc:mysql://127.0.0.1:23306/",password=System.getenv("MYSQL_ROOT_PASSWORD");boolean created=false;
+  int port=Integer.getInteger("test.mysql.port",23306);require(port==23306||port==23316,"Unexpected test port");
+  String server="jdbc:mysql://127.0.0.1:"+port+"/",password=System.getenv("MYSQL_ROOT_PASSWORD");boolean created=false;
   try(var c=DriverManager.getConnection(server,"root",password);var sql=c.createStatement()){
    try{sql.executeUpdate("CREATE DATABASE "+schema);created=true;String url=server+schema+"?connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true";
     Flyway.configure().dataSource(url,"root",password).locations("filesystem:backend/parking-service/src/main/resources/db/business").load().migrate();
@@ -98,7 +111,10 @@ class VerifyParkingConcurrency {
     var properties=new Properties();try(var reader=java.nio.file.Files.newBufferedReader(java.nio.file.Path.of("backend/parking-service/src/main/resources/application-business.properties"))){properties.load(reader);}
     config.setTransactionIsolation(properties.getProperty("spring.datasource.hikari.transaction-isolation"));
     try(var ds=new HikariDataSource(config)){db=new JdbcTemplate(ds);var manager=new DataSourceTransactionManager(ds);tx=new TransactionTemplate(manager);api=new BusinessParking(db,manager,clock);resources=new ResourceManagement(db,manager,clock);
-     try(var check=ds.getConnection()){require(check.getTransactionIsolation()==Connection.TRANSACTION_READ_COMMITTED,"Isolation differs from application");System.out.println("ENV mysql="+c.getMetaData().getDatabaseProductVersion()+" java="+System.getProperty("java.version")+" isolation=READ_COMMITTED poolMax=100");}if(args[1].equals("load"))load();else correctness();
+     try(var check=ds.getConnection()){require(check.getTransactionIsolation()==Connection.TRANSACTION_READ_COMMITTED,"Isolation differs from application");System.out.println("ENV mysql="+c.getMetaData().getDatabaseProductVersion()+" java="+System.getProperty("java.version")+" isolation=READ_COMMITTED poolMax=100 port="+port);}
+     var durability=db.queryForMap("SELECT @@innodb_flush_log_at_trx_commit AS flushCommit,@@sync_binlog AS syncBinlog");
+     require(((Number)durability.get("flushCommit")).intValue()==1&&((Number)durability.get("syncBinlog")).intValue()==1,"Durability was weakened");
+     System.out.println("ENV durability="+durability);if(args[1].equals("load"))load();else correctness();
     }
    }finally{if(created){sql.executeUpdate("DROP DATABASE "+schema);System.out.println("CLEANUP isolated-schema-dropped");}}
   }

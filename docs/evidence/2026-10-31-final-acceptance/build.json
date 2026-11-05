@@ -1,0 +1,28 @@
+{
+  "artifacts": {
+    "parking-service": {
+      "sha256": "3b340c6091ddb926cf60278db98b0dd1bf70279a0f32eaf284f2f57cf875d0c9",
+      "path": "backend/parking-service/target/parking-service-0.1.0-SNAPSHOT.jar"
+    },
+    "gateway": {
+      "sha256": "098cf3291209a0169791c0b4ddd18fa8e5340c1afedda037bf90f5eceb5cb597",
+      "path": "backend/gateway/target/gateway-0.1.0-SNAPSHOT.jar"
+    },
+    "identity-service": {
+      "sha256": "d95e9f3151104898d7759fa9201d94b9e8e3ba60e006b2bd30a73ff490d96a07",
+      "path": "backend/identity-service/target/identity-service-0.1.0-SNAPSHOT.jar"
+    },
+    "trade-service": {
+      "sha256": "2b0636abbb7b84272a19155669d9752c34776d2ada9e5f78ae8be381cd7676e1",
+      "path": "backend/trade-service/target/trade-service-0.1.0-SNAPSHOT.jar"
+    },
+    "registry": {
+      "sha256": "2fb33dc1636f374e0b13f912d32b33f4d3b32b9cb0b052e0cc5dc1415b14d9da",
+      "path": "backend/registry/target/registry-0.1.0-SNAPSHOT.jar"
+    }
+  },
+  "status": "PASS",
+  "sourceFingerprint": "16a6cf91ba1e4676e10d48352fdc0b48ccefa5c9f004d83a07343689ed8f630e",
+  "startedAt": "2026-10-31T04:14:25.8216282Z",
+  "endedAt": "2026-10-31T04:15:11.9337599Z"
+}

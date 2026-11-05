@@ -1,0 +1,336 @@
+{
+  "sourceFingerprint": "1c4e786d2ab9e61c37556a71b744b064276fe86fe749d99157fb4b6816295069",
+  "runnerSha256": "bb8bdf230a6d10065e6d23094f95c165ffe4be63d913f45772d38df18beb171b",
+  "comparison": [
+    {
+      "scenario": "different/10",
+      "baselineMeanCyclesPerSecond": 81.725,
+      "candidateMeanCyclesPerSecond": 82.44999999999999,
+      "throughputChangePercent": 0.8871214438666231,
+      "baselineMeanP95Ms": 239.135,
+      "candidateMeanP95Ms": 249.485,
+      "baselineSamples": [
+        {
+          "scenario": "different/10",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 82.1,
+          "p95Ms": 238.95
+        },
+        {
+          "scenario": "different/10",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 81.35,
+          "p95Ms": 239.32
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "different/10",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 81.13,
+          "p95Ms": 252.36
+        },
+        {
+          "scenario": "different/10",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 83.77,
+          "p95Ms": 246.61
+        }
+      ]
+    },
+    {
+      "scenario": "different/25",
+      "baselineMeanCyclesPerSecond": 81.815,
+      "candidateMeanCyclesPerSecond": 81.08,
+      "throughputChangePercent": -0.8983682698771589,
+      "baselineMeanP95Ms": 478.62,
+      "candidateMeanP95Ms": 487.13,
+      "baselineSamples": [
+        {
+          "scenario": "different/25",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 82.8,
+          "p95Ms": 476.38
+        },
+        {
+          "scenario": "different/25",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 80.83,
+          "p95Ms": 480.86
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "different/25",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 81.53,
+          "p95Ms": 488.17
+        },
+        {
+          "scenario": "different/25",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 80.63,
+          "p95Ms": 486.09
+        }
+      ]
+    },
+    {
+      "scenario": "different/50",
+      "baselineMeanCyclesPerSecond": 80.92500000000001,
+      "candidateMeanCyclesPerSecond": 79.56,
+      "throughputChangePercent": -1.6867469879518149,
+      "baselineMeanP95Ms": 827.77,
+      "candidateMeanP95Ms": 854.325,
+      "baselineSamples": [
+        {
+          "scenario": "different/50",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 81.18,
+          "p95Ms": 837.74
+        },
+        {
+          "scenario": "different/50",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 80.67,
+          "p95Ms": 817.8
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "different/50",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 80.5,
+          "p95Ms": 828.32
+        },
+        {
+          "scenario": "different/50",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 78.62,
+          "p95Ms": 880.33
+        }
+      ]
+    },
+    {
+      "scenario": "same/10",
+      "baselineMeanCyclesPerSecond": 43.94,
+      "candidateMeanCyclesPerSecond": 81.485,
+      "throughputChangePercent": 85.44606281292673,
+      "baselineMeanP95Ms": 353.625,
+      "candidateMeanP95Ms": 240.035,
+      "baselineSamples": [
+        {
+          "scenario": "same/10",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 44.33,
+          "p95Ms": 342.31
+        },
+        {
+          "scenario": "same/10",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 43.55,
+          "p95Ms": 364.94
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "same/10",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 81.67,
+          "p95Ms": 247.6
+        },
+        {
+          "scenario": "same/10",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 81.3,
+          "p95Ms": 232.47
+        }
+      ]
+    },
+    {
+      "scenario": "same/25",
+      "baselineMeanCyclesPerSecond": 44.025000000000006,
+      "candidateMeanCyclesPerSecond": 82.775,
+      "throughputChangePercent": 88.0181714934696,
+      "baselineMeanP95Ms": 728.69,
+      "candidateMeanP95Ms": 484.09000000000003,
+      "baselineSamples": [
+        {
+          "scenario": "same/25",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 45.13,
+          "p95Ms": 688.63
+        },
+        {
+          "scenario": "same/25",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 42.92,
+          "p95Ms": 768.75
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "same/25",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 82.38,
+          "p95Ms": 475.72
+        },
+        {
+          "scenario": "same/25",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 83.17,
+          "p95Ms": 492.46
+        }
+      ]
+    },
+    {
+      "scenario": "same/50",
+      "baselineMeanCyclesPerSecond": 43.555,
+      "candidateMeanCyclesPerSecond": 81.19,
+      "throughputChangePercent": 86.40798989783032,
+      "baselineMeanP95Ms": 1312.575,
+      "candidateMeanP95Ms": 808.285,
+      "baselineSamples": [
+        {
+          "scenario": "same/50",
+          "candidate": false,
+          "run": "20261103135542",
+          "rate": 44.33,
+          "p95Ms": 1291.98
+        },
+        {
+          "scenario": "same/50",
+          "candidate": false,
+          "run": "20261103142037",
+          "rate": 42.78,
+          "p95Ms": 1333.17
+        }
+      ],
+      "candidateSamples": [
+        {
+          "scenario": "same/50",
+          "candidate": true,
+          "run": "20261103140401",
+          "rate": 80.1,
+          "p95Ms": 824.18
+        },
+        {
+          "scenario": "same/50",
+          "candidate": true,
+          "run": "20261103141219",
+          "rate": 82.28,
+          "p95Ms": 792.39
+        }
+      ]
+    }
+  ],
+  "stableBaseline": true,
+  "interpretation": "Descriptive repeated local controller/MySQL measurements; not HTTP throughput or a statistical confidence interval. An unstable experiment cannot establish an optimization gain.",
+  "sourceReport": "D:\\codex-project\\基于 Spring Cloud 的“悦享泊”智慧社区车位共享与结算平台设计与实现——毕业设计项目实施计划\\.runtime\\business\\performance-comparison\\20261103-135448\\results.json",
+  "stability": [
+    {
+      "group": "False/different/10",
+      "stable": true,
+      "coefficientOfVariation": 0.004588559192413582,
+      "meanCyclesPerSecond": 81.725,
+      "samples": 2
+    },
+    {
+      "group": "False/different/25",
+      "stable": true,
+      "coefficientOfVariation": 0.012039357086108898,
+      "meanCyclesPerSecond": 81.815,
+      "samples": 2
+    },
+    {
+      "group": "False/different/50",
+      "stable": true,
+      "coefficientOfVariation": 0.0031510658016682424,
+      "meanCyclesPerSecond": 80.92500000000001,
+      "samples": 2
+    },
+    {
+      "group": "False/same/10",
+      "stable": true,
+      "coefficientOfVariation": 0.008875739644970428,
+      "meanCyclesPerSecond": 43.94,
+      "samples": 2
+    },
+    {
+      "group": "False/same/25",
+      "stable": true,
+      "coefficientOfVariation": 0.02509937535491199,
+      "meanCyclesPerSecond": 44.025000000000006,
+      "samples": 2
+    },
+    {
+      "group": "False/same/50",
+      "stable": true,
+      "coefficientOfVariation": 0.01779359430604979,
+      "meanCyclesPerSecond": 43.555,
+      "samples": 2
+    },
+    {
+      "group": "True/different/10",
+      "stable": true,
+      "coefficientOfVariation": 0.016009702850212255,
+      "meanCyclesPerSecond": 82.44999999999999,
+      "samples": 2
+    },
+    {
+      "group": "True/different/25",
+      "stable": true,
+      "coefficientOfVariation": 0.005550074000986715,
+      "meanCyclesPerSecond": 81.08,
+      "samples": 2
+    },
+    {
+      "group": "True/different/50",
+      "stable": true,
+      "coefficientOfVariation": 0.01181498240321767,
+      "meanCyclesPerSecond": 79.56,
+      "samples": 2
+    },
+    {
+      "group": "True/same/10",
+      "stable": true,
+      "coefficientOfVariation": 0.0022703565073326657,
+      "meanCyclesPerSecond": 81.485,
+      "samples": 2
+    },
+    {
+      "group": "True/same/25",
+      "stable": true,
+      "coefficientOfVariation": 0.0047719722138327165,
+      "meanCyclesPerSecond": 82.775,
+      "samples": 2
+    },
+    {
+      "group": "True/same/50",
+      "stable": true,
+      "coefficientOfVariation": 0.013425298682103749,
+      "meanCyclesPerSecond": 81.19,
+      "samples": 2
+    }
+  ],
+  "sourceReportSha256": "2a4f04a9a9bad500545a967010a19f0d77717e48c0203ef1f161483eaa0b8d58"
+}

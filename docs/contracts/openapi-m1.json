@@ -7717,6 +7717,474 @@
         ],
         "operationId": "findReservationByRequestKey"
       }
+    },
+    "/admin/refund-attempts": {
+      "get": {
+        "summary": "分页查询退款执行记录",
+        "description": "需要 REFUND_READ 权限。金额单位为分，标识符使用字符串。",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100000,
+              "default": 1
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "退款记录",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/RefundAttempt"
+                          }
+                        },
+                        "total": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        },
+                        "size": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "items",
+                        "total",
+                        "page",
+                        "size"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未登录或会话过期"
+          },
+          "403": {
+            "description": "缺少权限"
+          },
+          "404": {
+            "description": "记录不存在"
+          },
+          "409": {
+            "description": "状态、余额或幂等键冲突"
+          },
+          "422": {
+            "description": "参数无效"
+          }
+        }
+      }
+    },
+    "/admin/refund-attempts/{id}/retry": {
+      "post": {
+        "summary": "重试确定失败的退款",
+        "description": "需要 FUNDS_RECOVER 权限。仅允许 FAILED 退款；UNKNOWN 和 REVIEW 必须核查原通道，不得换号。每条失败记录最多有一个直接后继。相同幂等键及请求返回原受理结果；重试失败后继须使用该后继 ID。202 仅表示受理。",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]+$"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "reason": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 500
+                  }
+                },
+                "required": [
+                  "reason"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "已受理或返回已有后继",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/RefundAttempt"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未登录或会话过期"
+          },
+          "403": {
+            "description": "缺少权限"
+          },
+          "404": {
+            "description": "记录不存在"
+          },
+          "409": {
+            "description": "状态、余额或幂等键冲突"
+          },
+          "422": {
+            "description": "参数无效"
+          }
+        }
+      }
+    },
+    "/refund-applications": {
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "司机查询本人申请；平台需要 REFUND_READ",
+        "responses": {
+          "409": {
+            "description": "状态、幂等内容或额度冲突"
+          },
+          "200": {
+            "description": "统一响应包 data 返回结果",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "#/components/schemas/RefundApplicationView"
+                          }
+                        },
+                        "total": {
+                          "type": "integer"
+                        },
+                        "size": {
+                          "type": "integer"
+                        },
+                        "page": {
+                          "type": "integer"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "无权限"
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefundApplicationInput"
+              }
+            }
+          }
+        },
+        "summary": "完成后7天内申请退款，支持新证据重提",
+        "responses": {
+          "409": {
+            "description": "状态、幂等内容或额度冲突"
+          },
+          "200": {
+            "description": "统一响应包 data 返回结果",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/RefundApplicationView"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "无权限"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "maxLength": 80,
+              "minLength": 8,
+              "type": "string"
+            },
+            "required": true,
+            "in": "header",
+            "name": "Idempotency-Key"
+          }
+        ]
+      }
+    },
+    "/refund-applications/{id}/decision": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RefundDecisionInput"
+              }
+            }
+          }
+        },
+        "summary": "REFUND_APPROVE；同键同参重放审批结果",
+        "responses": {
+          "409": {
+            "description": "状态、幂等内容或额度冲突"
+          },
+          "200": {
+            "description": "统一响应包 data 返回结果",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/RefundApplicationView"
+                    },
+                    "code": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "无权限"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true,
+            "in": "path",
+            "name": "id"
+          },
+          {
+            "schema": {
+              "maxLength": 80,
+              "minLength": 8,
+              "type": "string"
+            },
+            "required": true,
+            "in": "header",
+            "name": "Idempotency-Key"
+          }
+        ]
+      }
+    },
+    "/admin/refund-attempts/map-history": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "FUNDS_RECOVER；逐订单事务映射，返回 PASS/REVIEW 与游标",
+        "responses": {
+          "409": {
+            "description": "状态、幂等内容或额度冲突"
+          },
+          "200": {
+            "description": "统一响应包 data 返回结果",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/RefundMappingPage"
+                    }
+                  },
+                  "required": [
+                    "data"
+                  ]
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "无权限"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "minimum": 0,
+              "type": "integer",
+              "default": 0
+            },
+            "in": "query",
+            "name": "after"
+          }
+        ]
+      }
+    },
+    "/admin/users/{id}/permissions": {
+      "put": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AccountPermissionsInput"
+              }
+            }
+          }
+        },
+        "summary": "独立 ACCOUNT_AUTHORIZE，禁止自授权，成功撤销目标会话",
+        "responses": {
+          "409": {
+            "description": "状态、幂等内容或额度冲突"
+          },
+          "200": {
+            "description": "统一响应包 data 返回结果"
+          },
+          "403": {
+            "description": "无权限"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true,
+            "in": "path",
+            "name": "id"
+          }
+        ]
+      },
+      "get": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "summary": "USER_MANAGE 查询有效权限",
+        "responses": {
+          "409": {
+            "description": "状态、幂等内容或额度冲突"
+          },
+          "200": {
+            "description": "统一响应包 data 返回结果"
+          },
+          "403": {
+            "description": "无权限"
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "required": true,
+            "in": "path",
+            "name": "id"
+          }
+        ]
+      }
     }
   },
   "components": {
@@ -9396,6 +9864,258 @@
             "maxLength": 500
           }
         }
+      },
+      "RefundAttempt": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "reservationId": {
+            "type": "string"
+          },
+          "amountFen": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "CREATED",
+              "SUBMITTED",
+              "UNKNOWN",
+              "REVIEW",
+              "SUCCESS",
+              "FAILED"
+            ]
+          },
+          "retryOfId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "channelNo": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "applicationId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "receiptAttemptId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "reservationId",
+          "amountFen",
+          "status"
+        ]
+      },
+      "RefundDecisionInput": {
+        "required": [
+          "decision",
+          "note"
+        ],
+        "type": "object",
+        "properties": {
+          "note": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          },
+          "decision": {
+            "enum": [
+              "APPROVE",
+              "REJECT"
+            ],
+            "type": "string"
+          }
+        }
+      },
+      "RefundApplicationInput": {
+        "required": [
+          "reservationId",
+          "amountFen",
+          "reason"
+        ],
+        "type": "object",
+        "properties": {
+          "reservationId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "evidence": {
+            "type": "string",
+            "maxLength": 2000
+          },
+          "amountFen": {
+            "minimum": 1,
+            "format": "int64",
+            "type": "integer"
+          },
+          "previousApplicationId": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "format": "int64"
+          },
+          "reason": {
+            "maxLength": 500,
+            "minLength": 1,
+            "type": "string"
+          }
+        }
+      },
+      "RefundApplicationStatus": {
+        "enum": [
+          "PENDING",
+          "APPROVED",
+          "REJECTED",
+          "COMPLETED",
+          "PARTIAL_FAILED"
+        ],
+        "type": "string"
+      },
+      "AccountPermissionsInput": {
+        "required": [
+          "version",
+          "permissions"
+        ],
+        "type": "object",
+        "properties": {
+          "version": {
+            "type": "integer"
+          },
+          "permissions": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "REFUND_READ",
+                "REFUND_APPROVE",
+                "FUNDS_RECOVER",
+                "SETTLEMENT_EXECUTE"
+              ],
+              "type": "string"
+            }
+          }
+        }
+      },
+      "RefundApplicationView": {
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/RefundApplicationStatus"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "evidenceText": {
+            "type": "string"
+          },
+          "amountFen": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "id": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "decisionBy": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reservationId": {
+            "type": "string"
+          },
+          "previousApplicationId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "decisionNote": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "reservationId",
+          "userId",
+          "amountFen",
+          "reason",
+          "status"
+        ],
+        "type": "object"
+      },
+      "RefundMappingPage": {
+        "type": "object",
+        "properties": {
+          "hasMore": {
+            "type": "boolean"
+          },
+          "items": {
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "status": {
+                  "enum": [
+                    "PASS",
+                    "REVIEW"
+                  ],
+                  "type": "string"
+                },
+                "reservationId": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "reservationId",
+                "status"
+              ]
+            },
+            "type": "array"
+          },
+          "next": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "required": [
+          "items",
+          "next",
+          "hasMore"
+        ]
       }
     }
   }

@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-30T04:33:29.8797759Z",
+  "realAiAccepted": false,
+  "status": "PASS",
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "Late payment after parking restart refunds without reviving reservation",
+      "reservationId": "362891902296233"
+    },
+    {
+      "name": "Identity outage fails closed; existing session works after recovery",
+      "status": "PASS"
+    }
+  ]
+}

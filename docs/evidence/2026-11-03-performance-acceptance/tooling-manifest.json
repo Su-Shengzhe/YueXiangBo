@@ -1,0 +1,38 @@
+[
+  {
+    "sha256": "bb8bdf230a6d10065e6d23094f95c165ffe4be63d913f45772d38df18beb171b",
+    "path": "scripts/VerifyParkingConcurrency.java"
+  },
+  {
+    "sha256": "6fed8b44e725d12612957d0460a3aca9413aca4e49151568626ec47b3d783f8c",
+    "path": "scripts/Test-ParkingConcurrency.ps1"
+  },
+  {
+    "sha256": "0b5554bcf74301cf82434666e578f949ae88f4e941a735ad0c0c46d80fe627f2",
+    "path": "scripts/Test-PerformanceComparison.ps1"
+  },
+  {
+    "sha256": "756cbf689bc55b5deb3bff96dba885d64fa4ed2c23aa06355366c1f4d74fe40e",
+    "path": "scripts/Assert-PerformanceStability.ps1"
+  },
+  {
+    "sha256": "37349691047872cc84e134dc5ffdcbdf708e810cf2a2cc13fcbf78544b699176",
+    "path": "scripts/Summarize-PerformanceComparison.ps1"
+  },
+  {
+    "sha256": "16e242cc1a88b800f7ad7bb2163dc585e197705ea636940bd800373e62be60d4",
+    "path": "scripts/Enable-VerifiedParkingOptimization.ps1"
+  },
+  {
+    "sha256": "15d675b9008455da40b06cb158d8104c5a3e8696f813e3339bd003900c49b67e",
+    "path": "scripts/Start-IsolatedPerformanceMySql.ps1"
+  },
+  {
+    "sha256": "8915b59918bcf5142c5024c0e4cc0727b61844dce70bd2159381ba3b91a1d611",
+    "path": "scripts/Stop-IsolatedPerformanceMySql.ps1"
+  },
+  {
+    "sha256": "97ea0e4b34be4cfdf7f600e12c01f9c057e3d8af23e3c4ed35952a5550cbffa5",
+    "path": "scripts/Start-Business.ps1"
+  }
+]

@@ -5,6 +5,11 @@ $root=Split-Path $PSScriptRoot -Parent
 . (Join-Path $PSScriptRoot 'Use-Toolchain.ps1')
 . (Join-Path $PSScriptRoot 'Business-Paths.ps1')
 $config=Resolve-BusinessPaths (Read-LocalConfig (Join-Path $root 'deploy/.env.business')) $root
+$sharedCommunityLock=$false
+if($config.ContainsKey('PARKING_COMMUNITY_SHARED_LOCK')){
+    if($config.PARKING_COMMUNITY_SHARED_LOCK -notin @('true','false')){throw 'PARKING_COMMUNITY_SHARED_LOCK must be true or false'}
+    $sharedCommunityLock=$config.PARKING_COMMUNITY_SHARED_LOCK -eq 'true'
+}
 foreach($entry in $config.GetEnumerator()){[Environment]::SetEnvironmentVariable($entry.Key,$entry.Value,'Process')}
 # This launcher explicitly opts into local demo data and clock controls.
 $env:BUSINESS_DEMO='true'
@@ -34,6 +39,7 @@ try {
         $record=$records | Where-Object { $_.module -eq $module.name -and (Test-OwnedProcess $_) } | Select-Object -First 1
         if ($record) {
             if ($record.jarSha256 -ne $module.jarSha256) { throw "$($module.name) runs a different/unrecorded JAR. Stop-Business.ps1 before restarting." }
+            if($module.name -eq 'parking-service' -and [bool]$record.sharedCommunityLock -ne $sharedCommunityLock){throw 'Parking lock configuration changed. Stop-Business.ps1 before restarting.'}
             Wait-HttpReady "http://127.0.0.1:$($module.port)/actuator/health" -TimeoutSeconds 5 -ProcessId $record.pid
             $run.reused+=$module.name
             $module.reuse=$true
@@ -52,18 +58,25 @@ try {
         if ($module.reuse) { continue }
         $runtimeJar=Join-Path $runDir "$($module.name).jar"
         Copy-Item -LiteralPath $module.jar -Destination $runtimeJar
+        $javaArguments=@('-Xms64m','-Xmx384m')
+        if($module.name -eq 'parking-service'){$javaArguments+="-Dparking.community-shared-lock=$($sharedCommunityLock.ToString().ToLowerInvariant())"}
+        $javaArguments+=@('-jar',"`"$runtimeJar`"",'--spring.profiles.active=local,business')
         $app=Start-Process -FilePath (Join-Path $env:JAVA_HOME 'bin/java.exe') `
-            -ArgumentList @('-Xms64m','-Xmx384m','-jar',"`"$runtimeJar`"",'--spring.profiles.active=local,business') `
+            -ArgumentList $javaArguments `
             -WorkingDirectory $root -WindowStyle Hidden -PassThru `
             -RedirectStandardOutput (Join-Path $runDir "$($module.name).stdout.log") `
             -RedirectStandardError (Join-Path $runDir "$($module.name).stderr.log")
         $record=@{module=$module.name;pid=$app.Id;startedAt=$app.StartTime.ToUniversalTime().ToString('o');jarSha256=$module.jarSha256;runId=$runId}
+        if($module.name -eq 'parking-service'){$record.sharedCommunityLock=$sharedCommunityLock}
         $newProcesses+=$record
         $run.created+=$record
         Write-AtomicJson $stateFile @($existing+$newProcesses)
         Wait-HttpReady "http://127.0.0.1:$($module.port)/actuator/health" -TimeoutSeconds $ReadyTimeoutSeconds -ProcessId $app.Id
     }
     Wait-HttpReady "http://127.0.0.1:9090/api/v1/communities" -TimeoutSeconds $ReadyTimeoutSeconds
+    # Gateway discovery can learn parking before trade. A trade-service 401 proves
+    # the protected route is reachable without creating a session or business data.
+    Wait-HttpReady "http://127.0.0.1:9090/api/v1/bills/-1" -ExpectedStatus 401 -TimeoutSeconds $ReadyTimeoutSeconds
     $run.status='PASS'
     Write-Host "Applications and gateway route ready. Reused: $($run.reused.Count). Logs: $runDir"
 } catch {

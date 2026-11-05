@@ -1,0 +1,166 @@
+[
+  {
+    "sha256": "6361e3873a85794c1726373c593c4b3fcdf215a8cb2d8f93d11f12bb34c8b4c8",
+    "file": "acceptance.json"
+  },
+  {
+    "sha256": "a1796e5f054c0d3ec359c84d9bb34dcdfde1c7d22a77274caa1286172e716823",
+    "file": "adoption-criteria.json"
+  },
+  {
+    "sha256": "99cebb8d4c0b8818d2a197c64d293fbc53189642a9868003bc197e0f7d7bf76d",
+    "file": "adoption-decision.json"
+  },
+  {
+    "sha256": "8ef08e72fac655d869fcaa47102bb5d50a060fcba93f11f4044545d019bf37ba",
+    "file": "adoption-negative-test.json"
+  },
+  {
+    "sha256": "79e98e125d55a1205c1337ffc6892bc19a7b06d716ac5cee57731b0d98fd7e49",
+    "file": "backend-tests.json"
+  },
+  {
+    "sha256": "f98fd39edcaea3e645afc1459ec9dd42cc02dd0f146b0b28b663195725ce9f3e",
+    "file": "browser-summary.json"
+  },
+  {
+    "sha256": "93a78b2f49e9f8a03304940e72bfb184212fd8d1dc8542384705327faa85c204",
+    "file": "build.json"
+  },
+  {
+    "sha256": "1d222c1d9d64bfd41857140124ce28eb76560f79db9d5636fcae9de8d6e67ec2",
+    "file": "enabled-api-checks.json"
+  },
+  {
+    "sha256": "238db6cd2c979c222fccba74b88c17ad7cdd97f8e8b02e76958bee56e1ea5c74",
+    "file": "enabled-browser.json"
+  },
+  {
+    "sha256": "b3f408cd76c804dc3fee2556c5b709bd37e0b95bcc02ad2617ab904ed7c5c2c4",
+    "file": "enabled-history-mapping.json"
+  },
+  {
+    "sha256": "0da5e914b6ec74ecfe4367f2464dd2e6756f46a6f51a34c0e481fb7341295ff8",
+    "file": "enabled-numeric-contract.json"
+  },
+  {
+    "sha256": "2c818ab6cc8151b1126785e255ba3dd6c47b1a386c116c241c91d0435ea734cb",
+    "file": "enabled-parking-concurrency.json"
+  },
+  {
+    "sha256": "f703d593bbc60865c23b642b4d7b40414937cb94017559284d3e4f9f15204069",
+    "file": "enabled-recovery.json"
+  },
+  {
+    "sha256": "8aed39c4df78edb244477fbfc3c26f95d21b0386d480d91f163a91cf4d67fb72",
+    "file": "enabled-refund-concurrency.json"
+  },
+  {
+    "sha256": "b4175d2c59cb6ebe65446cf85b49fe526f37c6b591617dc4740ae5c04b2b79c2",
+    "file": "enabled-regression.json"
+  },
+  {
+    "sha256": "44070983f064f6dcab18c3697c78045e1060365b3e0f5af6cb7d9bf23ba9bc99",
+    "file": "enabled-response-loss.json"
+  },
+  {
+    "sha256": "419e8ec6e4dff99960320bf9a5b5e3eb50a418a0e9b6e6afa9237e0b97f35998",
+    "file": "final-health.json"
+  },
+  {
+    "sha256": "39d697a3cb2a284635616f8554ac4da586aa20f00833bb9d80894e03cde5a204",
+    "file": "final-source-match.json"
+  },
+  {
+    "sha256": "d8fd173ba6706a41f37d52d505894c470b0e442ed39cc7227621c9967ef92e62",
+    "file": "history-mapping.json"
+  },
+  {
+    "sha256": "0d0e47fa9e552d17aabb1f107c147cb569c05f7786372f9ff95777a6be137645",
+    "file": "host-samples.jsonl"
+  },
+  {
+    "sha256": "e81baea779e610f248e6638a12a05ef97af3578664b8eec008e8338cc31b5dc7",
+    "file": "host-summary.json"
+  },
+  {
+    "sha256": "82aba5efd2162b93f1b24a6b3eeab80ed4fa5a2fa0dcf657130b320a89fff88c",
+    "file": "isolated-cleanup.json"
+  },
+  {
+    "sha256": "aae643d2e02bb292ef465b13813744842a044d813936cf488112bb4a10c3c542",
+    "file": "isolated-environment.json"
+  },
+  {
+    "sha256": "667eae6b475f973dab3e45a41689217897846e84575e6eb489ee830745193fca",
+    "file": "migrations.json"
+  },
+  {
+    "sha256": "a796d200bdd2326e39f21a803b77294c0db764cd3a7428640dbb00d187d078f4",
+    "file": "mysql-refund-concurrency.json"
+  },
+  {
+    "sha256": "64c16cd4793c5e593a91e44d425ed6240194d1d56ebc4d64db1174e6046f52c4",
+    "file": "numeric-contract.json"
+  },
+  {
+    "sha256": "11850dbf210de232d889967b5bcb1e934e989710551d6c75c85150b15ebd2ae1",
+    "file": "parking-20261103135450.json"
+  },
+  {
+    "sha256": "68879e8a9ff8547cf03258e4d7dd11661b60e5369f842cc07ca32042ea9957b3",
+    "file": "parking-20261103135516.json"
+  },
+  {
+    "sha256": "db89d25ff4d8be6a11a78fc0e58d9f4dd3e930f9dc57c9ccbcacde24c15bd8e3",
+    "file": "parking-20261103135542.json"
+  },
+  {
+    "sha256": "0de8d2ef1ca7d0806364f98afec2bc75a31852e62ec9bbf5aae2175945740d42",
+    "file": "parking-20261103140401.json"
+  },
+  {
+    "sha256": "af4ef7052fb2df3716317153af56f550501f0cc478c17ed0470586d7ae570f8c",
+    "file": "parking-20261103141219.json"
+  },
+  {
+    "sha256": "39f6269e3fd315972c4ae56b4ca9b90958eca85fc2efbbeab545f7f96751e218",
+    "file": "parking-20261103142037.json"
+  },
+  {
+    "sha256": "2a4f04a9a9bad500545a967010a19f0d77717e48c0203ef1f161483eaa0b8d58",
+    "file": "performance-comparison.json"
+  },
+  {
+    "sha256": "2ab33ae3619648913d9533718664a8a8e288765c6e0f6a0f5c516cc8caeb698b",
+    "file": "performance-gain-review.json"
+  },
+  {
+    "sha256": "aeb9d9ca4308984e0920502186622b72b5d10211040c00c2fafaf526979832af",
+    "file": "protocol-isolated-ssd.json"
+  },
+  {
+    "sha256": "c71b2926357c7088573ce3d4c401a38bbbbac965a283194bb5000ea154e834b5",
+    "file": "protocol.json"
+  },
+  {
+    "sha256": "af76697e054c5cfb84d7d1b6561d471a859838a0ba475d7073626cabdbfd699f",
+    "file": "recovery.json"
+  },
+  {
+    "sha256": "300d92b407f9081842bb4dcde321f6cfd517f2228aa2e720f531b99ce6e272c9",
+    "file": "response-loss.json"
+  },
+  {
+    "sha256": "cb888c81f50a7b5252db55a847f58c6845062611084233deec3dfe149d8d0d2e",
+    "file": "shared-disk-aborted.json"
+  },
+  {
+    "sha256": "e665a8e25a11d8d99d3a352cfebc394a688a1922bfcf8515384b4de95a211d38",
+    "file": "shared-disk-host-samples.jsonl"
+  },
+  {
+    "sha256": "b44c29ca3f6bd92391793294b3634dd88287be74b8dfa9f1cb33cc0d22a32fe3",
+    "file": "tooling-manifest.json"
+  }
+]

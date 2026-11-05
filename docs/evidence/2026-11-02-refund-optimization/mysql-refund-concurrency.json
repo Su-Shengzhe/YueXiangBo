@@ -1,0 +1,64 @@
+{
+  "runnerSha256": "dafd2973819f1f637831414bf60d6d461c83bf3a1ade7ec4f5150eea5101852c",
+  "sourceFingerprint": "b376232adfd7c1078d4f516ad17fea5286fcdd1e63409ac9db18fa63c0a82ece",
+  "environment": [],
+  "createdAt": "2026-11-02T07:53:06.0955155Z",
+  "status": "PASS",
+  "metrics": [],
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "PASS definitive-failure-no-ledger"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS unknown-five-queries-review-no-resubmit"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS claim-before-submit-crash-query-only"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS committed-receipt-lost-response-recovered-once"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS delayed-old-worker-fenced-after-lease-takeover"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS non-demo-fault-rejected"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS mysql-double-approval-five-rounds"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS mysql-retry-single-successor-five-rounds"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS mysql-history-worker-race-five-rounds"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS mysql-three-level-multiple-receipt-quota-five-rounds"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS mysql-approval-versus-retry-quota-five-rounds"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS mysql-twenty-invalid-mappings-do-not-starve-payment"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS mysql-incomplete-allocation-rollback-no-channel-call"
+    }
+  ],
+  "method": "Packaged PaymentWorker and refund application services, actual Spring transactions, isolated MySQL schema; no gateway HTTP",
+  "mode": "correctness"
+}

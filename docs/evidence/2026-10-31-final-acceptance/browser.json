@@ -1,0 +1,90 @@
+{
+  "sourceRun": "20261031-173148",
+  "stats": {
+    "startTime": "2026-10-31T09:31:49.758Z",
+    "duration": 116468.833,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "tests": [
+    {
+      "title": "account finance permissions revoke sessions and enforce cross-service access",
+      "file": "account-permissions.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4655
+        }
+      ]
+    },
+    {
+      "title": "login, query, reserve, pay, property entry/exit, overtime bill through UI",
+      "file": "flow.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 17443
+        }
+      ]
+    },
+    {
+      "title": "refund retry preserves its original key after reload and unknown response",
+      "file": "refund-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1778
+        }
+      ]
+    },
+    {
+      "title": "refund management is reachable by platform and denied to driver",
+      "file": "refund-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 1619
+        }
+      ]
+    },
+    {
+      "title": "platform creates community and grants roles and property using searchable UI",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 2540
+        }
+      ]
+    },
+    {
+      "title": "owner publication, actual property rejection and approval, window in yuan and foreign denial",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 4694
+        }
+      ]
+    },
+    {
+      "title": "new driver and approved resource complete 8 + 2 = 10 yuan through actual role UI",
+      "file": "week56-management.spec.ts",
+      "status": "expected",
+      "results": [
+        {
+          "status": "passed",
+          "duration": 79246
+        }
+      ]
+    }
+  ]
+}

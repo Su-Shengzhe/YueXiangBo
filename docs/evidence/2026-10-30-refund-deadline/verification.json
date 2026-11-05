@@ -1,0 +1,14 @@
+{
+  "backfilledCompletionTimes": 58,
+  "browserRun": "20261030-203518",
+  "browser": "PASS: rejection, new evidence resubmission, approval and refund",
+  "build": "20261030-203235-f988e535",
+  "backfillSource": "parking_db.reservation_order.exited_at",
+  "pending": [
+    "Historical refund receipt mapping",
+    "Unified automatic refunds",
+    "Remaining fault tests",
+    "Controlled performance comparison"
+  ],
+  "unresolvedCompletionTimes": 0
+}

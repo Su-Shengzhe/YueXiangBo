@@ -1,0 +1,54 @@
+{
+  "warmupSeconds": 10,
+  "status": "PASS",
+  "servicesRestored": true,
+  "runs": [
+    {
+      "sourceFingerprint": "16a6cf91ba1e4676e10d48352fdc0b48ccefa5c9f004d83a07343689ed8f630e",
+      "sharedCommunityLock": false,
+      "metrics": [
+        "METRIC communities=same concurrency=10 cycles=1540 cyclesPerSecond=51.33 p50Ms=187.44 p95Ms=232.08 p99Ms=300.05 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=3979 totalWaitMs=345676",
+        "METRIC communities=same concurrency=25 cycles=1575 cyclesPerSecond=52.50 p50Ms=463.14 p95Ms=563.83 p99Ms=653.59 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=4249 totalWaitMs=952444",
+        "METRIC communities=same concurrency=50 cycles=1542 cyclesPerSecond=51.40 p50Ms=949.49 p95Ms=1096.40 p99Ms=1152.31 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=4205 totalWaitMs=1954295",
+        "METRIC communities=different concurrency=10 cycles=4242 cyclesPerSecond=141.40 p50Ms=67.03 p95Ms=92.77 p99Ms=108.88 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=15797 totalWaitMs=245001",
+        "METRIC communities=different concurrency=25 cycles=4414 cyclesPerSecond=147.13 p50Ms=165.99 p95Ms=217.24 p99Ms=255.26 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=17333 totalWaitMs=842448",
+        "METRIC communities=different concurrency=50 cycles=1309 cyclesPerSecond=43.63 p50Ms=1137.42 p95Ms=1323.12 p99Ms=1432.95 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=7728 totalWaitMs=1899091"
+      ],
+      "directory": "20261031173448",
+      "environment": [
+        "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+      ]
+    },
+    {
+      "sourceFingerprint": "16a6cf91ba1e4676e10d48352fdc0b48ccefa5c9f004d83a07343689ed8f630e",
+      "sharedCommunityLock": true,
+      "metrics": [
+        "METRIC communities=same concurrency=10 cycles=1274 cyclesPerSecond=42.47 p50Ms=225.63 p95Ms=336.96 p99Ms=418.53 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=4655 totalWaitMs=287528",
+        "METRIC communities=same concurrency=25 cycles=1330 cyclesPerSecond=44.33 p50Ms=550.31 p95Ms=738.33 p99Ms=822.27 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=5178 totalWaitMs=891454",
+        "METRIC communities=same concurrency=50 cycles=1382 cyclesPerSecond=46.07 p50Ms=1084.22 p95Ms=1269.85 p99Ms=1391.38 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=5537 totalWaitMs=1903527",
+        "METRIC communities=different concurrency=10 cycles=1374 cyclesPerSecond=45.80 p50Ms=212.89 p95Ms=299.21 p99Ms=347.45 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=5094 totalWaitMs=288530",
+        "METRIC communities=different concurrency=25 cycles=1349 cyclesPerSecond=44.97 p50Ms=538.89 p95Ms=702.27 p99Ms=898.84 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=5338 totalWaitMs=893438",
+        "METRIC communities=different concurrency=50 cycles=1374 cyclesPerSecond=45.80 p50Ms=1092.02 p95Ms=1277.48 p99Ms=1381.90 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=5560 totalWaitMs=1913727"
+      ],
+      "directory": "20261031173901",
+      "environment": [
+        "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+      ]
+    }
+  ],
+  "measureSeconds": 30,
+  "optimizationDefault": "disabled",
+  "applicationStoppedDuringMeasurements": true
+}

@@ -1,0 +1,260 @@
+{
+  "warmupSeconds": 20,
+  "optimizationDefault": "disabled",
+  "status": "PASS",
+  "decisionReason": "Variation exceeds 15 percent; do not claim a stable baseline or enable the candidate.",
+  "stableBaseline": false,
+  "servicesRestored": true,
+  "candidateFirst": false,
+  "optimizationDecision": "KEEP_DISABLED",
+  "applicationStoppedDuringMeasurements": true,
+  "runs": [
+    {
+      "sharedCommunityLock": false,
+      "hostBefore": {
+        "diskWriteBytesPerSecond": 238044,
+        "diskQueue": 0,
+        "availableMemoryMB": 10828,
+        "diskWritesPerSecond": 15,
+        "cpuPercent": 25,
+        "at": "2026-11-02T07:56:02.4480569Z"
+      },
+      "metrics": [
+        "METRIC communities=same concurrency=10 cycles=3440 cyclesPerSecond=57.33 p50Ms=168.13 p95Ms=207.52 p99Ms=268.18 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=8879 totalWaitMs=691350",
+        "METRIC communities=same concurrency=25 cycles=3467 cyclesPerSecond=57.78 p50Ms=419.89 p95Ms=507.60 p99Ms=620.62 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=9277 totalWaitMs=1894816",
+        "METRIC communities=same concurrency=50 cycles=2720 cyclesPerSecond=45.33 p50Ms=889.61 p95Ms=2021.90 p99Ms=2223.30 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=7855 totalWaitMs=3937993",
+        "METRIC communities=different concurrency=10 cycles=4945 cyclesPerSecond=82.42 p50Ms=68.45 p95Ms=262.83 p99Ms=326.02 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=16486 totalWaitMs=550332",
+        "METRIC communities=different concurrency=25 cycles=2704 cyclesPerSecond=45.07 p50Ms=542.64 p95Ms=715.36 p99Ms=832.03 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=11418 totalWaitMs=1783464",
+        "METRIC communities=different concurrency=50 cycles=2681 cyclesPerSecond=44.68 p50Ms=1109.25 p95Ms=1275.13 p99Ms=1431.20 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=10771 totalWaitMs=3802054"
+      ],
+      "hostAfter": {
+        "diskWriteBytesPerSecond": 32184,
+        "diskQueue": 0,
+        "availableMemoryMB": 10275,
+        "diskWritesPerSecond": 3,
+        "cpuPercent": 1,
+        "at": "2026-11-02T08:04:22.7826358Z"
+      },
+      "sourceFingerprint": "b376232adfd7c1078d4f516ad17fea5286fcdd1e63409ac9db18fa63c0a82ece",
+      "directory": "20261102155603",
+      "pair": 0,
+      "environment": [
+        "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+      ],
+      "runnerSha256": "c083021b681e92d6b7bd0b948ff572f91d6aa0f85167404f9de6cc113b67fa6b"
+    },
+    {
+      "sharedCommunityLock": true,
+      "hostBefore": {
+        "diskWriteBytesPerSecond": 81177,
+        "diskQueue": 0,
+        "availableMemoryMB": 10268,
+        "diskWritesPerSecond": 3,
+        "cpuPercent": 8,
+        "at": "2026-11-02T08:04:23.6385995Z"
+      },
+      "metrics": [
+        "METRIC communities=same concurrency=10 cycles=2672 cyclesPerSecond=44.53 p50Ms=216.61 p95Ms=311.74 p99Ms=386.84 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=9765 totalWaitMs=578781",
+        "METRIC communities=same concurrency=25 cycles=2640 cyclesPerSecond=44.00 p50Ms=557.07 p95Ms=724.56 p99Ms=850.83 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=10454 totalWaitMs=1783085",
+        "METRIC communities=same concurrency=50 cycles=2710 cyclesPerSecond=45.17 p50Ms=1081.10 p95Ms=1393.45 p99Ms=1678.61 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=10834 totalWaitMs=3793970",
+        "METRIC communities=different concurrency=10 cycles=2760 cyclesPerSecond=46.00 p50Ms=211.03 p95Ms=293.89 p99Ms=345.93 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=10387 totalWaitMs=579169",
+        "METRIC communities=different concurrency=25 cycles=2732 cyclesPerSecond=45.53 p50Ms=542.18 p95Ms=672.85 p99Ms=821.34 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=10722 totalWaitMs=1782952",
+        "METRIC communities=different concurrency=50 cycles=2733 cyclesPerSecond=45.55 p50Ms=1080.58 p95Ms=1232.21 p99Ms=1374.96 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=10894 totalWaitMs=3798582"
+      ],
+      "hostAfter": {
+        "diskWriteBytesPerSecond": 1029521,
+        "diskQueue": 0,
+        "availableMemoryMB": 9997,
+        "diskWritesPerSecond": 127,
+        "cpuPercent": 8,
+        "at": "2026-11-02T08:12:49.9945536Z"
+      },
+      "sourceFingerprint": "b376232adfd7c1078d4f516ad17fea5286fcdd1e63409ac9db18fa63c0a82ece",
+      "directory": "20261102160424",
+      "pair": 0,
+      "environment": [
+        "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+      ],
+      "runnerSha256": "c083021b681e92d6b7bd0b948ff572f91d6aa0f85167404f9de6cc113b67fa6b"
+    },
+    {
+      "sharedCommunityLock": true,
+      "hostBefore": {
+        "diskWriteBytesPerSecond": 640022,
+        "diskQueue": 46,
+        "availableMemoryMB": 9849,
+        "diskWritesPerSecond": 62,
+        "cpuPercent": 5,
+        "at": "2026-11-02T08:12:50.8372998Z"
+      },
+      "metrics": [
+        "METRIC communities=same concurrency=10 cycles=2550 cyclesPerSecond=42.50 p50Ms=226.87 p95Ms=324.43 p99Ms=409.26 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=8706 totalWaitMs=579679",
+        "METRIC communities=same concurrency=25 cycles=2694 cyclesPerSecond=44.90 p50Ms=540.75 p95Ms=675.60 p99Ms=884.50 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=10181 totalWaitMs=1783708",
+        "METRIC communities=same concurrency=50 cycles=2692 cyclesPerSecond=44.87 p50Ms=1091.79 p95Ms=1362.62 p99Ms=1512.33 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=10779 totalWaitMs=3794946",
+        "METRIC communities=different concurrency=10 cycles=2422 cyclesPerSecond=40.37 p50Ms=225.56 p95Ms=410.50 p99Ms=517.13 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=9413 totalWaitMs=579001",
+        "METRIC communities=different concurrency=25 cycles=2707 cyclesPerSecond=45.12 p50Ms=538.44 p95Ms=709.49 p99Ms=857.51 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=10616 totalWaitMs=1782507",
+        "METRIC communities=different concurrency=50 cycles=2581 cyclesPerSecond=43.02 p50Ms=1098.88 p95Ms=1460.97 p99Ms=2881.26 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=10519 totalWaitMs=3804362"
+      ],
+      "hostAfter": {
+        "diskWriteBytesPerSecond": 811265,
+        "diskQueue": 1,
+        "availableMemoryMB": 8680,
+        "diskWritesPerSecond": 39,
+        "cpuPercent": 4,
+        "at": "2026-11-02T08:21:17.0885435Z"
+      },
+      "sourceFingerprint": "b376232adfd7c1078d4f516ad17fea5286fcdd1e63409ac9db18fa63c0a82ece",
+      "directory": "20261102161251",
+      "pair": 1,
+      "environment": [
+        "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+      ],
+      "runnerSha256": "c083021b681e92d6b7bd0b948ff572f91d6aa0f85167404f9de6cc113b67fa6b"
+    },
+    {
+      "sharedCommunityLock": false,
+      "hostBefore": {
+        "diskWriteBytesPerSecond": 0,
+        "diskQueue": 0,
+        "availableMemoryMB": 8684,
+        "diskWritesPerSecond": 0,
+        "cpuPercent": 9,
+        "at": "2026-11-02T08:21:17.9626797Z"
+      },
+      "metrics": [
+        "METRIC communities=same concurrency=10 cycles=1552 cyclesPerSecond=25.87 p50Ms=376.72 p95Ms=455.34 p99Ms=486.85 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=3963 totalWaitMs=706224",
+        "METRIC communities=same concurrency=25 cycles=1564 cyclesPerSecond=26.07 p50Ms=941.83 p95Ms=1096.48 p99Ms=1160.77 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=4199 totalWaitMs=1920595",
+        "METRIC communities=same concurrency=50 cycles=1555 cyclesPerSecond=25.92 p50Ms=1885.99 p95Ms=2098.89 p99Ms=2415.29 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=4291 totalWaitMs=3947968",
+        "METRIC communities=different concurrency=10 cycles=2635 cyclesPerSecond=43.92 p50Ms=218.53 p95Ms=317.39 p99Ms=427.15 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=9948 totalWaitMs=578118",
+        "METRIC communities=different concurrency=25 cycles=2513 cyclesPerSecond=41.88 p50Ms=556.43 p95Ms=840.27 p99Ms=1673.44 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=9675 totalWaitMs=1784070",
+        "METRIC communities=different concurrency=50 cycles=2726 cyclesPerSecond=45.43 p50Ms=1088.61 p95Ms=1271.08 p99Ms=1461.94 errors={} warmErrors=0 active=0",
+        "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=10936 totalWaitMs=3800349"
+      ],
+      "hostAfter": {
+        "diskWriteBytesPerSecond": 16124,
+        "diskQueue": 0,
+        "availableMemoryMB": 8374,
+        "diskWritesPerSecond": 3,
+        "cpuPercent": 6,
+        "at": "2026-11-02T08:29:45.7285939Z"
+      },
+      "sourceFingerprint": "b376232adfd7c1078d4f516ad17fea5286fcdd1e63409ac9db18fa63c0a82ece",
+      "directory": "20261102162119",
+      "pair": 1,
+      "environment": [
+        "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+      ],
+      "runnerSha256": "c083021b681e92d6b7bd0b948ff572f91d6aa0f85167404f9de6cc113b67fa6b"
+    }
+  ],
+  "measureSeconds": 60,
+  "stability": [
+    {
+      "stable": false,
+      "group": "False/different/10",
+      "meanCyclesPerSecond": 63.17,
+      "coefficientOfVariation": 0.30473325945860374,
+      "samples": 2
+    },
+    {
+      "stable": true,
+      "group": "False/different/25",
+      "meanCyclesPerSecond": 43.475,
+      "coefficientOfVariation": 0.036687751581368576,
+      "samples": 2
+    },
+    {
+      "stable": true,
+      "group": "False/different/50",
+      "meanCyclesPerSecond": 45.055,
+      "coefficientOfVariation": 0.008323160581511486,
+      "samples": 2
+    },
+    {
+      "stable": false,
+      "group": "False/same/10",
+      "meanCyclesPerSecond": 41.6,
+      "coefficientOfVariation": 0.37812499999999993,
+      "samples": 2
+    },
+    {
+      "stable": false,
+      "group": "False/same/25",
+      "meanCyclesPerSecond": 41.925,
+      "coefficientOfVariation": 0.378175313059034,
+      "samples": 2
+    },
+    {
+      "stable": false,
+      "group": "False/same/50",
+      "meanCyclesPerSecond": 35.625,
+      "coefficientOfVariation": 0.2724210526315789,
+      "samples": 2
+    },
+    {
+      "stable": true,
+      "group": "True/different/10",
+      "meanCyclesPerSecond": 43.185,
+      "coefficientOfVariation": 0.06518467060321874,
+      "samples": 2
+    },
+    {
+      "stable": true,
+      "group": "True/different/25",
+      "meanCyclesPerSecond": 45.325,
+      "coefficientOfVariation": 0.004522890237175992,
+      "samples": 2
+    },
+    {
+      "stable": true,
+      "group": "True/different/50",
+      "meanCyclesPerSecond": 44.285,
+      "coefficientOfVariation": 0.02856497685446533,
+      "samples": 2
+    },
+    {
+      "stable": true,
+      "group": "True/same/10",
+      "meanCyclesPerSecond": 43.515,
+      "coefficientOfVariation": 0.023325290129840297,
+      "samples": 2
+    },
+    {
+      "stable": true,
+      "group": "True/same/25",
+      "meanCyclesPerSecond": 44.45,
+      "coefficientOfVariation": 0.010123734533183335,
+      "samples": 2
+    },
+    {
+      "stable": true,
+      "group": "True/same/50",
+      "meanCyclesPerSecond": 45.019999999999996,
+      "coefficientOfVariation": 0.0033318525099956054,
+      "samples": 2
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "measureSeconds": 60,
+  "warmupSeconds": 20,
+  "order": [
+    "baseline",
+    "candidate",
+    "candidate",
+    "baseline"
+  ],
+  "changes": [
+    "Truncate disposable workload tables before each scenario to remove DELETE purge backlog",
+    "Fixed JVM heap 256 to 512 MB",
+    "Count only complete cycles within measurement window",
+    "Sample waiting lock tables every second and host load every five seconds"
+  ],
+  "priorEvidence": "docs/evidence/2026-11-02-refund-optimization/performance-acceptance.json",
+  "communities": [
+    "same",
+    "different"
+  ],
+  "acceptance": "All 12 variant/scenario groups must have two samples and CV <= 0.15. Zero application errors, zero active orders, atomic outbox. No automatic enablement.",
+  "concurrency": [
+    10,
+    25,
+    50
+  ],
+  "registeredAt": "2026-11-03T05:44:57.7255021Z",
+  "scope": "Real MySQL, packaged controller and Spring transactions; excludes HTTP and gateway; persistent production-equivalent durability settings",
+  "cvThreshold": 0.15
+}

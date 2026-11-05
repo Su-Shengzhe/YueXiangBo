@@ -1,0 +1,21 @@
+{
+  "status": "PASS",
+  "sourceFingerprint": "1c4e786d2ab9e61c37556a71b744b064276fe86fe749d99157fb4b6816295069",
+  "checks": [
+    {
+      "expected": 422,
+      "name": "fractional-fen-rejected",
+      "actual": 422
+    },
+    {
+      "expected": 422,
+      "name": "fractional-id-rejected",
+      "actual": 422
+    },
+    {
+      "expected": 404,
+      "name": "integer-request-reaches-order-validation",
+      "actual": 404
+    }
+  ]
+}

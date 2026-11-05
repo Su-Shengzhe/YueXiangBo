@@ -1,0 +1,54 @@
+{
+  "sharedCommunityLock": true,
+  "mode": "load",
+  "metrics": [
+    "METRIC communities=same concurrency=10 cycles=2550 cyclesPerSecond=42.50 p50Ms=226.87 p95Ms=324.43 p99Ms=409.26 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=8706 totalWaitMs=579679",
+    "METRIC communities=same concurrency=25 cycles=2694 cyclesPerSecond=44.90 p50Ms=540.75 p95Ms=675.60 p99Ms=884.50 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=10181 totalWaitMs=1783708",
+    "METRIC communities=same concurrency=50 cycles=2692 cyclesPerSecond=44.87 p50Ms=1091.79 p95Ms=1362.62 p99Ms=1512.33 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=10779 totalWaitMs=3794946",
+    "METRIC communities=different concurrency=10 cycles=2422 cyclesPerSecond=40.37 p50Ms=225.56 p95Ms=410.50 p99Ms=517.13 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=9413 totalWaitMs=579001",
+    "METRIC communities=different concurrency=25 cycles=2707 cyclesPerSecond=45.12 p50Ms=538.44 p95Ms=709.49 p99Ms=857.51 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=10616 totalWaitMs=1782507",
+    "METRIC communities=different concurrency=50 cycles=2581 cyclesPerSecond=43.02 p50Ms=1098.88 p95Ms=1460.97 p99Ms=2881.26 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=10519 totalWaitMs=3804362"
+  ],
+  "sourceFingerprint": "b376232adfd7c1078d4f516ad17fea5286fcdd1e63409ac9db18fa63c0a82ece",
+  "createdAt": "2026-11-02T08:21:14.8241404Z",
+  "method": "Packaged BusinessParking controller, actual Spring transactions, isolated MySQL schema; no gateway HTTP",
+  "environment": [
+    "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+  ],
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "PASS load communities=same concurrency=10 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=same concurrency=25 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=same concurrency=50 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=different concurrency=10 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=different concurrency=25 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=different concurrency=50 no-errors no-active-orders outbox-atomic"
+    }
+  ],
+  "status": "PASS",
+  "warmupSeconds": 20,
+  "measureSeconds": 60,
+  "runnerSha256": "c083021b681e92d6b7bd0b948ff572f91d6aa0f85167404f9de6cc113b67fa6b"
+}

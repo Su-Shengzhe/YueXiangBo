@@ -1,0 +1,69 @@
+{
+  "sharedCommunityLock": false,
+  "mode": "correctness",
+  "metrics": [],
+  "sourceFingerprint": "b376232adfd7c1078d4f516ad17fea5286fcdd1e63409ac9db18fa63c0a82ece",
+  "createdAt": "2026-11-02T07:55:35.8053557Z",
+  "method": "Packaged BusinessParking controller, actual Spring transactions, isolated MySQL schema; no gateway HTTP",
+  "environment": [
+    "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100"
+  ],
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "PASS contest round=1 requests=100 success=1 RESERVATION_CONFLICT=99 orders=1 outbox=1 guards=1"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS contest round=2 requests=100 success=1 RESERVATION_CONFLICT=99 orders=1 outbox=1 guards=1"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS contest round=3 requests=100 success=1 RESERVATION_CONFLICT=99 orders=1 outbox=1 guards=1"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=same-key rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=different-params rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=same-vehicle rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=window-disable rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=payment-cancel rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=payment-expiry rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=entry-expiry rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=entry-unavailable rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=duplicate-entry rounds=10 state-and-side-effects-verified"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS race=duplicate-exit rounds=10 state-and-side-effects-verified"
+    }
+  ],
+  "status": "PASS",
+  "warmupSeconds": 30,
+  "measureSeconds": 120,
+  "runnerSha256": "c083021b681e92d6b7bd0b948ff572f91d6aa0f85167404f9de6cc113b67fa6b"
+}

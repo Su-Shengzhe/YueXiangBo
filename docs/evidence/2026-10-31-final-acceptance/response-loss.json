@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "checks": [
+    {
+      "count": 8,
+      "name": "lost responses are durably recorded"
+    },
+    {
+      "count": 8,
+      "name": "each lost response recovered by query and posted once"
+    },
+    {
+      "count": 0,
+      "name": "duplicate ledger entries"
+    }
+  ],
+  "scenario": "durable-success-with-lost-submit-response",
+  "normalConfigurationRestored": true
+}

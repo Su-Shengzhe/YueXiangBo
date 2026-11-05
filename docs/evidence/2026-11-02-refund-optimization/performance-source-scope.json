@@ -1,0 +1,198 @@
+{
+  "sourceFingerprint": "b376232adfd7c1078d4f516ad17fea5286fcdd1e63409ac9db18fa63c0a82ece",
+  "build": "20261102-104510-39d5499a",
+  "files": [
+    {
+      "sha256": "cd159a0efff58050add5bff079f2a9ca84b2700e41fadf819a577911a2622092",
+      "path": "backend/foundation/hs_err_pid22744.log"
+    },
+    {
+      "sha256": "510eac396c6630ae39eceac234862242cb234aca91724f816f46ae984f5f2a2b",
+      "path": "backend/foundation/hs_err_pid29300.log"
+    },
+    {
+      "sha256": "eb6174ad0894700f741d9a41a02de92f8a5890c802b8aaa2aebc1959e4e6b516",
+      "path": "backend/foundation/hs_err_pid35368.log"
+    },
+    {
+      "sha256": "44f7985b7b52db7db822a3809b4a16cc7a89ea1694d20a95185be1233b28fb2c",
+      "path": "backend/foundation/hs_err_pid6688.log"
+    },
+    {
+      "sha256": "f8a628f29b891c9ff94cf317bfa949adf944f7147b9404e3642f8b11aabf273f",
+      "path": "backend/foundation/pom.xml"
+    },
+    {
+      "sha256": "14d5a97970b3e795851b52690d8645bfa2afc316da09f270865fb5c5a55a83b1",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Actor.java"
+    },
+    {
+      "sha256": "2d691da3813c81cdcbb9aadeefdc1fb6ee7bf77022137bf50f964c4760d10895",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/BusinessClock.java"
+    },
+    {
+      "sha256": "98226da2750ad6213af89cb9c9c325dfe5ada931f9df0ea8fa71816f3b83100a",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/BusinessErrors.java"
+    },
+    {
+      "sha256": "8c13e273fc08c653b9d3ae54046587e8967704f08468ea9d303cf3320baa29aa",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/BusinessWeb.java"
+    },
+    {
+      "sha256": "cd0858a5c2a58836c06cd270c66edf8984f15af0a69a11eefad39eaa67713c22",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Data.java"
+    },
+    {
+      "sha256": "74a8f0e9c7a5b12db5c5e1e09083082d0d1d7c425f4fc024f20f12488b0406a6",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Events.java"
+    },
+    {
+      "sha256": "b001f61dddea2845bf3f957f2376e0463281682065156b9d30d2e3bf17f22233",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/IdentityLookup.java"
+    },
+    {
+      "sha256": "23817127fb810a82cb954d670a80897fec82f72063fbe76defa66445ad9f9fbb",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Management.java"
+    },
+    {
+      "sha256": "af2c9d373441450dc8ff0c1e14915f6f0f58cabde6697972d98379879135f978",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/OutboxOperations.java"
+    },
+    {
+      "sha256": "b5198cffd511d579b848f40e2037e86677db3f66735b19a7d84a4a90d1678b3e",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Problem.java"
+    },
+    {
+      "sha256": "e698246d8525cff68c93340e7135cf1876c5121559cc9c114c96808a5c5b605f",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Requests.java"
+    },
+    {
+      "sha256": "7e7a3848a6303d591e48c92761336dcf28fe9a797afcc63ceb837c65858bc6c2",
+      "path": "backend/foundation/src/main/java/cn/community/foundation/Tokens.java"
+    },
+    {
+      "sha256": "64c00ee411b37221e33bcb43214c144094c6e7d55545172fa3f3e6a0e38495ea",
+      "path": "backend/foundation/src/test/java/cn/community/foundation/MoneyTest.java"
+    },
+    {
+      "sha256": "611c9cb11934731a686e8e6c002fd4352d0b7ba49a58ccab4b0980c2d64941b1",
+      "path": "backend/foundation/src/test/java/cn/community/foundation/OutboxTest.java"
+    },
+    {
+      "sha256": "bfa1b8521481e875c02a31c9241486097d8bb419e4a5e0fc723703f778931fdd",
+      "path": "backend/parking-service/pom.xml"
+    },
+    {
+      "sha256": "c52c5d2bf7d659abaf1ce528c903af062b2feb1f505451e20638dc91c26ba7c6",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/AiPrototype.java"
+    },
+    {
+      "sha256": "e981b14078a5b31a81e18588330c7feb43e1afb918995bd6617c4fc971c20007",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/Application.java"
+    },
+    {
+      "sha256": "8867db86ba44f8bb020e20e64b51e74d411e0dcb6c3b0a42e473394b0c0fe6a0",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/BusinessListener.java"
+    },
+    {
+      "sha256": "b5489f0a99b8474b4a4b5ea08aa8190c684fefecb20d118b15a4b16fe912528b",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/BusinessParking.java"
+    },
+    {
+      "sha256": "9de567be7e7375a9191d529edce4c62b58dc54a40549ec5c9588805c63858d37",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/DemoWindows.java"
+    },
+    {
+      "sha256": "c6b5b763b96b1fed276e40f4e2c18421930a9f73dbd5238ee7e4c41c540e81ad",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/InternalProbeController.java"
+    },
+    {
+      "sha256": "d7157b0e9577c762716f73b9073e7b33ee48f32781de1809d2d31567e987b3d6",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ParkingRequests.java"
+    },
+    {
+      "sha256": "577231d5c8265a281cf790ff98a2f8f9e7a9a25fec79a6cca31cf617d8fbfe03",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ProbeController.java"
+    },
+    {
+      "sha256": "f34968ad1c9ff78c9db050f4b6c0ce5916b80262ff63f6d4dd8c946174388c97",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ProbeStore.java"
+    },
+    {
+      "sha256": "e24ff2750e34ecfc89ea9439f6bc42eb9d935a270263a4be6deffc51e0dac209",
+      "path": "backend/parking-service/src/main/java/cn/community/parkingservice/ResourceManagement.java"
+    },
+    {
+      "sha256": "24cc2e7f7e59f5834efbb8156a551ecbc74f4b75503e481fe1c52b3119c4f6b8",
+      "path": "backend/parking-service/src/main/resources/application-business.properties"
+    },
+    {
+      "sha256": "e1e343069090dd08fd3b612464aaf257fed2b65d675d921db8cc64927e1581ac",
+      "path": "backend/parking-service/src/main/resources/application-container.properties"
+    },
+    {
+      "sha256": "e7f5dbbd4dba0b49dc473cd94c36372496b6aea424f1fc65102bfbd30b306ad6",
+      "path": "backend/parking-service/src/main/resources/application-local.properties"
+    },
+    {
+      "sha256": "7af023467aa188b450f51bfb6d1d861da78f15a1e76a44d596be1606efbaf994",
+      "path": "backend/parking-service/src/main/resources/application-probe.properties"
+    },
+    {
+      "sha256": "8c627309c28904748003f926ec3823e7eeaddaea9cb27c71578e66f70fe66b3e",
+      "path": "backend/parking-service/src/main/resources/application.properties"
+    },
+    {
+      "sha256": "e80668510316ce69c00e2b2a711f19dbf44822ae84067ac3bcc1b188dd3146a7",
+      "path": "backend/parking-service/src/main/resources/db/business/V001__business_baseline.sql"
+    },
+    {
+      "sha256": "afe1b1fec36f9298affc78dcd2ce9cc0006804d4b482e03c1aef6623de6c0b1b",
+      "path": "backend/parking-service/src/main/resources/db/business/V002__entry_block_reason.sql"
+    },
+    {
+      "sha256": "255ba4e4c0e6fd38b6e50632e739b84c1df6bb7f660ee2f440f05ad1665be0fa",
+      "path": "backend/parking-service/src/main/resources/db/business/V003__reliability.sql"
+    },
+    {
+      "sha256": "510921f7ce66d4a431d7235c4b92fe30f0ea59f840241f16de8f8b28443adc76",
+      "path": "backend/parking-service/src/main/resources/db/business/V004__resource_management.sql"
+    },
+    {
+      "sha256": "41d9cd7b107f8268280db88ce2cd3fece01cad35758c3aa31d4a3dd5ffad8e2c",
+      "path": "backend/parking-service/src/main/resources/db/business/V005__reservation_recovery.sql"
+    },
+    {
+      "sha256": "03dbf5dd2327c0d85a727c53b178719ef9b36035737d555a4b89ad5cc6b0b3d9",
+      "path": "backend/parking-service/src/main/resources/db/business/V006__expiry_retry.sql"
+    },
+    {
+      "sha256": "cabbb4ca1543c792485aaf950d92a7678d70ae69847e7cbc886d3dfd527ca3f4",
+      "path": "backend/parking-service/src/main/resources/db/probe/V001__environment_probe.sql"
+    },
+    {
+      "sha256": "2eb17080ad7294a70eb7cb071ff3ea43b2c12c080f60921d22437943da855c76",
+      "path": "backend/parking-service/src/test/java/cn/community/parkingservice/DemoWindowsTest.java"
+    },
+    {
+      "sha256": "54ddbb4d4c78c703083209723812a3123f40874a69ee8785993fc2193959ac89",
+      "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ProbeProfileTest.java"
+    },
+    {
+      "sha256": "3a67e1431085fc89f6c26ad01fbb11f53d491bffaa6153639b419b7d5fcfc96a",
+      "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ProbeStoreTest.java"
+    },
+    {
+      "sha256": "d4e9f5b16d6ad38868e29593284ec69a29977a48071aa8f1a6baa1dce9a079b5",
+      "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ReservationRecoveryTest.java"
+    },
+    {
+      "sha256": "a2921558d0162c169a6157a8c0433ff3e27306a00347ed2e324e61d80bdb8f7e",
+      "path": "backend/parking-service/src/test/java/cn/community/parkingservice/ResourceManagementTest.java"
+    },
+    {
+      "sha256": "b434c2feaee64911076ba69b212212d431897abb8472c6738dcda3c1df563221",
+      "path": "pom.xml"
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "status": "PASS",
+      "name": "PASS load communities=same concurrency=10 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=same concurrency=25 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=same concurrency=50 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=different concurrency=10 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=different concurrency=25 no-errors no-active-orders outbox-atomic"
+    },
+    {
+      "status": "PASS",
+      "name": "PASS load communities=different concurrency=50 no-errors no-active-orders outbox-atomic"
+    }
+  ],
+  "sharedCommunityLock": true,
+  "createdAt": "2026-11-03T06:20:35.5619772Z",
+  "mode": "load",
+  "environment": [
+    "ENV mysql=8.4.11 java=21.0.12.1 isolation=READ_COMMITTED poolMax=100 port=23316",
+    "ENV durability={flushCommit=1, syncBinlog=1}"
+  ],
+  "sourceFingerprint": "1c4e786d2ab9e61c37556a71b744b064276fe86fe749d99157fb4b6816295069",
+  "method": "Packaged BusinessParking controller, actual Spring transactions, isolated MySQL schema; no gateway HTTP",
+  "measureSeconds": 60,
+  "runnerSha256": "bb8bdf230a6d10065e6d23094f95c165ffe4be63d913f45772d38df18beb171b",
+  "metrics": [
+    "METRIC communities=same concurrency=10 cycles=4878 cyclesPerSecond=81.30 p50Ms=95.49 p95Ms=232.47 p99Ms=355.34 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=same concurrency=10 scope=warmup-and-measurement waits=17514 totalWaitMs=531794",
+    "METRIC diagnostics communities=same concurrency=10 tenSecondCompletions=[724, 897, 857, 834, 831, 735] sampledWaitingLocks={share_window=295, business_sequence=238} samplingErrors=0",
+    "METRIC communities=same concurrency=25 cycles=4990 cyclesPerSecond=83.17 p50Ms=249.63 p95Ms=492.46 p99Ms=613.85 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=same concurrency=25 scope=warmup-and-measurement waits=19050 totalWaitMs=1728787",
+    "METRIC diagnostics communities=same concurrency=25 tenSecondCompletions=[824, 819, 855, 866, 829, 797] sampledWaitingLocks={share_window=916, business_sequence=800} samplingErrors=0",
+    "METRIC communities=same concurrency=50 cycles=4937 cyclesPerSecond=82.28 p50Ms=600.79 p95Ms=792.39 p99Ms=865.19 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=same concurrency=50 scope=warmup-and-measurement waits=19262 totalWaitMs=3747421",
+    "METRIC diagnostics communities=same concurrency=50 tenSecondCompletions=[828, 861, 814, 832, 802, 800] sampledWaitingLocks={share_window=1976, business_sequence=1784} samplingErrors=0",
+    "METRIC communities=different concurrency=10 cycles=5026 cyclesPerSecond=83.77 p50Ms=94.67 p95Ms=246.61 p99Ms=344.94 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=different concurrency=10 scope=warmup-and-measurement waits=18310 totalWaitMs=536166",
+    "METRIC diagnostics communities=different concurrency=10 tenSecondCompletions=[835, 870, 873, 829, 846, 773] sampledWaitingLocks={share_window=291, business_sequence=239} samplingErrors=0",
+    "METRIC communities=different concurrency=25 cycles=4838 cyclesPerSecond=80.63 p50Ms=264.60 p95Ms=486.09 p99Ms=571.67 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=different concurrency=25 scope=warmup-and-measurement waits=18605 totalWaitMs=1742812",
+    "METRIC diagnostics communities=different concurrency=25 tenSecondCompletions=[626, 819, 873, 847, 833, 840] sampledWaitingLocks={share_window=922, business_sequence=804} samplingErrors=0",
+    "METRIC communities=different concurrency=50 cycles=4717 cyclesPerSecond=78.62 p50Ms=625.88 p95Ms=880.33 p99Ms=1611.22 errors={} warmErrors=0 active=0",
+    "METRIC locks communities=different concurrency=50 scope=warmup-and-measurement waits=18327 totalWaitMs=3753048",
+    "METRIC diagnostics communities=different concurrency=50 tenSecondCompletions=[708, 856, 835, 705, 778, 835] sampledWaitingLocks={share_window=1955, business_sequence=1772} samplingErrors=0"
+  ],
+  "status": "PASS",
+  "warmupSeconds": 20
+}

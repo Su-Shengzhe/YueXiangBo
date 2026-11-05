@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-11-02T13:20:38.9573991Z",
+  "id": "20261102-212038-2f7957aa",
+  "status": "PASS",
+  "endedAt": "2026-11-02T13:21:46.4721037Z",
+  "artifacts": {
+    "trade-service": {
+      "path": "backend/trade-service/target/trade-service-0.1.0-SNAPSHOT.jar",
+      "sha256": "5e9c74ced46d6e315c2c063880344e054f56d8049ab91216eeb877e0a0f4d1f0"
+    },
+    "identity-service": {
+      "path": "backend/identity-service/target/identity-service-0.1.0-SNAPSHOT.jar",
+      "sha256": "c04d14e4e6d1e5f8c38116c985498a8697afdd8b51fe21e8e08992cd439b43d0"
+    },
+    "gateway": {
+      "path": "backend/gateway/target/gateway-0.1.0-SNAPSHOT.jar",
+      "sha256": "169b40f9b2d5220efc01fe3766fcf96ebe89344637a6b466ff82239e46583473"
+    },
+    "registry": {
+      "path": "backend/registry/target/registry-0.1.0-SNAPSHOT.jar",
+      "sha256": "cb446f49b80e5103d2b884542e3e898697123dad87f66098658c3a36936783b3"
+    },
+    "parking-service": {
+      "path": "backend/parking-service/target/parking-service-0.1.0-SNAPSHOT.jar",
+      "sha256": "195837dfa5a69f73dbaa2f125527098a2047b6207f4d09231e1957181ed6480d"
+    }
+  },
+  "sourceFingerprint": "01e38f9871b7b5ca647950d684f5747c635e7a092aeb9b787068019021dde0ad"
+}

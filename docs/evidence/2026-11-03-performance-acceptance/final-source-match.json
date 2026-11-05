@@ -1,0 +1,6 @@
+{
+  "note": "Performance and functional checks use the unchanged verified JARs; activation changes only local launcher configuration.",
+  "build": "20261102-214124-ad6aad15",
+  "sourceFingerprint": "1c4e786d2ab9e61c37556a71b744b064276fe86fe749d99157fb4b6816295069",
+  "status": "PASS"
+}

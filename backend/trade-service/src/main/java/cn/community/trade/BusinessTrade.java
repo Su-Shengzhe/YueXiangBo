@@ -11,8 +11,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.http.ResponseEntity;
 @RestController @Profile("business")
 public class BusinessTrade implements Events.Handler {
- private final JdbcTemplate db;private final TransactionTemplate tx;
- public BusinessTrade(JdbcTemplate db,PlatformTransactionManager manager){this.db=db;this.tx=new TransactionTemplate(manager);}
+ private final JdbcTemplate db;private final TransactionTemplate tx;private final RefundRecoveryService refundRecovery;
+ public BusinessTrade(JdbcTemplate db,PlatformTransactionManager manager){this.db=db;this.refundRecovery=new RefundRecoveryService(db,manager);this.tx=new TransactionTemplate(manager);this.tx.setIsolationLevel(org.springframework.transaction.TransactionDefinition.ISOLATION_READ_COMMITTED);}
  private Map<String,Object> one(String sql,Object... args){var rows=db.queryForList(sql,args);Problem.require(!rows.isEmpty(),404,"BILL_NOT_READY","账单准备中或记录不存在");return rows.getFirst();}
  private Map<String,Object> bill(long id){return one("SELECT * FROM trade_order WHERE reservation_id=?",id);}
  private void lock(long id){one("SELECT reservation_id FROM trade_order WHERE reservation_id=? FOR UPDATE",id);}
@@ -46,12 +46,41 @@ public class BusinessTrade implements Events.Handler {
  @GetMapping("/api/v1/payments/{id}") public Map<String,Object> attempt(@PathVariable long id,HttpServletRequest req){
   var p=one("SELECT * FROM payment_attempt WHERE id=?",id);own(p,Actor.of(req));return Data.row(p);
  }
+ @PostMapping("/api/v1/admin/refund-attempts/{id}/retry")
+ public ResponseEntity<RefundContracts.AttemptView> retryRefundHttp(@PathVariable long id,@RequestHeader("Idempotency-Key") String key,
+                                     @RequestBody RefundContracts.RetryRequest input,HttpServletRequest req){
+  return ResponseEntity.accepted().body(RefundContracts.AttemptView.from(refundRecovery.retry(id,key,input.values(),Actor.of(req))));
+ }
+ public ResponseEntity<?> retryRefund(long id,String key,Map<String,Object> input,HttpServletRequest req){
+  return ResponseEntity.accepted().body(refundRecovery.retry(id,key,input,Actor.of(req)));
+ }
+ @GetMapping("/api/v1/admin/refund-attempts")
+ public RefundContracts.AttemptPage refundsHttp(@RequestParam(defaultValue="1") int page,@RequestParam(defaultValue="20") int size,HttpServletRequest req){return RefundContracts.AttemptPage.from(refunds(page,size,req));}
+ public Map<String,Object> refunds(int page,int size,HttpServletRequest req){
+  Actor.of(req).permission("REFUND_READ");
+  return Management.page(db,"id,reservation_id,amount_fen,status,retry_of_id,created_at","FROM payment_attempt WHERE kind='REFUND'","id DESC",page,size);
+ }
+ @PostMapping("/api/v1/admin/refund-attempts/map-history")
+ public RefundContracts.MappingPage mapHistoryHttp(@RequestParam(defaultValue="0") long after,HttpServletRequest req){return RefundContracts.MappingPage.from(mapHistory(after,req));}
+ public Map<String,Object> mapHistory(long after,HttpServletRequest req){
+  Actor actor=Actor.of(req);actor.permission("FUNDS_RECOVER");
+  Problem.require(after>=0,422,"INVALID_ARGUMENT","游标无效");
+  var ids=db.queryForList("SELECT DISTINCT reservation_id FROM payment_attempt WHERE kind='REFUND' AND reservation_id>? ORDER BY reservation_id LIMIT 100",Long.class,after);
+  var results=new ArrayList<Map<String,Object>>();
+  for(long id:ids){
+   try{tx.executeWithoutResult(s->{lock(id);RefundLedger.mapHistory(db,id);});results.add(Map.of("reservationId",Long.toString(id),"status","PASS"));}
+   catch(Problem failure){results.add(Map.of("reservationId",Long.toString(id),"status","REVIEW","code",failure.code));}
+  }
+  return Map.of("items",results,"next",Long.toString(ids.isEmpty()?after:ids.getLast()),"hasMore",ids.size()==100);
+ }
  public void accept(String type,Map<String,Object> p){
   Problem.require(List.of("ReservationCreated","ReservationConfirmed","ReservationClosed","ParkingEntered","ParkingCompleted").contains(type),422,"EVENT_TYPE","Unsupported trade event");
   long id=Data.number(p,"id");db.update("INSERT IGNORE INTO trade_order(reservation_id,user_id,prepay_fen) VALUES(?,?,?)",id,Data.number(p,"userId"),Data.number(p,"prepayFen"));lock(id);var b=bill(id);
   long version=Data.number(p,"version");
   if(version>((Number)b.get("version")).longValue())db.update("UPDATE trade_order SET status=?,version=?,overtime_fen=?,bill_version=bill_version+1 WHERE reservation_id=?",Data.str(p,"status"),version,Data.number(p,"overtimeFen"),id);
   // Financial reconciliation is independent of projection version.
+  if("COMPLETED".equals(Data.str(p,"status"))&&p.get("exitedAt")!=null)
+   db.update("UPDATE trade_order SET completed_at=? WHERE reservation_id=? AND completed_at IS NULL AND status='COMPLETED'",Data.ts(Data.instant(p.get("exitedAt"))),id);
   refundIfClosed(id);
  }
  private void refundIfClosed(long id){TradeAccounting.refundIfClosed(db,id);}
