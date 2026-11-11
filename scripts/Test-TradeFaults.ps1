@@ -24,7 +24,7 @@ try {
  & java -cp "$directory/classes;$directory/lib/*" scripts/VerifyTradeFaults.java "w78_parking_$id" *> "$directory/run.log"
  if($LASTEXITCODE -ne 0){throw 'Trade MySQL fault test failed; inspect private run.log'}
  foreach($line in (Get-Content "$directory/run.log"|Where-Object {$_ -like 'PASS *'})){$report.checks+=@{status='PASS';name=$line}}
- $expected=13
+ $expected=19
  if($report.checks.Count -ne $expected){throw "Incomplete concurrency evidence: expected $expected checks"}
  $report.metrics=@(Get-Content "$directory/run.log"|Where-Object {$_ -like 'METRIC *'})
  $report.environment=@(Get-Content "$directory/run.log"|Where-Object {$_ -like 'ENV *'})

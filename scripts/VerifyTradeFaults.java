@@ -89,13 +89,35 @@ class VerifyTradeFaults {
   check(db.queryForObject("SELECT COUNT(*) FROM refund_application WHERE reservation_id=4000",Integer.class)==0,"Mapping transaction did not roll back");
   System.out.println("PASS mysql-incomplete-allocation-rollback-no-channel-call");
  }
+ static SettlementWorker settlementWorker(String outcome,long delay,boolean lost)throws Exception{
+  var worker=new SettlementWorker(db,manager);var field=SettlementWorker.class.getDeclaredField("channel");field.setAccessible(true);var channel=field.get(worker);var configure=channel.getClass().getDeclaredMethod("configure",boolean.class,String.class,long.class,boolean.class);configure.setAccessible(true);configure.invoke(channel,true,outcome,delay,lost);return worker;
+ }
+ static long settlement(long order){
+  seed(order);worker("SUCCESS",0,false).process();db.update("UPDATE trade_order SET owner_id=3,status='COMPLETED',completed_at=UTC_TIMESTAMP(3) WHERE reservation_id=?",order);
+  new Settlements(db,manager).execute(Map.of("reservationIds",List.of(order)),"settlement-"+order,actor("PLATFORM"));return db.queryForObject("SELECT id FROM settlement_attempt WHERE reservation_id=?",Long.class,order);
+ }
+ static void settlementDue(long id){db.update("UPDATE settlement_attempt SET next_retry_at='2000-01-01',lease_until=NULL WHERE id=?",id);}
+ static String settlementState(long id){return db.queryForObject("SELECT status FROM settlement_attempt WHERE id=?",String.class,id);}
+ static void settlementFaults()throws Exception{
+  long failed=settlement(5000);settlementWorker("FAILED",0,false).process();check(settlementState(failed).equals("FAILED")&&ledger(5000)==1,"Failed settlement posted");System.out.println("PASS settlement-definitive-failure-no-payout");
+  long unknown=settlement(5001);settlementWorker("UNKNOWN",0,false).process();for(int i=0;i<6;i++){settlementDue(unknown);settlementWorker("SUCCESS",0,false).process();}
+  check(settlementState(unknown).equals("REVIEW")&&ledger(5001)==1,"Unknown settlement posted");check(db.queryForObject("SELECT COUNT(*) FROM channel_call WHERE channel_no=? AND operation='SUBMIT'",Integer.class,"SETTLEMENT-"+unknown)==1,"Unknown settlement resubmitted");check(db.queryForObject("SELECT COUNT(*) FROM channel_call WHERE channel_no=? AND operation='QUERY'",Integer.class,"SETTLEMENT-"+unknown)==5,"Settlement query budget");System.out.println("PASS settlement-unknown-bounded-query-no-resubmit");
+  long crashed=settlement(5002);db.update("UPDATE settlement_attempt SET status='SUBMITTED',dispatch_count=1,lease_token='crashed',lease_until='2000-01-01' WHERE id=?",crashed);settlementWorker("SUCCESS",0,false).process();check(settlementState(crashed).equals("UNKNOWN")&&ledger(5002)==1,"Crash before submit created payout");check(db.queryForObject("SELECT COUNT(*) FROM channel_operation WHERE channel_no=?",Integer.class,"SETTLEMENT-"+crashed)==0,"Query created settlement");db.update("UPDATE settlement_attempt SET status='REVIEW' WHERE id=?",crashed);System.out.println("PASS settlement-crash-before-submit-query-only");
+  long lost=settlement(5003);settlementWorker("SUCCESS",0,true).process();check(settlementState(lost).equals("UNKNOWN"),"Lost response not unknown");settlementDue(lost);settlementWorker("SUCCESS",0,false).process();settlementWorker("SUCCESS",0,false).process();check(settlementState(lost).equals("SUCCESS")&&ledger(5003)==2,"Lost settlement double posted");System.out.println("PASS settlement-lost-response-posted-once");
+  long slow=settlement(5004);try(var pool=Executors.newSingleThreadExecutor()){
+   var old=pool.submit(()->{settlementWorker("SUCCESS",2500,false).process();return null;});long deadline=System.nanoTime()+TimeUnit.SECONDS.toNanos(10);
+   while(db.queryForObject("SELECT COUNT(*) FROM channel_operation WHERE channel_no=?",Integer.class,"SETTLEMENT-"+slow)==0){check(System.nanoTime()<deadline,"Settlement dispatch timeout");Thread.sleep(20);}
+   settlementDue(slow);settlementWorker("SUCCESS",0,false).process();old.get(10,TimeUnit.SECONDS);
+  }check(settlementState(slow).equals("SUCCESS")&&ledger(5004)==2,"Stale settlement worker posted twice");System.out.println("PASS settlement-expired-lease-fences-old-worker");
+  long duplicate=settlement(5005);race(()->{settlementWorker("SUCCESS",0,false).process();return null;},()->{settlementWorker("SUCCESS",0,false).process();return null;});check(settlementState(duplicate).equals("SUCCESS")&&ledger(5005)==2,"Concurrent settlement duplicate");check(db.queryForObject("SELECT COUNT(*) FROM channel_call WHERE channel_no=? AND operation='SUBMIT'",Integer.class,"SETTLEMENT-"+duplicate)==1,"Concurrent duplicate submit");System.out.println("PASS settlement-concurrent-workers-single-submit");
+ }
  public static void main(String[] args)throws Exception{
   String schema=args[0];check(schema.matches("w78_parking_[0-9]{14}"),"Unsafe schema");String server="jdbc:mysql://127.0.0.1:23306/",password=System.getenv("MYSQL_ROOT_PASSWORD");boolean created=false;
   try(var c=DriverManager.getConnection(server,"root",password);var sql=c.createStatement()){
    try{sql.executeUpdate("CREATE DATABASE "+schema);created=true;String url=server+schema+"?connectionTimeZone=UTC&forceConnectionTimeZoneToSession=true";
     Flyway.configure().dataSource(url,"root",password).locations("filesystem:backend/trade-service/src/main/resources/db/business").load().migrate();
     var config=new HikariConfig();config.setJdbcUrl(url);config.setUsername("root");config.setPassword(password);config.setMaximumPoolSize(10);config.setTransactionIsolation("TRANSACTION_READ_COMMITTED");
-    try(var ds=new HikariDataSource(config)){db=new JdbcTemplate(ds);manager=new DataSourceTransactionManager(ds);tests();refundConcurrency();mappingIsolation();}
+    try(var ds=new HikariDataSource(config)){db=new JdbcTemplate(ds);manager=new DataSourceTransactionManager(ds);tests();refundConcurrency();mappingIsolation();settlementFaults();}
    }finally{if(created){sql.executeUpdate("DROP DATABASE "+schema);System.out.println("CLEANUP isolated-schema-dropped");}}
   }
  }

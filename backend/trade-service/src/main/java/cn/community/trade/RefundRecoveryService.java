@@ -33,6 +33,7 @@ final class RefundRecoveryService {
    if(!successors.isEmpty())result=Data.row(successors.getFirst());
    else {
     var bill=bill(reservation);
+    Settlements.refundAllowed(bill);
     long amount=((Number)failed.get("amount_fen")).longValue();
     Object application=failed.get("application_id"),receipt=failed.get("receipt_attempt_id");
     if(application!=null){

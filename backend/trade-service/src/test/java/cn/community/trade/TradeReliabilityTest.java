@@ -153,6 +153,7 @@ class TradeReliabilityTest {
         try (var input=getClass().getResourceAsStream("/db/business/V006__refund_applications.sql"); var connection=java.util.Objects.requireNonNull(db.getDataSource()).getConnection()) { org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(connection,new org.springframework.core.io.ByteArrayResource(input.readAllBytes())); }
         try (var input=getClass().getResourceAsStream("/db/business/V007__refund_deadline_evidence.sql"); var connection=java.util.Objects.requireNonNull(db.getDataSource()).getConnection()) { org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(connection,new org.springframework.core.io.ByteArrayResource(input.readAllBytes())); }
         try (var input=getClass().getResourceAsStream("/db/business/V008__refund_receipt_allocations.sql"); var connection=java.util.Objects.requireNonNull(db.getDataSource()).getConnection()) { org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(connection,new org.springframework.core.io.ByteArrayResource(input.readAllBytes())); }
+        try (var input=getClass().getResourceAsStream("/db/business/V009__settlement_execution.sql"); var connection=java.util.Objects.requireNonNull(db.getDataSource()).getConnection()) { org.springframework.jdbc.datasource.init.ScriptUtils.executeSqlScript(connection,new org.springframework.core.io.ByteArrayResource(input.readAllBytes())); }
         api = new BusinessTrade(db, manager);
     }
 

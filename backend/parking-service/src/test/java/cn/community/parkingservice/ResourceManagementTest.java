@@ -36,6 +36,8 @@ class ResourceManagementTest {
   String[] alterations={"community ADD address VARCHAR(255) DEFAULT ''","community ADD enabled BOOLEAN DEFAULT TRUE","community ADD version INT DEFAULT 1","vehicle ADD enabled BOOLEAN DEFAULT TRUE","vehicle ADD version INT DEFAULT 1","parking_space ADD space_code VARCHAR(64)","parking_space ADD location_desc VARCHAR(255) DEFAULT ''","parking_space ADD space_type VARCHAR(20) DEFAULT 'STANDARD'","parking_space ADD proof_text VARCHAR(1000) DEFAULT ''","parking_space ADD review_status VARCHAR(20) DEFAULT 'APPROVED'","parking_space ADD review_comment VARCHAR(500) DEFAULT ''","parking_space ADD version INT DEFAULT 1","share_window ADD hourly_fen BIGINT DEFAULT 500","share_window ADD enabled BOOLEAN DEFAULT TRUE","share_window ADD version INT DEFAULT 1","reservation_order ADD window_id BIGINT","audit_log ADD detail_json TEXT"};
   for(String sql:alterations)db.execute("ALTER TABLE "+sql);
   new ResourceDatabasePopulator(new ClassPathResource("db/business/V005__reservation_recovery.sql")).execute(ds);
+  new ResourceDatabasePopulator(new ClassPathResource("db/business/V007__reservation_rule_snapshot.sql")).execute(ds);
+  new ResourceDatabasePopulator(new ClassPathResource("db/business/V008__reservation_owner_snapshot.sql")).execute(ds);
   // H2 does not accept MySQL's comma-separated ALTER ADD clauses. MySQL verifies the original migration separately.
   db.execute("ALTER TABLE reservation_order ADD expiry_retry_at DATETIME(3) NULL");
   db.execute("ALTER TABLE reservation_order ADD expiry_attempts INT NOT NULL DEFAULT 0");

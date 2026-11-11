@@ -49,6 +49,7 @@ final class PaymentPosting {
                 default -> throw new IllegalStateException("Unsupported payment kind");
             };
             db.update("UPDATE trade_order SET " + column + "=" + column + "+?,bill_version=bill_version+1 WHERE reservation_id=?", amount, reservation);
+            if(kind.equals("REFUND")) Settlements.refundPosted(db,reservation,id);
             if (!kind.equals("REFUND")) Events.add(db, "parking-service", "PaymentSucceeded", Map.of(
                     "reservationId", Long.toString(reservation), "paymentAttemptId", Long.toString(id), "amountFen", amount, "kind", kind));
             TradeAccounting.refundIfClosed(db, reservation);

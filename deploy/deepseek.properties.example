@@ -1,0 +1,3 @@
+# Copy to deploy/secrets/deepseek.properties and fill locally.
+# Never commit or paste the API key into chat.
+api-key=

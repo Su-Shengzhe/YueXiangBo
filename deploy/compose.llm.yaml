@@ -1,0 +1,17 @@
+name: community-parking-llm
+services:
+  gateway:
+    image: ${LLM_GATEWAY_IMAGE:?Run Initialize-LlmGateway.ps1 first}
+    restart: unless-stopped
+    ports: ["127.0.0.1:3300:3000"]
+    environment:
+      TZ: Asia/Shanghai
+      SESSION_SECRET: ${LLM_SESSION_SECRET:?Required}
+      SQLITE_PATH: /data/new-api.db
+      MEMORY_CACHE_ENABLED: "false"
+      RELAY_TIMEOUT: "18"
+      CHANNEL_UPSTREAM_MODEL_UPDATE_TASK_ENABLED: "false"
+    volumes: ["llm-data:/data"]
+    mem_limit: 512m
+volumes:
+  llm-data:

@@ -1,0 +1,167 @@
+{
+  "未付款": {
+    "state": "WAIT_PAY",
+    "prepay": 500,
+    "overtime": 0,
+    "receipts": {
+      "prepay": 0,
+      "overtime": 0
+    },
+    "refunds": {
+      "succeeded": 0,
+      "unknown": 0
+    },
+    "ruleSnapshot": true,
+    "settlement": "UNSETTLED"
+  },
+  "预付成功": {
+    "state": "CONFIRMED",
+    "prepay": 500,
+    "overtime": 0,
+    "receipts": {
+      "prepay": 500,
+      "overtime": 0
+    },
+    "refunds": {
+      "succeeded": 0,
+      "unknown": 0
+    },
+    "ruleSnapshot": true,
+    "settlement": "UNSETTLED"
+  },
+  "超时应付": {
+    "state": "COMPLETED",
+    "prepay": 500,
+    "overtime": 250,
+    "receipts": {
+      "prepay": 500,
+      "overtime": 0
+    },
+    "refunds": {
+      "succeeded": 0,
+      "unknown": 0
+    },
+    "ruleSnapshot": true,
+    "settlement": "UNSETTLED"
+  },
+  "超时支付成功": {
+    "state": "COMPLETED",
+    "prepay": 500,
+    "overtime": 250,
+    "receipts": {
+      "prepay": 500,
+      "overtime": 250
+    },
+    "refunds": {
+      "succeeded": 0,
+      "unknown": 0
+    },
+    "ruleSnapshot": true,
+    "settlement": "UNSETTLED"
+  },
+  "取消退款成功": {
+    "state": "CANCELLED",
+    "prepay": 500,
+    "overtime": 0,
+    "receipts": {
+      "prepay": 500,
+      "overtime": 0
+    },
+    "refunds": {
+      "succeeded": 500,
+      "unknown": 0
+    },
+    "ruleSnapshot": true,
+    "settlement": "UNSETTLED"
+  },
+  "退款在途未知": {
+    "state": "COMPLETED",
+    "prepay": 500,
+    "overtime": 0,
+    "receipts": {
+      "prepay": 500,
+      "overtime": 0
+    },
+    "refunds": {
+      "succeeded": 0,
+      "unknown": 500
+    },
+    "ruleSnapshot": true,
+    "settlement": "UNSETTLED"
+  },
+  "部分退款": {
+    "state": "COMPLETED",
+    "prepay": 500,
+    "overtime": 250,
+    "receipts": {
+      "prepay": 500,
+      "overtime": 250
+    },
+    "refunds": {
+      "succeeded": 200,
+      "unknown": 0
+    },
+    "ruleSnapshot": true,
+    "settlement": "UNSETTLED"
+  },
+  "历史规则缺失": {
+    "state": "COMPLETED",
+    "prepay": 500,
+    "overtime": 0,
+    "receipts": {
+      "prepay": 500,
+      "overtime": 0
+    },
+    "refunds": {
+      "succeeded": 0,
+      "unknown": 0
+    },
+    "ruleSnapshot": false,
+    "settlement": "UNSETTLED"
+  },
+  "解释期间版本变化": {
+    "state": "WAIT_PAY",
+    "prepay": 500,
+    "overtime": 0,
+    "receipts": {
+      "prepay": 0,
+      "overtime": 0
+    },
+    "refunds": {
+      "succeeded": 0,
+      "unknown": 0
+    },
+    "ruleSnapshot": true,
+    "settlement": "UNSETTLED"
+  },
+  "结算后退款": {
+    "state": "COMPLETED",
+    "prepay": 500,
+    "overtime": 250,
+    "receipts": {
+      "prepay": 500,
+      "overtime": 250
+    },
+    "refunds": {
+      "succeeded": 300,
+      "unknown": 0
+    },
+    "ruleSnapshot": true,
+    "settlement": "SETTLED"
+  },
+  "部分退款含在途": {
+    "state": "COMPLETED",
+    "prepay": 500,
+    "overtime": 0,
+    "receipts": {
+      "prepay": 500,
+      "overtime": 0
+    },
+    "refunds": {
+      "succeeded": 200,
+      "unknown": 100
+    },
+    "ruleSnapshot": true,
+    "settlement": "UNSETTLED"
+  }
+}

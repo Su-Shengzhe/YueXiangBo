@@ -33,7 +33,7 @@ public class IdentityAdmin {
    Problem.require(actor.id()!=id,403,"SELF_AUTHORIZATION","不能修改本人的资金权限");
    var user=Management.one(db,"SELECT id,version FROM app_user WHERE id=? FOR UPDATE",id);Management.version(input,user);
    Problem.require(db.queryForObject("SELECT COUNT(*) FROM user_role WHERE user_id=? AND role_code='PLATFORM'",Integer.class,id)==1,422,"INVALID_ROLE","仅支持平台账号的资金权限配置");
-   db.update("DELETE FROM account_permission WHERE user_id=? AND permission_code<>'ACCOUNT_AUTHORIZE'",id);
+   for(String permission:AccountPermissions.FINANCE)db.update("DELETE FROM account_permission WHERE user_id=? AND permission_code=?",id,permission);
    for(String permission:AccountPermissions.FINANCE)db.update("INSERT INTO account_permission VALUES(?,?,?)",id,permission,selected.contains(permission));
    db.update("UPDATE app_user SET version=version+1 WHERE id=?",id);revoke(id);
    Management.audit(db,actor,"ACCOUNT_PERMISSIONS",id,Map.of("permissions",selected));return permissionView(id);

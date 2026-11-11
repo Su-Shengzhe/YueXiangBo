@@ -1,0 +1,60 @@
+{
+  "build": "20261111-173952-284e810e",
+  "freezeHash": "aea54b932ad7af7f2d23c07190b72ee4cb3a7ad2f25b53cf60993d515c3ff3a3",
+  "counts": {
+    "query": {
+      "total": 30,
+      "passed": 30
+    },
+    "rule": {
+      "total": 30,
+      "passed": 30
+    },
+    "bill": {
+      "total": 20,
+      "passed": 20
+    },
+    "boundary": {
+      "total": 20,
+      "passed": 20
+    }
+  },
+  "failed": [],
+  "activeModel": "agnes-2.5-flash",
+  "routeVersion": 19,
+  "switch": [
+    "in-flight",
+    "new-route"
+  ],
+  "billRaceCases": [
+    {
+      "id": "B17",
+      "beforeVersion": 1,
+      "afterVersion": 5
+    },
+    {
+      "id": "B18",
+      "beforeVersion": 1,
+      "afterVersion": 5
+    }
+  ],
+  "httpRace": "PASS",
+  "firstHttpAttempt": {
+    "id": "20261111-180754",
+    "control": "AI_PROVIDER_RATE_LIMIT"
+  },
+  "budget": {
+    "unit": "microyuan",
+    "calls": 34,
+    "settled": 34,
+    "additionalSpent": 19408,
+    "newUnknown": 0,
+    "additionalReserved": 0,
+    "totalUnknown": 69,
+    "totalReserved": 690000,
+    "totalSpent": 893635,
+    "stageLimit": 50000000,
+    "deepSeekUsed": 32528,
+    "deepSeekLimit": 5000000
+  }
+}

@@ -1,0 +1,7 @@
+# Copy to deploy/secrets/llm-gateway.properties (ignored by Git).
+# Enable only after provider, model and spending budget are confirmed.
+# Use a limited gateway token, NEVER the provider key or administrator token.
+enabled=false
+base-url=http://127.0.0.1:3300/v1
+model=parking-assistant
+api-key=

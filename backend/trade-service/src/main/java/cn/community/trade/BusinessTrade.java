@@ -22,7 +22,7 @@ public class BusinessTrade implements Events.Handler {
   return tx.execute(s->{lock(id);var b=bill(id);own(b,Actor.of(req));var result=Data.row(b);
   result.put("attempts",db.queryForList("SELECT id,kind,amount_fen,status,channel_no FROM payment_attempt WHERE reservation_id=? ORDER BY id DESC",id).stream().map(Data::row).toList());
   result.put("reservationVersion",result.get("version"));
-  result.put("settlementStatus","NOT_IMPLEMENTED");return result;});
+  result.put("settlementAdjustments",db.queryForList("SELECT owner_recovery_fen,platform_reversal_fen,status FROM settlement_adjustment WHERE item_id IN (SELECT id FROM settlement_item WHERE reservation_id=?)",id).stream().map(Data::row).toList());return result;});
  }
  @PostMapping("/api/v1/payments") public ResponseEntity<?> pay(@RequestBody Map<String,Object> in,@RequestHeader("Idempotency-Key")String key,HttpServletRequest req){
   Actor a=Actor.of(req);a.role("DRIVER");Requests.key(key);long id=Data.number(in,"reservationId");String kind=Data.str(in,"kind");
@@ -76,6 +76,7 @@ public class BusinessTrade implements Events.Handler {
  public void accept(String type,Map<String,Object> p){
   Problem.require(List.of("ReservationCreated","ReservationConfirmed","ReservationClosed","ParkingEntered","ParkingCompleted").contains(type),422,"EVENT_TYPE","Unsupported trade event");
   long id=Data.number(p,"id");db.update("INSERT IGNORE INTO trade_order(reservation_id,user_id,prepay_fen) VALUES(?,?,?)",id,Data.number(p,"userId"),Data.number(p,"prepayFen"));lock(id);var b=bill(id);
+  if(p.get("ownerId")!=null)db.update("UPDATE trade_order SET owner_id=? WHERE reservation_id=? AND owner_id IS NULL",Data.number(p,"ownerId"),id);
   long version=Data.number(p,"version");
   if(version>((Number)b.get("version")).longValue())db.update("UPDATE trade_order SET status=?,version=?,overtime_fen=?,bill_version=bill_version+1 WHERE reservation_id=?",Data.str(p,"status"),version,Data.number(p,"overtimeFen"),id);
   // Financial reconciliation is independent of projection version.

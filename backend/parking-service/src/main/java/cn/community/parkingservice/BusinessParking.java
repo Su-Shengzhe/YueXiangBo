@@ -65,6 +65,8 @@ public class BusinessParking implements Events.Handler {
    int conflicts=db.queryForObject("SELECT COUNT(*) FROM reservation_order WHERE (vehicle_id=? OR space_id=?) AND start_at<? AND end_at>? AND (status IN ('CONFIRMED','IN_USE') OR (status='WAIT_PAY' AND pay_deadline>?))",Integer.class,vehicle,space,Data.ts(t[1]),Data.ts(t[0]),Data.ts(now));
    Problem.require(conflicts==0,409,"RESERVATION_CONFLICT","车位或车辆在该时段已有预约");
    long id=Data.id(db);db.update("INSERT INTO reservation_order(id,user_id,vehicle_id,space_id,community_id,plate,hourly_fen,start_at,end_at,pay_deadline,prepay_fen,status,window_id) VALUES(?,?,?,?,?,?,?,?,?,?,?,'WAIT_PAY',?)",id,a.id(),vehicle,space,p.get("community_id"),v.get("plate"),hourly,Data.ts(t[0]),Data.ts(t[1]),Data.ts(now.plusSeconds(600)),prepay,window.get("id"));
+   db.update("UPDATE reservation_order SET rule_snapshot=? WHERE id=?",Data.json(Map.of("ruleId","BILLING","version",1,"communityId","0","title","下单计费规则","clause","预约费与超时费分别按30分钟单位向上取整；提前离场不退预约费，无免费宽限。","unitMinutes",30)),id);
+   db.update("UPDATE reservation_order SET owner_id=? WHERE id=?",p.get("owner_id"),id);
    var o=order(id);event("ReservationCreated",o);var result=view(o);Requests.save(db,a.id(),"RESERVE",key,hash,result);return result;
   });
  }

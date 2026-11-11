@@ -89,6 +89,7 @@ public class RefundApplications {
             var application=Management.one(db,"SELECT * FROM refund_application WHERE id=? FOR UPDATE",id);
             Problem.require("PENDING".equals(application.get("status")),409,"APPLICATION_DECIDED","申请已审批，请刷新");
             if(decision.equals("APPROVE")){
+                Settlements.refundAllowed(bill);
                 long reservation=number(application,"reservation_id"),amount=number(application,"amount_fen");
                 RefundLedger.mapHistory(db,reservation);
                 var receipts=new ArrayList<RefundAllocation.Receipt>();

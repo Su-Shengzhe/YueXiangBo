@@ -2,6 +2,9 @@
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { api, setToken, ApiError } from './api'
 import ResourcePanel from './ResourcePanel.vue'
+import AiGatewayPanel from './AiGatewayPanel.vue'
+import AiAssistantPanel from './AiAssistantPanel.vue'
+import AiKnowledgePanel from './AiKnowledgePanel.vue'
 import RefundPanel from './RefundPanel.vue'
 import RefundApplicationsPanel from './RefundApplicationsPanel.vue'
 import { yuanToFen } from './money'
@@ -57,7 +60,7 @@ const isOwner = computed(() => user.value?.roles.includes('OWNER') || false)
 const isAdmin = computed(() => user.value?.roles.includes('PLATFORM') || false)
 const isProperty = computed(() => user.value?.roles.some(r=>['PROPERTY','PLATFORM'].includes(r)) || false)
 const managementPages=['vehicles','owner','reviews','communities','users','audit']
-function allowed(target:string){if(target==='refunds')return !!user.value?.permissions?.includes('REFUND_READ');if(['spaces','orders','bill','vehicles'].includes(target))return isDriver.value;if(target==='owner')return isOwner.value;if(['property','reviews'].includes(target))return isProperty.value;if(['demo','communities','users','audit','refunds'].includes(target))return isAdmin.value;return target==='ai'}
+function allowed(target:string){if(target==='aiGateway')return !!user.value?.permissions?.includes('MODEL_MANAGE');if(target==='knowledge')return !!user.value?.permissions?.includes('KNOWLEDGE_MANAGE');if(target==='refunds')return !!user.value?.permissions?.includes('REFUND_READ');if(['spaces','orders','bill','vehicles'].includes(target))return isDriver.value;if(target==='owner')return isOwner.value;if(['property','reviews'].includes(target))return isProperty.value;if(['demo','communities','users','audit','refunds'].includes(target))return isAdmin.value;return target==='ai'}
 watch([spaceType,maxHourlyFen],()=>{spaces.value=[];queried.value=null;searchPage.value=1})
 let requestedRoute='', routeGeneration=0
 watch(page,value=>{if(paths[value]){requestedRoute=value;const generation=++routeGeneration;void router.replace(paths[value]!).finally(()=>{if(generation===routeGeneration)requestedRoute=''})}},{flush:'sync'})
@@ -233,7 +236,7 @@ onUnmounted(() => { window.removeEventListener('focus',refreshOnFocus);if (timer
       <form class="panel login" @submit.prevent="login"><h2>{{registering ? "注册账号" : "欢迎登录"}}</h2><p class="muted">注册后可管理车辆、查询和预约车位。</p><label>账号<input v-model="username" autocomplete="username" required placeholder="driver / property / admin"></label><label>密码<input v-model="password" type="password" autocomplete="current-password" required></label><button class="primary" :disabled="busy">{{ busy ? '处理中…' : registering ? '注册' : '登录' }}</button><button type="button" @click="registering=!registering" :disabled="busy">{{registering ? "返回登录" : "创建新账号"}}</button><p class="hint">新账号4至40位字母数字下划线，密码至少10字符。演示账号仍可使用。</p><p v-if="message" role="alert" class="error">{{ message }}</p></form>
     </main>
     <template v-else>
-      <div class="workspace"><aside><div class="profile"><b>{{ user.username }}</b><small>{{ role }}</small></div><nav>
+      <div class="workspace"><aside><div class="profile"><b>{{ user.username }}</b><small>{{ role }}</small></div><nav><button v-if="user.permissions?.includes('MODEL_MANAGE')" @click="changePage('aiGateway')">模型供应商</button>
         <button v-if="isDriver" :class="{ active: page === 'spaces' }" @click="changePage('spaces')" :disabled="busy">查询与预约</button>
         <button v-if="isDriver" :class="{ active: page === 'orders' || page === 'bill' }" @click="changePage('orders')" :disabled="busy">我的预约与账单</button>
         <button v-if="isProperty" :class="{ active: page === 'property' }" @click="changePage('property')" :disabled="busy">物业入离场</button>
@@ -243,14 +246,14 @@ onUnmounted(() => { window.removeEventListener('focus',refreshOnFocus);if (timer
         <button v-if="isAdmin" @click="changePage('communities')" :class="{active:page==='communities'}" :disabled="busy">社区管理</button>
         <button v-if="isAdmin" @click="changePage('users')" :class="{active:page==='users'}" :disabled="busy">用户与角色</button>
         <button v-if="isAdmin" @click="changePage('audit')" :class="{active:page==='audit'}" :disabled="busy">操作审计</button>
-        <button v-if="user.permissions?.includes('REFUND_READ')" @click="changePage('refunds')" :disabled="busy">退款执行</button><button :class="{ active: page === 'ai' }" @click="changePage('ai')" :disabled="busy">停车助手</button>
+        <button v-if="user.permissions?.includes('REFUND_READ')" @click="changePage('refunds')" :disabled="busy">退款执行</button><button v-if="user.permissions?.includes('KNOWLEDGE_MANAGE')" @click="changePage('knowledge')">规则知识库</button><button :class="{ active: page === 'ai' }" @click="changePage('ai')" :disabled="busy">停车助手</button>
         <button v-if="isAdmin" :class="{ active: page === 'demo' }" @click="changePage('demo')" :disabled="busy">演示时间</button>
       </nav><button class="logout" @click="logout" :disabled="busy">退出登录</button></aside>
       <section class="content"><div class="context"><span>{{ communityName }}</span><span>演示时间 {{ date(now) }}</span></div>
         <p v-if="message" role="status" :class="['notice', { error }]">{{ message }}</p>
         <section v-if="pendingParking && pendingParking.account===user.id" class="notice" aria-label="待核对操作"><p>有一笔操作结果待确认，请先核对原请求。</p><button :disabled="busy" @click="recoverParking()">核对原操作</button><button v-if="pendingParking.kind==='reserve'" :disabled="busy" @click="recoverParking(true)">使用原请求重试</button></section>
         <p v-if="!recoveryStorage" class="notice">浏览器无法保存恢复记录；当前页面仍保留原请求，请在核对完成前不要刷新或关闭页面。</p>
-        <ResourcePanel v-if="managementPages.includes(page)" :key="page" :section="page" :user="user" :communities="page==='reviews'?propertyCommunities:communities" :now="now" @expired="clearSession" @changed="refreshResources" />
+        <AiGatewayPanel v-if="page==='aiGateway'" :key="user.id" @expired="clearSession" /><ResourcePanel v-if="managementPages.includes(page)" :key="page" :section="page" :user="user" :communities="page==='reviews'?propertyCommunities:communities" :now="now" @expired="clearSession" @changed="refreshResources" />
         <RefundApplicationsPanel v-if="page==='refunds'||page==='orders'" :key="user.id+page" :user-id="user.id" :admin="isAdmin" :can-approve="!!user.permissions?.includes('REFUND_APPROVE')" @expired="clearSession" /><RefundPanel v-if="page === 'refunds'" :key="user.id" :user-id="user.id" :can-retry="!!user.permissions?.includes('FUNDS_RECOVER')" @expired="clearSession" /><template v-if="page === 'spaces'">
           <h1>找到这一程的车位</h1><p class="muted">时间统一为北京时间（Asia/Shanghai）。提前至少15分钟预约，时间按15分钟对齐；单次30分钟至24小时。</p>
           <form class="panel filters" @submit.prevent="query()">
@@ -287,7 +290,7 @@ onUnmounted(() => { window.removeEventListener('focus',refreshOnFocus);if (timer
             <h3>交易记录</h3><p v-for="p in bill.attempts" :key="p.id">{{ p.kind === 'REFUND' ? '退款' : '付款' }} · {{ money(p.amountFen) }} · {{ names[p.status] || p.status }}</p><p v-if="!bill.attempts.length" class="muted">暂无交易记录</p><p class="hint">仅演示模拟收退款，不发生真实扣款。业主分账与正式结算将在后续阶段实现。</p>
           </section><p v-else class="empty">账单准备中或查询失败，请稍后刷新。</p>
         </template>
-        <template v-if="page === 'ai'"><h1>停车助手</h1><p class="notice">车位可用情况、订单状态和费用请以业务页面为准。</p><form class="panel assistant" @submit.prevent="ask"><label>想了解什么？<textarea v-model="question" maxlength="500" required rows="3"></textarea></label><button class="primary" :disabled="aiBusy">{{ aiBusy ? '回答中…' : '发送问题' }}</button><p v-if="aiError" role="alert" class="error">{{ aiError }}</p><p v-if="aiAnswer" class="answer">{{ aiAnswer }}</p><p class="hint">助手不执行预约、支付或退款。请通过对应页面操作。</p></form></template>
+        <AiAssistantPanel v-if="page === 'ai'" :key="user.id" :user-id="user.id" :reservation-id="selectedBill || undefined" @expired="clearSession" /><AiKnowledgePanel v-if="page === 'knowledge'" :key="user.id" @expired="clearSession" />
         <template v-if="page === 'demo'"><h1>本地演示时间</h1><section class="panel"><p>业务时钟仅用于演示，登录令牌仍按真实时间过期。推进时钟会影响所有演示订单，无法回退。</p><label>推进到<input v-model="advanceAt" type="datetime-local" required></label><button class="primary" :disabled="busy || !advanceAt" @click="advance">推进演示时间</button><p class="hint">入场演示：推进到预约开始；离场演示：推进到结束后，再切换物业账号办理。</p></section></template>
       </section></div>
     </template>

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "basis": "固定每小时500分；预约60分钟500分；超时1秒按30分钟计250分。金额为事前人工算例，不取被测接口输出。",
+  "scenarios": [
+    {"name":"未付款","status":"ANSWERED","facts":{"prepayFen":500,"overtimeFen":0,"paidFen":0,"refundedFen":0,"netPaidFen":0,"pendingRefundFen":0}},
+    {"name":"预付成功","status":"ANSWERED","facts":{"prepayFen":500,"overtimeFen":0,"paidFen":500,"refundedFen":0,"netPaidFen":500,"pendingRefundFen":0}},
+    {"name":"超时应付","status":"ANSWERED","facts":{"prepayFen":500,"overtimeFen":250,"paidFen":500,"refundedFen":0,"netPaidFen":500,"pendingRefundFen":0}},
+    {"name":"超时支付成功","status":"ANSWERED","facts":{"prepayFen":500,"overtimeFen":250,"paidFen":750,"refundedFen":0,"netPaidFen":750,"pendingRefundFen":0}},
+    {"name":"取消退款成功","status":"ANSWERED","facts":{"prepayFen":500,"overtimeFen":0,"paidFen":500,"refundedFen":500,"netPaidFen":0,"pendingRefundFen":0}},
+    {"name":"退款在途未知","status":"ANSWERED","facts":{"prepayFen":500,"overtimeFen":0,"paidFen":500,"refundedFen":0,"netPaidFen":500,"pendingRefundFen":500}},
+    {"name":"部分退款","status":"ANSWERED","facts":{"prepayFen":500,"overtimeFen":250,"paidFen":750,"refundedFen":200,"netPaidFen":550,"pendingRefundFen":0}},
+    {"name":"部分退款含在途","status":"ANSWERED","facts":{"prepayFen":500,"overtimeFen":0,"paidFen":500,"refundedFen":200,"netPaidFen":300,"pendingRefundFen":100}},
+    {"name":"历史规则缺失","status":"FALLBACK","fallbackReason":"HISTORICAL_RULE_MISSING","facts":{"prepayFen":500,"overtimeFen":0,"paidFen":500,"refundedFen":0,"netPaidFen":500,"pendingRefundFen":0}},
+    {"name":"解释期间版本变化","status":"FALLBACK","fallbackReason":"BILL_CHANGED","facts":{"prepayFen":500,"overtimeFen":0},"assertions":["返回版本大于首读版本","解释及原因数组为空","支付创建在解释调用准入之后","无变化对照必须ANSWERED"]},
+    {"name":"结算后退款","status":"ANSWERED","facts":{"prepayFen":500,"overtimeFen":250,"paidFen":750,"refundedFen":300,"netPaidFen":450,"pendingRefundFen":0,"settlementStatus":"SETTLED"},"accounting":{"originalOwnerPayoutFen":495,"ownerRecoveryFen":90,"platformReversalFen":10}}
+  ],
+  "executionStatus": "ORACLES_ONLY_NOT_EXECUTED",
+  "notes": ["每类两个不同问法需绑定独立用例编号","必须先准备与facts完全一致的当前业务状态；历史快照不能代替当前接口状态","冻结前不得将本文件标记为100条评测完成"]
+}
